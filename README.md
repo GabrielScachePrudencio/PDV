@@ -1,4 +1,4 @@
-# 🧾 PDV Lanchonete – WPF + ASP.NET
+# 🧾 PDV Lanchonete – WPF + ASP.NET + MOBILE
 
 Sistema de **PDV (Ponto de Venda)** desenvolvido em **C# com WPF**, integrado a um **servidor ASP.NET**, responsável por gerenciar pedidos, produtos, vendas e relatórios.
 
