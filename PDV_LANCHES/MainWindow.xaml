@@ -1,60 +1,76 @@
 ﻿<Window x:Class="PDV_LANCHES.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Login - PDV Lanches" Height="500" Width="850"
-        WindowState="Maximized"
+        Title="Login - PDV Lanches"
+        Width="392"
+        Height="448"
+        WindowStartupLocation="CenterScreen"
         WindowStyle="SingleBorderWindow"
-        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
-        FontFamily="Segoe UI">
+        ResizeMode="NoResize"
+        Background="White">
 
-    <Grid>
-        <Grid.Background>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="#1e3a8a" Offset="0"/>
-                <GradientStop Color="#3b82f6" Offset="1"/>
-            </LinearGradientBrush>
-        </Grid.Background>
+    <!-- CONTÊINER ÚNICO -->
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
 
-        <Border Width="400" Padding="40" Background="White" CornerRadius="20" 
-                VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="30" ShadowDepth="5" Opacity="0.3"/>
-            </Border.Effect>
+        <StackPanel Width="350">
 
-            <StackPanel>
-                <TextBlock Text="🍔" FontSize="50" HorizontalAlignment="Center" Margin="0,0,0,10"/>
-                <TextBlock Text="PDV LANCHES" FontSize="26" FontWeight="ExtraBold" Foreground="#1e3a8a" HorizontalAlignment="Center"/>
-                <TextBlock Text="Bem-vindo de volta!" FontSize="14" Foreground="#64748b" HorizontalAlignment="Center" Margin="0,5,0,30"/>
+            <!-- LOGO -->
+            <TextBlock Text="🍔"
+                       FontSize="50"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,10"/>
 
-                <TextBlock Text="Usuário" FontWeight="Bold" Foreground="#475569" Margin="0,0,0,5"/>
-                <TextBox x:Name="inputLoginNome" Height="40" Margin="0,0,0,20" Padding="10,0" 
-                         VerticalContentAlignment="Center" Background="#f1f5f9" BorderThickness="0">
-                    <TextBox.Resources>
-                        <Style TargetType="{x:Type Border}">
-                            <Setter Property="CornerRadius" Value="8"/>
-                        </Style>
-                    </TextBox.Resources>
-                </TextBox>
+            <TextBlock Text="PDV LANCHES"
+                       FontSize="26"
+                       FontWeight="ExtraBold"
+                       Foreground="#1e3a8a"
+                       HorizontalAlignment="Center"/>
 
-                <TextBlock Text="Senha" FontWeight="Bold" Foreground="#475569" Margin="0,0,0,5"/>
-                <PasswordBox x:Name="inputLoginSenha" Height="40" Margin="0,0,0,30" Padding="10,0" 
-                             VerticalContentAlignment="Center" Background="#f1f5f9" BorderThickness="0">
-                    <PasswordBox.Resources>
-                        <Style TargetType="{x:Type Border}">
-                            <Setter Property="CornerRadius" Value="8"/>
-                        </Style>
-                    </PasswordBox.Resources>
-                </PasswordBox>
+            <TextBlock Text="Bem-vindo de volta!"
+                       FontSize="14"
+                       Foreground="#64748b"
+                       HorizontalAlignment="Center"
+                       Margin="0,5,0,30"/>
 
-                <Button Content="Entrar no Sistema" Height="45" Background="#2563eb" Foreground="White" 
-                        FontWeight="Bold" FontSize="15" BorderThickness="0" Cursor="Hand" Click="Button_Click">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="10"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
-            </StackPanel>
-        </Border>
+            <!-- USUÁRIO -->
+            <TextBlock Text="Usuário"
+                       FontWeight="Bold"
+                       Foreground="#475569"
+                       Margin="0,0,0,5"/>
+
+            <TextBox x:Name="inputLoginNome"
+                     Height="40"
+                     Margin="0,0,0,20"
+                     Padding="10,0"
+                     Background="#f1f5f9"
+                     BorderThickness="0"
+                     VerticalContentAlignment="Center"/>
+
+            <!-- SENHA -->
+            <TextBlock Text="Senha"
+                       FontWeight="Bold"
+                       Foreground="#475569"
+                       Margin="0,0,0,5"/>
+
+            <PasswordBox x:Name="inputLoginSenha"
+                         Height="40"
+                         Margin="0,0,0,30"
+                         Padding="10,0"
+                         Background="#f1f5f9"
+                         BorderThickness="0"
+                         VerticalContentAlignment="Center"/>
+
+            <!-- BOTÃO -->
+            <Button Content="Entrar no Sistema"
+                    Height="45"
+                    Background="#2563eb"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    FontSize="15"
+                    BorderThickness="0"
+                    Cursor="Hand"
+                    Click="Button_Click"/>
+
+        </StackPanel>
     </Grid>
 </Window>

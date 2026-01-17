@@ -1,4 +1,5 @@
-﻿using PDV_LANCHES.Views;
+﻿using PDV_LANCHES.model;
+using PDV_LANCHES.Views;
 using System;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -12,28 +13,32 @@ namespace PDV_LANCHES.controller
     {
         private static readonly HttpClient cliente = new HttpClient();
 
-        public async Task<bool> VerificarLogin(string nomeI, string senhaI)
+        public async Task<Usuario> VerificarLogin(string nomeI, string senhaI)
         {
             try
             {
+                
                 var response = await ApiClient.Client.PostAsJsonAsync(
-                "api/auth/login",
-                new { Nome = nomeI, Senha = senhaI }
+                    "api/auth/login",
+                    new { Nome = nomeI, Senha = senhaI }
                 );
 
                 if (response.IsSuccessStatusCode)
-                    return true;
-
+                {
+                    var usuario = await response.Content.ReadFromJsonAsync<Usuario>();
+                    return usuario;
+                }
+                    
                 if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
-                    return false;
+                    return null;
 
 
 
-                return false;
+                return null;
             }
             catch (HttpRequestException)
             {
-                return false;
+                return null;
             }
 
 

@@ -46,4 +46,12 @@ namespace PDV_LANCHES.model
         ConfirmarPedido
     }
 
+    public enum TipoUsuario
+    {
+        Vendedor, 
+        Gerente,
+        Administrador
+
+    }
+
 }

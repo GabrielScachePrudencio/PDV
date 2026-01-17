@@ -1,4 +1,5 @@
 ﻿using PDV_LANCHES.controller;
+using PDV_LANCHES.model;
 using PDV_LANCHES.Views;
 using System.Text;
 using System.Windows;
@@ -41,12 +42,23 @@ namespace PDV_LANCHES
             if(loginNome != null || loginNome != "" || loginSenha != null || loginSenha != "")             
             {
                 Login login = new Login();  
-                if (await login.VerificarLogin(loginNome, loginSenha))
+                Usuario usuario = await login.VerificarLogin(loginNome, loginSenha);
+                if (usuario != null)
                 {
-                    Home home = new Home();
-                    MessageBox.Show("Login Efetuado com Sucesso!");
-                    home.Show();
-                    this.Close();   
+                    MessageBox.Show("Login Efetuado com Sucesso! " + usuario.TipoUsuario);
+
+                    if (usuario.TipoUsuario == TipoUsuario.Administrador || usuario.TipoUsuario == TipoUsuario.Gerente)
+                    {
+                        EscolhaQualHome homeEscolha = new EscolhaQualHome();
+                        homeEscolha.Show();
+                        this.Close();
+                    }
+                    else if(usuario.TipoUsuario == TipoUsuario.Vendedor)
+                    {
+                        Home home = new Home();
+                        home.Show();
+                        this.Close();
+                    }
                 }
                 else
                 {

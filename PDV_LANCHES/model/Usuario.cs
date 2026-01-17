@@ -16,5 +16,7 @@ namespace PDV_LANCHES.model
         public string Senha { get; set; }
 
         public DateTime DataCriacao { get; set; }
+
+        public TipoUsuario TipoUsuario { get; set; }
     }
 }

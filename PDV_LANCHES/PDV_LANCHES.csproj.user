@@ -2,13 +2,34 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="Views\EscolhaQualHome.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Home.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\HomeAdministrativo.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\NovoPedido.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\PedidoInfo.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ViewsAdministrativo\AllCardapio.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ViewsAdministrativo\AllRelatorio.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ViewsAdministrativo\AllUsuario.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ViewsAdministrativo\ConfiguracaoBanco.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ViewsAdministrativo\ConfiguracaoFiscal.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

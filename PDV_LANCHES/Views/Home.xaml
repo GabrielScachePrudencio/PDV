@@ -37,6 +37,24 @@
                             </Style>
                         </Button.Resources>
                     </Button>
+                    <Button x:Name="BtnVoltarParaEscolha"
+                        Content="Voltar"
+                        Background="#64748b"
+                        Foreground="White"
+                        FontWeight="Bold"
+                        Width="120"
+                        Height="40"
+                        Margin="0,0,10,0"
+                        BorderThickness="0"
+                        Visibility="Collapsed"
+                        Click="VoltarParaEscolha_Click">    
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="8"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+
                     <Button Name="Sair" Content="Sair" Background="#ef4444" Foreground="White" 
                             FontWeight="Bold" Width="80" Height="40" BorderThickness="0" Click="Sair_Click">
                         <Button.Resources>

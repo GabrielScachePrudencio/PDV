@@ -26,7 +26,6 @@ namespace PDV_LANCHES.Views
         private async Task CarregarDadosUsuario()
         {
             var usuario = await homeController.pegarUsuarioLogado();
-
             if (usuario == null)
             {
                 MessageBox.Show("Sessão expirada. Faça login novamente.");
@@ -35,8 +34,14 @@ namespace PDV_LANCHES.Views
             }
 
             usuarioLogado = usuario;
-            usuarioLogadoHome.Text = usuario.Nome; 
+            usuarioLogadoHome.Text = usuario.Nome;
+
+            if (usuario.TipoUsuario != TipoUsuario.Vendedor)
+            {
+                BtnVoltarParaEscolha.Visibility = Visibility.Visible;
+            }
         }
+
 
         private async Task CarregarDadosPedidos()
         {
@@ -85,5 +90,13 @@ namespace PDV_LANCHES.Views
             np.Show();
             this.Close();
         }
+
+        private void VoltarParaEscolha_Click(object sender, RoutedEventArgs e)
+        {
+            EscolhaQualHome tela = new EscolhaQualHome();
+            tela.Show();
+            Close();
+        }
+
     }
 }
