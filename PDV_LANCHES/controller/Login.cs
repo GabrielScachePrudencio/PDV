@@ -1,5 +1,6 @@
 ﻿using PDV_LANCHES.model;
 using PDV_LANCHES.Views;
+using ServidorLanches.model;
 using System;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -17,7 +18,7 @@ namespace PDV_LANCHES.controller
         {
             try
             {
-                
+
                 var response = await ApiClient.Client.PostAsJsonAsync(
                     "api/auth/login",
                     new { Nome = nomeI, Senha = senhaI }
@@ -28,7 +29,7 @@ namespace PDV_LANCHES.controller
                     var usuario = await response.Content.ReadFromJsonAsync<Usuario>();
                     return usuario;
                 }
-                    
+
                 if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
                     return null;
 
@@ -43,5 +44,28 @@ namespace PDV_LANCHES.controller
 
 
         }
+
+        public async Task<ConfiguracoesGerais> ConfiguracoesGerais()
+        {
+            try
+            {
+                var response = await ApiClient.Client.GetAsync("api/auth/configuracoes-gerais");
+                if (response.IsSuccessStatusCode)
+                {
+                    var config = await response.Content.ReadFromJsonAsync<ConfiguracoesGerais>();
+                    return config;
+                }
+
+                if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                    return null;
+
+                return null;
+            }
+            catch (HttpRequestException)
+            {
+                return null;
+            }
+        } 
+
     }
 }

@@ -53,3 +53,5 @@ C:\Users\Flavio\Desktop\Net\wpf\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows
 C:\Users\Flavio\Desktop\Net\wpf\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\ViewsAdministrativo\ConfiguracaoFiscal.g.cs
 C:\Users\Flavio\Desktop\Net\wpf\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\EscolhaQualHome.baml
 C:\Users\Flavio\Desktop\Net\wpf\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\EscolhaQualHome.g.cs
+C:\Users\Flavio\Desktop\Net\wpf\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\ViewsAdministrativo\ConfiguracoesGeraisVA2.baml
+C:\Users\Flavio\Desktop\Net\wpf\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\ViewsAdministrativo\ConfiguracoesGeraisVA2.g.cs

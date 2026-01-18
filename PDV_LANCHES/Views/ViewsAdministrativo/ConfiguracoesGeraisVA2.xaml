@@ -1,0 +1,145 @@
+﻿<UserControl x:Class="PDV_LANCHES.Views.ViewsAdministrativo.ConfiguracoesGeraisVA2"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="Transparent">
+
+    <UserControl.Resources>
+        <Style x:Key="FieldLabel" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#475569"/>
+            <Setter Property="Margin" Value="0,0,0,6"/>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Padding" Value="12,0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="BorderBrush" Value="#E2E8F0"/>
+            <Setter Property="Background" Value="#F8FAF8"/>
+            <Setter Property="Margin" Value="0,0,0,20"/>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="8"/>
+                </Style>
+            </Style.Resources>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Margin="40">
+        <Border Background="#FF0F172A" CornerRadius="16" Padding="40">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="20"
+                                  Opacity="0.05"
+                                  ShadowDepth="4"/>
+            </Border.Effect>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="220"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- LOGO -->
+                <StackPanel Grid.Column="0">
+                   
+
+                    <Border Width="180"
+                            Height="180"
+                            Background="#F1F5F9"
+                            CornerRadius="12"
+                            BorderBrush="#E2E8F0"
+                            BorderThickness="1">
+
+                        <Grid>
+                            <Image x:Name="pdvLogo"
+                                   Stretch="Uniform"
+                                   Cursor="Hand"
+                                   MouseLeftButtonUp="pdvLogo_Click"
+                                   Margin="10"/>
+
+                            <TextBlock Text="📷"
+                                       FontSize="30"
+                                       Foreground="#94A3B8"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       IsHitTestVisible="False">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Source={x:Reference pdvLogo}, Path=Source}"
+                                                         Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </Grid>
+                    </Border>
+
+                    <TextBlock Text="Clique para alterar"
+                               FontSize="11"
+                               Foreground="white"
+                               HorizontalAlignment="Center"
+                               Margin="0,10,0,0"/>
+                </StackPanel>
+
+                <!-- FORMULÁRIO -->
+                <StackPanel Grid.Column="1" Margin="40,0,0,0">
+
+                    <TextBlock Text="CONFIGURAÇÕES DA EMPRESA"
+                               FontSize="20"
+                               FontWeight="Bold"
+                               Foreground="white"
+                               Margin="0,0,0,30"/>
+
+                    <TextBlock Text="Nome / Nome Fantasia" Foreground="white"
+                               Style="{StaticResource FieldLabel}"/>
+                    <TextBox x:Name="pdvNome"/>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                            <TextBlock Text="Telefone"  Foreground="white" Style="{StaticResource FieldLabel}"/>
+                            <TextBox x:Name="pdvTelefone"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                            <TextBlock Text="E-mail de Contato" Foreground="white" Style="{StaticResource FieldLabel}"/>
+                            <TextBox x:Name="pdvEmail"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <TextBlock Text="Endereço Completo" Foreground="white"
+                               Style="{StaticResource FieldLabel}"/>
+                    <TextBox x:Name="pdvEndereco"/>
+
+                    <Button Content="Salvar alterações"
+                            Height="48"
+                            Width="240"
+                            Margin="0,10,0,0"
+                            HorizontalAlignment="Left"
+                            Background="#3B82F6"
+                            Foreground="White"
+                            FontWeight="Bold"
+                            BorderThickness="0"
+                            Cursor="Hand"
+                            Click="salvarConfiguracoes_click">
+
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

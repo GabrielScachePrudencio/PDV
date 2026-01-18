@@ -22,7 +22,36 @@ namespace PDV_LANCHES
         public MainWindow()
         {
             InitializeComponent();
+            CarregarConfiguracoesGerais();
         }
+
+        private async void CarregarConfiguracoesGerais()
+        {
+            Login login = new Login();
+            var config = await login.ConfiguracoesGerais();
+
+            if(config != null)
+            {
+                if (config.pathImagemLogo != null)
+                {
+                    pdvLogo.Source = new BitmapImage(new Uri(config.pathImagemLogo, UriKind.Absolute));
+                }
+                
+                if (config.nomeFantasia != null)
+                {
+                    pdvNome.Text = config.nomeFantasia;
+                }
+                else
+                {
+                    pdvNome.Text = config.nome;
+                }
+
+
+            }
+
+
+        }
+
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {

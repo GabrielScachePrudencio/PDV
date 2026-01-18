@@ -1,27 +1,54 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PDV_LANCHES.controller;
+using PDV_LANCHES.model;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace PDV_LANCHES.Views.ViewsAdministrativo
 {
-    /// <summary>
-    /// Lógica interna para AllCardapio.xaml
-    /// </summary>
     public partial class AllCardapio : UserControl
     {
+        private List<Cardapio> listaCardapio;
+        private NovoPedidoController novoPedido = new NovoPedidoController();
+
         public AllCardapio()
         {
             InitializeComponent();
+            CarregarCardapio();
+        }
+
+        private async void CarregarCardapio()
+        {
+            listaCardapio = await novoPedido.getAllCardapio();
+
+            dgCardapio.ItemsSource = listaCardapio;
+        }
+
+        private void Adicionar_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Abrir modal para adicionar item");
+        }
+
+        private void Editar_Click(object sender, RoutedEventArgs e)
+        {
+            var item = (sender as Button)?.DataContext as Cardapio;
+            if (item == null) return;
+
+            MessageBox.Show($"Editar: {item.Nome}");
+        }
+
+        private void Excluir_Click(object sender, RoutedEventArgs e)
+        {
+            var item = (sender as Button)?.DataContext as Cardapio;
+            if (item == null) return;
+
+            if (MessageBox.Show($"Excluir {item.Nome}?",
+                                "Confirmação",
+                                MessageBoxButton.YesNo,
+                                MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                listaCardapio.Remove(item);
+            }
         }
     }
 }

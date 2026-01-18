@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 C:\Users\Flavio\Desktop\Net\wpf\PDV_LANCHES\PDV_LANCHES\App.xaml
-11-117282470
+1211859057
 
-261362744175
+28-2042464226
 206707136612
-MainWindow.xaml;Views\EscolhaQualHome.xaml;Views\Home.xaml;Views\HomeAdministrativo.xaml;Views\NovoPedido.xaml;Views\PedidoInfo.xaml;Views\ViewsAdministrativo\AllCardapio.xaml;Views\ViewsAdministrativo\AllRelatorio.xaml;Views\ViewsAdministrativo\AllUsuario.xaml;Views\ViewsAdministrativo\ConfiguracaoBanco.xaml;Views\ViewsAdministrativo\ConfiguracaoFiscal.xaml;
+MainWindow.xaml;Views\EscolhaQualHome.xaml;Views\Home.xaml;Views\HomeAdministrativo.xaml;Views\NovoPedido.xaml;Views\PedidoInfo.xaml;Views\ViewsAdministrativo\AllCardapio.xaml;Views\ViewsAdministrativo\AllRelatorio.xaml;Views\ViewsAdministrativo\AllUsuario.xaml;Views\ViewsAdministrativo\ConfiguracaoBanco.xaml;Views\ViewsAdministrativo\ConfiguracaoFiscal.xaml;Views\ViewsAdministrativo\ConfiguracoesGeraisVA2.xaml;
 
 False
 

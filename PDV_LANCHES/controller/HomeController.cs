@@ -1,4 +1,5 @@
 ﻿using PDV_LANCHES.model;
+using ServidorLanches.model;
 using System.Net.Http.Json;
 
 namespace PDV_LANCHES.controller
@@ -26,6 +27,20 @@ namespace PDV_LANCHES.controller
             if (!response.IsSuccessStatusCode)
                 return null;
             return await response.Content.ReadFromJsonAsync<List<Pedido>>();
+        }
+
+        public async Task<bool> AtualizarConfiguracoes(ConfiguracoesGerais config)
+        {
+            try
+            {
+                var response = await ApiClient.Client.PutAsJsonAsync("api/auth/atualizar", config);
+
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

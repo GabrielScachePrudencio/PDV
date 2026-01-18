@@ -15,12 +15,14 @@
         <StackPanel Width="350">
 
             <!-- LOGO -->
-            <TextBlock Text="🍔"
-                       FontSize="50"
-                       HorizontalAlignment="Center"
-                       Margin="0,0,0,10"/>
+            <Image Source="{x:Null}"
+                   Width="100"
+                   Name="pdvLogo"
+                   Height="100"
+                   />
 
-            <TextBlock Text="PDV LANCHES"
+            <TextBlock Text=""
+                       x:Name="pdvNome"
                        FontSize="26"
                        FontWeight="ExtraBold"
                        Foreground="#1e3a8a"
