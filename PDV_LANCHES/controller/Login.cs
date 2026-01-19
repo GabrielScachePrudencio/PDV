@@ -45,27 +45,24 @@ namespace PDV_LANCHES.controller
 
         }
 
-        public async Task<ConfiguracoesGerais> ConfiguracoesGerais()
+        public async Task<ConfiguracoesGerais?> ConfiguracoesGerais()
         {
             try
             {
-                var response = await ApiClient.Client.GetAsync("api/auth/configuracoes-gerais");
-                if (response.IsSuccessStatusCode)
-                {
-                    var config = await response.Content.ReadFromJsonAsync<ConfiguracoesGerais>();
-                    return config;
-                }
+                var response = await ApiClient.Client
+                    .GetAsync("api/administrativo/configuracoes-gerais");
 
-                if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                if (!response.IsSuccessStatusCode)
                     return null;
 
-                return null;
+                return await response.Content
+                    .ReadFromJsonAsync<ConfiguracoesGerais>();
             }
-            catch (HttpRequestException)
+            catch
             {
                 return null;
             }
-        } 
+        }
 
     }
 }

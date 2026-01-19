@@ -22,7 +22,7 @@ namespace PDV_LANCHES.controller
 
         public async Task<List<Cardapio>> getAllCardapio()
         {
-            var response = await ApiClient.Client.PostAsync("api/auth/cardapio-completo", null);
+            var response = await ApiClient.Client.GetAsync("api/cardapio");
             if (!response.IsSuccessStatusCode)
                 return null;
             return await response.Content.ReadFromJsonAsync<List<Cardapio>>();
@@ -30,7 +30,7 @@ namespace PDV_LANCHES.controller
 
         public async Task<bool> criarPedido(Pedido pedido)
         {
-            var response = await ApiClient.Client.PostAsJsonAsync("api/auth/add-pedido-itens", pedido);
+            var response = await ApiClient.Client.PostAsJsonAsync("api/pedidos", pedido);
             return response.IsSuccessStatusCode;
         }
     }

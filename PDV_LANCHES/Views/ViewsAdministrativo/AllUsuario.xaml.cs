@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PDV_LANCHES.controller;
+using PDV_LANCHES.model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,40 @@ namespace PDV_LANCHES.Views.ViewsAdministrativo
     /// </summary>
     public partial class AllUsuario : UserControl
     {
+        private List<Usuario> listaUsuarios;
+        private HomeAdministrativoController administrativoController = new HomeAdministrativoController();
+
         public AllUsuario()
         {
             InitializeComponent();
+            CarregarUsuarios();
         }
+
+        public async void CarregarUsuarios() {
+            listaUsuarios = await administrativoController.getAllUsuarios();
+            dgUsuario.ItemsSource = listaUsuarios;
+        }
+
+        private void Adicionar_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Abrir modal para adicionar item");
+        }
+
+        private void Editar_Click(object sender, RoutedEventArgs e)
+        {
+            var usuario = (sender as Button)?.DataContext as Usuario;
+            if (usuario == null) return;
+
+            MessageBox.Show($"Editar: {usuario.Nome}");
+        }
+
+        private void Excluir_Click(object sender, RoutedEventArgs e)
+        {
+            var usuario = (sender as Button)?.DataContext as Usuario;
+            if (usuario == null) return;
+
+            MessageBox.Show($"Excluir: {usuario.Nome}");
+        }
+
     }
 }

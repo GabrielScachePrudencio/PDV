@@ -1,4 +1,6 @@
-﻿using PDV_LANCHES.controller;
+﻿using Org.BouncyCastle.Asn1.Cmp;
+using Org.BouncyCastle.Tls;
+using PDV_LANCHES.controller;
 using PDV_LANCHES.model;
 using PDV_LANCHES.Views;
 using System.Text;
@@ -19,6 +21,7 @@ namespace PDV_LANCHES
     /// </summary>
     public partial class MainWindow : Window
     {
+        private HomeController homeController = new HomeController();
         public MainWindow()
         {
             InitializeComponent();
@@ -45,8 +48,10 @@ namespace PDV_LANCHES
                 {
                     pdvNome.Text = config.nome;
                 }
-
-
+            }
+            else
+            {
+                MessageBox.Show("ERro null");
             }
 
 
@@ -100,6 +105,12 @@ namespace PDV_LANCHES
             }
 
 
+        }
+
+        private async void Fechar_Click(object sender, RoutedEventArgs e)
+        {
+            await homeController.Logout();
+            this.Close();
         }
     }
 }

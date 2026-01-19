@@ -13,6 +13,6 @@ public static class ApiClient
 
     public static HttpClient Client { get; } = new HttpClient(handler)
     {
-        BaseAddress = new Uri("https://localhost:7249/")
+        BaseAddress = new Uri("http://localhost:5097/")
     };
 }

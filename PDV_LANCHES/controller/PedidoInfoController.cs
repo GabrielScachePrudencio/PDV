@@ -13,7 +13,7 @@ namespace PDV_LANCHES.controller
         public async Task<Pedido?> getPedidoById(int idPedido)
         {
 
-            var response = await ApiClient.Client.PostAsync("api/auth/pedido-info?idPedido="+idPedido, null);
+            var response = await ApiClient.Client.GetAsync("api/pedidos/pedido-info?idPedido=" + idPedido);
             
             if(!response.IsSuccessStatusCode)
                 return null;    
@@ -23,7 +23,7 @@ namespace PDV_LANCHES.controller
 
         public async Task<bool> AtualizarPedido(Pedido pedido)
         {
-            var response = await ApiClient.Client.PostAsJsonAsync("api/auth/add-pedido-itens", pedido);
+            var response = await ApiClient.Client.PutAsJsonAsync("api/pedidos/add-pedido-itens", pedido);
             if (!response.IsSuccessStatusCode)
                 throw new Exception("Falha ao atualizar o pedido.");
                

@@ -1,15 +1,113 @@
 ﻿<UserControl x:Class="PDV_LANCHES.Views.ViewsAdministrativo.ConfiguracaoBanco"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d"
-             d:DesignHeight="450"
-             d:DesignWidth="800">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <StackPanel>
-        <TextBlock Text="BANCO" FontSize="20" Margin="0,0,0,10"/>
-        
-    </StackPanel>
+    <UserControl.Resources>
+        <Style x:Key="StatusLabel" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#94A3B8"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Margin" Value="0,0,0,4"/>
+        </Style>
 
+        <Style TargetType="DataGrid">
+            <Setter Property="Background" Value="#0F172A"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#1E293B"/>
+            <Setter Property="RowBackground" Value="#0F172A"/>
+            <Setter Property="AlternatingRowBackground" Value="#1E293B"/>
+            <Setter Property="GridLinesVisibility" Value="None"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+        </Style>
+
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="#1E293B"/>
+            <Setter Property="Foreground" Value="#94A3B8"/>
+            <Setter Property="Padding" Value="10,8"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="BorderBrush" Value="#3B82F6"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Margin="32">
+        <StackPanel MaxWidth="900" HorizontalAlignment="Left">
+
+            <StackPanel Margin="0,0,0,24">
+                <TextBlock Text="Infraestrutura de Dados" FontSize="26" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="Gerencie backups, restaurações e monitore a integridade das tabelas MySQL." 
+                           Foreground="#64748B" FontSize="14"/>
+            </StackPanel>
+
+            <UniformGrid Columns="3" Margin="0,0,0,24">
+                <Border Background="#020617" CornerRadius="12" Padding="20" Margin="0,0,12,0" BorderBrush="#1E293B" BorderThickness="1">
+                    <StackPanel>
+                        <TextBlock Text="TIPO DE BANCO" Style="{StaticResource StatusLabel}"/>
+                        <TextBlock Text="MySQL 8.0" Foreground="White" FontSize="18" FontWeight="Bold"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Background="#020617" CornerRadius="12" Padding="20" Margin="0,0,12,0" BorderBrush="#1E293B" BorderThickness="1">
+                    <StackPanel>
+                        <TextBlock Text="STATUS DA CONEXÃO" Style="{StaticResource StatusLabel}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Ellipse Width="10" Height="10" Fill="#10B981" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                            <TextBlock Text="Operacional" Foreground="#10B981" FontSize="18" FontWeight="Bold"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <Border Background="#020617" CornerRadius="12" Padding="20" BorderBrush="#1E293B" BorderThickness="1">
+                    <StackPanel>
+                        <TextBlock Text="ÚLTIMO BACKUP" Style="{StaticResource StatusLabel}"/>
+                        <TextBlock Text="Hoje, 08:45h" Foreground="White" FontSize="18" FontWeight="Bold"/>
+                    </StackPanel>
+                </Border>
+            </UniformGrid>
+
+            <Border Background="#0F172A" CornerRadius="12" Padding="20" BorderBrush="#1E293B" BorderThickness="1" Margin="0,0,0,24">
+                <StackPanel>
+                    <TextBlock Text="Destino do Backup" Style="{StaticResource StatusLabel}" Margin="0,0,0,8"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Text="C:\Backups\SistemaPDV\" IsReadOnly="True" Background="#020617" Foreground="#94A3B8" Padding="12" BorderThickness="1" BorderBrush="#1E293B"/>
+                        <Button Grid.Column="1" Content="Alterar Pasta" Margin="10,0,0,0" Padding="15,0" Background="#1E293B" Foreground="White" BorderThickness="0" Cursor="Hand"/>
+                    </Grid>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                        <Button Content="🚀 Gerar Backup Agora" Background="#3B82F6" Foreground="White" FontWeight="Bold" Width="180" Height="40" BorderThickness="0">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="6"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <Button Content="🔄 Restaurar Banco" Background="Transparent" BorderBrush="#EF4444" BorderThickness="1" Foreground="#EF4444" FontWeight="Bold" Width="180" Height="40" Margin="12,0,0,0" Cursor="Hand">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="6"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <TextBlock Text="Tabelas e Estatísticas" FontSize="16" FontWeight="Bold" Foreground="White" Margin="0,0,0,12"/>
+            <Border CornerRadius="8" ClipToBounds="True" BorderBrush="#1E293B" BorderThickness="1">
+                <DataGrid Height="250" ItemsSource="{Binding SuasTabelas}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Nome da Tabela" Binding="{Binding Nome}" Width="*" />
+                        <DataGridTextColumn Header="Registros" Binding="{Binding Qtd}" Width="120" />
+                        <DataGridTextColumn Header="Tamanho (KB)" Binding="{Binding Tamanho}" Width="120" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Border>
+
+        </StackPanel>
+    </Grid>
 </UserControl>

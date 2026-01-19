@@ -23,7 +23,7 @@ namespace PDV_LANCHES.controller
 
         public async Task<List<Pedido>?> PegarTodosPedidos()
         {
-            var response = await ApiClient.Client.PostAsync("api/auth/all-pedidos", null);
+            var response = await ApiClient.Client.GetAsync("api/pedidos");
             if (!response.IsSuccessStatusCode)
                 return null;
             return await response.Content.ReadFromJsonAsync<List<Pedido>>();
@@ -33,7 +33,7 @@ namespace PDV_LANCHES.controller
         {
             try
             {
-                var response = await ApiClient.Client.PutAsJsonAsync("api/auth/atualizar", config);
+                var response = await ApiClient.Client.PutAsJsonAsync("api/administrativo/configuracoes", config);
 
                 return response.IsSuccessStatusCode;
             }

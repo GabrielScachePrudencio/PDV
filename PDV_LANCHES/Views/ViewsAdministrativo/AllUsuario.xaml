@@ -1,16 +1,60 @@
 ﻿<UserControl x:Class="PDV_LANCHES.Views.ViewsAdministrativo.AllUsuario"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d"
-             d:DesignHeight="450"
-             d:DesignWidth="800">
+             Background="Transparent" Height="400" Width="738">
 
-    <StackPanel>
-        <TextBlock Text="Usuários" FontSize="20" Margin="0,0,0,10"/>
-        <Button Content="Ver todos usuários" Margin="0,0,0,5"/>
-        <Button Content="Adicionar usuário"/>
-    </StackPanel>
+    <UserControl.Resources>
+        <Style TargetType="DataGridRow">
+            <Setter Property="Background" Value="#020617"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#0F172A"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
 
+    <Grid Margin="24">
+        <Border Background="#0F172A" CornerRadius="16" BorderBrush="#1E293B" BorderThickness="1" Padding="24">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Margin="0,0,0,25">
+                    <StackPanel>
+                        <TextBlock Text="Equipe" FontSize="24" FontWeight="Bold" Foreground="White"/>
+                    </StackPanel>
+                    <Button HorizontalAlignment="Right" Content="+ Novo Usuário" Width="180" Height="42" Background="#3B82F6" Foreground="White" FontWeight="Bold" BorderThickness="0" />
+                </Grid>
+
+                <Border Grid.Row="1" CornerRadius="12" ClipToBounds="True" BorderBrush="#1E293B" BorderThickness="1">
+                    <DataGrid x:Name="dgUsuario" AutoGenerateColumns="False" CanUserAddRows="False" Background="#020617" 
+                              BorderThickness="0" HeadersVisibility="Column" RowHeight="60" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#1E293B">
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="Background" Value="#1E293B"/>
+                                <Setter Property="Foreground" Value="#94A3B8"/>
+                                <Setter Property="Height" Value="45"/>
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Nome" Binding="{Binding Nome}" Width="*"/>
+                            <DataGridTextColumn Header="Acesso" Binding="{Binding TipoUsuario}" Width="150"/>
+                            <DataGridTemplateColumn Header="Ações" Width="100">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="X" Width="32" Height="32" Background="#450A0A" Foreground="#F87171" Click="Excluir_Click"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
 </UserControl>
