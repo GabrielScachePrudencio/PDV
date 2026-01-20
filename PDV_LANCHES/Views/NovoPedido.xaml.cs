@@ -1,5 +1,6 @@
 ﻿using PDV_LANCHES.controller;
 using PDV_LANCHES.model;
+using ServidorLanches.model.dto;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,16 +15,16 @@ namespace PDV_LANCHES.Views
     public partial class NovoPedido : Window
     {
         private NovoPedidoController controller;
-        private Pedido pedido;
+        private PedidoDTO pedido;
         private ObservableCollection<Cardapio> cardapios = new ObservableCollection<Cardapio>();
-        private ObservableCollection<ItemPedido> itensPedido = new ObservableCollection<ItemPedido>();
+        private ObservableCollection<ItemPedidoCardapioDTO> itensPedido = new ObservableCollection<ItemPedidoCardapioDTO>();
         private EtapaPedido etapaAtual = EtapaPedido.InformarCpf;
 
         public NovoPedido()
         {
             InitializeComponent();
             controller = new NovoPedidoController();
-            pedido = new Pedido();
+            pedido = new PedidoDTO();
             CarregarCardapioAoIniciar();
         }
 
@@ -33,14 +34,30 @@ namespace PDV_LANCHES.Views
             if (lista != null)
             {
                 foreach (var item in lista)
+
                 {
-                    item.QuantidadeSelecionada = 1; 
+
+                    if (!string.IsNullOrEmpty(item.pathImg))
+                    {
+                        try
+                        {
+                            if (!item.pathImg.StartsWith("file:///"))
+                            {
+                                item.pathImg = new Uri(item.pathImg, UriKind.Absolute).AbsoluteUri;
+                            }
+                        }
+                        catch
+
+                        {
+                            item.pathImg = null;
+                        }
+                    }
+                    item.QuantidadeSelecionada = 1;
                     cardapios.Add(item);
                 }
                 ListaCardapioItems.ItemsSource = cardapios;
             }
         }
-
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             switch (etapaAtual)
@@ -78,7 +95,7 @@ namespace PDV_LANCHES.Views
             pedido.IdUsuario = usuario.Id;
             pedido.CpfCliente = inputCpfCliente.Text;
             pedido.DataCriacao = DateTime.Now;
-            pedido.StatusPedido = StatusPedido.EmAndamento.ToString();
+            pedido.StatusPedido = StatusPedido.Pendente;
 
             inputCpfCliente.IsEnabled = false;
             LabelCPF.Text = $"✅ Cliente: {pedido.CpfCliente}";
@@ -108,7 +125,7 @@ namespace PDV_LANCHES.Views
                 var nomeProd = cardapios.First(c => c.Id == item.IdCardapio).Nome;
                 var linha = new TextBlock
                 {
-                    Text = $"• {item.Quantidade}x {nomeProd} - R$ {(item.Quantidade * item.PrecoUnitario):F2}",
+                    Text = $"• {item.Quantidade}x {nomeProd} - R$ {(item.Quantidade * item.ValorUnitario):F2}",
                     FontSize = 14,
                     Margin = new Thickness(0, 5, 0, 5)
                 };
@@ -122,6 +139,15 @@ namespace PDV_LANCHES.Views
         private async Task FinalizarVenda()
         {
             pedido.Itens = itensPedido.ToList();
+
+            if (pedido.Itens.Count == 0)
+            {
+                MessageBox.Show("O pedido não possui itens para ser enviado!");
+                return;
+            }
+
+            pedido.ValorTotal = pedido.Itens.Sum(i => i.ValorUnitario * i.Quantidade);
+
             var sucesso = await controller.criarPedido(pedido);
 
             if (sucesso)
@@ -129,6 +155,10 @@ namespace PDV_LANCHES.Views
                 MessageBox.Show("Pedido realizado com sucesso!");
                 new Home().Show();
                 this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Erro ao adicionar pedido! Detalhes: ");
             }
         }
 
@@ -148,21 +178,27 @@ namespace PDV_LANCHES.Views
             }
             else
             {
-                itensPedido.Add(new ItemPedido
+                itensPedido.Add(new ItemPedidoCardapioDTO
                 {
                     IdCardapio = produto.Id,
-                    PrecoUnitario = produto.Valor,
+                    NomeCardapio = produto.Nome,
+                    Categoria = produto.Categoria,
+                    pahCardapioImg = !string.IsNullOrEmpty(produto.pathImg) ? produto.pathImg : "default.png",
+                    ValorUnitario = produto.Valor,
                     Quantidade = qtd
                 });
             }
 
             AtualizarTotal();
-            produto.QuantidadeSelecionada = 1;
+
+            // Feedback visual opcional
+            // MessageBox.Show($"{qtd}x {produto.Nome} adicionado!"); 
         }
 
         private void AtualizarTotal()
         {
-            pedido.ValorTotal = itensPedido.Sum(i => i.PrecoUnitario * i.Quantidade);
+            pedido.ValorTotal = itensPedido.Sum(i => i.ValorUnitario * i.Quantidade);
+
             txtTotalDisplay.Text = $"R$ {pedido.ValorTotal:F2}";
         }
 

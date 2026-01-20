@@ -9,6 +9,8 @@
         public bool Disponivel { get; set; }
 
         public int QuantidadeSelecionada { get; set; } = 1;
+
+        public string pathImg { get; set; }
     }
 
 }

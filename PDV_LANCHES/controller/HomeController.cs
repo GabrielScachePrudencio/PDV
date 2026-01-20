@@ -1,5 +1,6 @@
 ﻿using PDV_LANCHES.model;
 using ServidorLanches.model;
+using ServidorLanches.model.dto;
 using System.Net.Http.Json;
 
 namespace PDV_LANCHES.controller
@@ -21,12 +22,12 @@ namespace PDV_LANCHES.controller
             await ApiClient.Client.PostAsync("api/auth/logout", null);
         }
 
-        public async Task<List<Pedido>?> PegarTodosPedidos()
+        public async Task<List<PedidoDTO>?> PegarTodosPedidos()
         {
             var response = await ApiClient.Client.GetAsync("api/pedidos");
             if (!response.IsSuccessStatusCode)
                 return null;
-            return await response.Content.ReadFromJsonAsync<List<Pedido>>();
+            return await response.Content.ReadFromJsonAsync<List<PedidoDTO>>();
         }
 
         public async Task<bool> AtualizarConfiguracoes(ConfiguracoesGerais config)

@@ -51,6 +51,13 @@
                         <DataTemplate>
                             <Border Width="230" Margin="0,0,15,15" Background="White" CornerRadius="12" Padding="15">
                                 <StackPanel>
+                                    <Image Source="{Binding pathImg}" Width="200" Height="120" Stretch="UniformToFill" Margin="0,0,0,10" ClipToBounds="True" >
+                                        <Image.Resources>
+                                            <Style TargetType="Border">
+                                                <Setter Property="CornerRadius" Value="10"/>
+                                            </Style>
+                                        </Image.Resources>
+                                    </Image>
                                     <TextBlock Text="{Binding Categoria}" FontSize="10" Foreground="#64748b" FontWeight="Bold"/>
                                     <TextBlock Text="{Binding Nome}" FontSize="16" FontWeight="Bold" Foreground="#1e3a8a" Margin="0,5"/>
                                     <TextBlock Text="{Binding Valor, StringFormat='R$ {0:F2}'}" FontSize="18" Foreground="#1e3a8a" FontWeight="Bold"/>

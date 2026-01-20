@@ -1,4 +1,5 @@
 ﻿using PDV_LANCHES.model;
+using ServidorLanches.model.dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,7 @@ namespace PDV_LANCHES.controller
             return await response.Content.ReadFromJsonAsync<List<Cardapio>>();
         }
 
-        public async Task<bool> criarPedido(Pedido pedido)
+        public async Task<bool> criarPedido(PedidoDTO pedido)
         {
             var response = await ApiClient.Client.PostAsJsonAsync("api/pedidos", pedido);
             return response.IsSuccessStatusCode;

@@ -29,13 +29,12 @@ namespace PDV_LANCHES.model
     }
     public enum StatusPedido
     {
-        [Description("Em Andamento")]
-        EmAndamento,
+        Preparando,
 
-        [Description("Concluído")]
-        Concluido,
+        Entregue,
 
-        [Description("Cancelado")]
+        Pendente,
+
         Cancelado
     }
 

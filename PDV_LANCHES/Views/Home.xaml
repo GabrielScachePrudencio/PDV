@@ -5,6 +5,92 @@
         Title="PDV - Operacional" Height="800" Width="1200" 
         WindowStartupLocation="CenterScreen" Background="#020617">
     <Window.Resources>
+        <Style x:Key="DarkComboBox" TargetType="ComboBox">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#1E293B"/>
+            <Setter Property="BorderBrush" Value="#334155"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Padding" Value="12,0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid x:Name="MainGrid" SnapsToDevicePixels="True">
+                            <ToggleButton x:Name="ToggleButton"
+                                  Grid.ColumnSpan="2"
+                                  Background="{TemplateBinding Background}"
+                                  BorderBrush="{TemplateBinding BorderBrush}"
+                                  BorderThickness="{TemplateBinding BorderThickness}"
+                                  IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                  Focusable="False"
+                                  ClickMode="Press">
+                                <ToggleButton.Template>
+                                    <ControlTemplate TargetType="ToggleButton">
+                                        <Border x:Name="templateRoot" 
+                                        Background="{TemplateBinding Background}" 
+                                        BorderBrush="{TemplateBinding BorderBrush}" 
+                                        BorderThickness="{TemplateBinding BorderThickness}" 
+                                        CornerRadius="8">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="30"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Path x:Name="Arrow" 
+                                              Grid.Column="1"
+                                              Data="M 0 0 L 4 4 L 8 0 Z"
+                                              Fill="#94A3B8"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                                            </Grid>
+                                        </Border>
+                                    </ControlTemplate>
+                                </ToggleButton.Template>
+                            </ToggleButton>
+
+                            <ContentPresenter x:Name="ContentSite"
+                                      IsHitTestVisible="False"
+                                      Content="{TemplateBinding SelectionBoxItem}"
+                                      ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                      ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                      Margin="{TemplateBinding Padding}"
+                                      VerticalAlignment="Center"
+                                      HorizontalAlignment="Left"/>
+
+                            <Popup x:Name="PART_Popup"
+                           Placement="Bottom"
+                           IsOpen="{TemplateBinding IsDropDownOpen}"
+                           AllowsTransparency="True"
+                           Focusable="False"
+                           PopupAnimation="Slide">
+                                <Border x:Name="DropDownBorder"
+                                Background="#0F172A" 
+                                BorderBrush="#334155"
+                                BorderThickness="1"
+                                CornerRadius="8"
+                                MinWidth="{Binding ActualWidth, ElementName=MainGrid}"
+                                Margin="0,4,0,0">
+                                    <ScrollViewer MaxHeight="300" SnapsToDevicePixels="True">
+                                        <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained" />
+                                    </ScrollViewer>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="HasItems" Value="false">
+                                <Setter TargetName="DropDownBorder" Property="Height" Value="95"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" Value="#22C55E"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
         <Style x:Key="MenuButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="#94A3B8"/>
@@ -109,12 +195,37 @@
             <Border Grid.Row="1" Background="#0F172A" CornerRadius="16" Padding="20" BorderBrush="#1E293B" BorderThickness="1">
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Margin="0,0,20,0">
-                        <TextBlock Text="STATUS" FontSize="10" FontWeight="Bold" Foreground="#475569" Margin="0,0,0,8"/>
-                        <ComboBox Width="160" Height="40" Background="#1E293B" BorderThickness="0" Foreground="White"/>
+                        <TextBlock Text="FILTRAR STATUS" FontSize="10" FontWeight="Bold" Foreground="#475569" Margin="0,0,0,8"/>
+                        <ComboBox x:Name="comboStatusFiltro"
+                  Width="160"
+                  Style="{StaticResource DarkComboBox}"
+                  SelectionChanged="ComboBox_SelectionChanged">
+                            <ComboBox.Resources>
+                                <Style TargetType="ComboBoxItem">
+                                    <Setter Property="Background" Value="#020617"/>
+                                    <Setter Property="Foreground" Value="White"/>
+
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#1E293B"/>
+                                        </Trigger>
+
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="#22C55E"/>
+                                            <Setter Property="Foreground" Value="Black"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ComboBox.Resources>
+                        </ComboBox>
+
                     </StackPanel>
+
                     <StackPanel>
-                        <TextBlock Text="BUSCAR CLIENTE" FontSize="10" FontWeight="Bold" Foreground="#475569" Margin="0,0,0,8"/>
-                        <TextBox Width="400" Height="40" Background="#1E293B" Foreground="White" BorderThickness="0" Padding="15,10" VerticalContentAlignment="Center"/>
+                        <TextBlock Text="BUSCAR CLIENTE (CPF)" FontSize="10" FontWeight="Bold" Foreground="#475569" Margin="0,0,0,8"/>
+                        <TextBox x:Name="txtBuscaCliente" Width="400" Height="40" Background="#1E293B" 
+             Foreground="White" BorderThickness="0" Padding="15,10" 
+             VerticalContentAlignment="Center" KeyUp="txtBuscaCliente_KeyUp"/>
                     </StackPanel>
                 </StackPanel>
             </Border>
@@ -153,7 +264,7 @@
                                                         <TextBlock Foreground="White" FontSize="12">
                                                             <Run Text="{Binding Quantidade}" FontWeight="Bold" Foreground="#22C55E"/>
                                                             <Run Text="x"/>
-                                                            <Run Text="{Binding IdCardapio}"/>
+                                                            <Run Text="{Binding NomeCardapio}"/>
                                                         </TextBlock>
                                                     </Border>
                                                 </DataTemplate>

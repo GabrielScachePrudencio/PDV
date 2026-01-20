@@ -1,6 +1,7 @@
 ﻿using PDV_LANCHES.controller;
 using PDV_LANCHES.model;
 using ServidorLanches.model;
+using ServidorLanches.model.dto;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -15,7 +16,7 @@ namespace PDV_LANCHES.Views
     {
         private HomeController homeController = new HomeController();
         private Usuario usuarioLogado;
-        private ObservableCollection<Pedido> pedidos = new ObservableCollection<Pedido>();
+        private ObservableCollection<PedidoDTO> pedidos = new ObservableCollection<PedidoDTO>();
 
         public Home()
         {
@@ -25,8 +26,53 @@ namespace PDV_LANCHES.Views
 
         private async void Home_Loaded(object sender, RoutedEventArgs e)
         {
-            // Executa as cargas de dados em paralelo para maior performance
+            PopularFiltroStatus();
             await Task.WhenAll(CarregarDadosUsuario(), CarregarDadosPedidos(), CarregarDadosEmpresa());
+        }
+
+
+        private void PopularFiltroStatus()
+        {
+            var opcoes = new List<string> { "Todos" };
+            opcoes.AddRange(Enum.GetNames(typeof(StatusPedido)));
+            
+            comboStatusFiltro.ItemsSource = opcoes;
+            comboStatusFiltro.SelectedIndex = 0;
+        }
+
+        private void AplicarFiltros()
+        {
+            if (pedidos == null) return;
+
+            string statusSelecionado = comboStatusFiltro.SelectedItem as string;
+            string buscaTexto = txtBuscaCliente.Text?.Trim().ToLower();
+
+            var listaFiltrada = pedidos.Where(p =>
+            {
+                bool statusOk =
+                    statusSelecionado == "Todos" ||
+                    p.StatusPedido.ToString() == statusSelecionado;
+
+                bool buscaOk =
+                    string.IsNullOrEmpty(buscaTexto) ||
+                    (!string.IsNullOrEmpty(p.CpfCliente) &&
+                     p.CpfCliente.ToLower().Contains(buscaTexto));
+
+                return statusOk && buscaOk;
+            }).ToList();
+
+            ListaPedidos.ItemsSource = listaFiltrada;
+        }
+
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            AplicarFiltros();
+        }
+
+        private void txtBuscaCliente_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            AplicarFiltros();
         }
 
         private async Task CarregarDadosUsuario()
@@ -111,7 +157,7 @@ namespace PDV_LANCHES.Views
         public void VerDetalhes_click(object sender, RoutedEventArgs e)
         {
             var botao = sender as Button;
-            var pedidoSelecionado = botao.DataContext as Pedido;
+            var pedidoSelecionado = botao.DataContext as PedidoDTO;
             if (pedidoSelecionado != null)
             {
                 PedidoInfo telaInfo = new PedidoInfo(pedidoSelecionado.Id);
@@ -141,5 +187,7 @@ namespace PDV_LANCHES.Views
             tela.Show();
             Close();
         }
+
+        
     }
 }

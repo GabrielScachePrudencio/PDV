@@ -1,14 +1,16 @@
 ﻿using PDV_LANCHES.controller;
 using PDV_LANCHES.model;
+using ServidorLanches.model.dto;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace PDV_LANCHES.Views
 {
     public partial class PedidoInfo : Window
     {
-        private Pedido? pedido;
+        private PedidoDTO? pedido;
         private int id;
         private PedidoInfoController pedidoInfoController = new PedidoInfoController();
 
@@ -33,13 +35,11 @@ namespace PDV_LANCHES.Views
                 else
                 {
                     MessageBox.Show("Não foi possível carregar as informações do pedido.");
-                    this.Close();
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Erro ao carregar: " + ex.Message);
-                this.Close();
             }
         }
 
@@ -49,9 +49,7 @@ namespace PDV_LANCHES.Views
 
             pedidoCpfInfo.Text = pedido.CpfCliente;
             pedidoDataInfo.Text = pedido.DataCriacao.ToString("g");
-
-            pedidoDataEntregaInfo.SelectedDate = pedido.DataEntrega;
-
+            pedidoDataEntregaInfo.SelectedDate = pedido.DataCriacao;
             pedidoTotalInfo.Text = pedido.ValorTotal.ToString("C2");
 
             itensPedidoStackPanel.Children.Clear();
@@ -68,6 +66,23 @@ namespace PDV_LANCHES.Views
 
                 DockPanel dock = new DockPanel();
 
+                Image imgProduto = new Image
+                {
+                    Width = 50,
+                    Height = 50,
+                    Margin = new Thickness(0, 0, 10, 0),
+                    Stretch = Stretch.UniformToFill
+                };
+
+                if (!string.IsNullOrEmpty(item.pahCardapioImg))
+                {
+                    try
+                    {
+                        imgProduto.Source = new BitmapImage(new Uri(item.pahCardapioImg, UriKind.Absolute));
+                    }
+                    catch { }
+                }
+
                 TextBox txtQtd = new TextBox
                 {
                     Text = item.Quantidade.ToString(),
@@ -80,14 +95,17 @@ namespace PDV_LANCHES.Views
 
                 TextBlock txtNome = new TextBlock
                 {
-                    Text = $" Produto ID: {item.IdCardapio}",
+                    Text = $" {item.NomeCardapio} (ID: {item.IdCardapio})",
                     VerticalAlignment = VerticalAlignment.Center,
                     Margin = new Thickness(10, 0, 0, 0),
-                    Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#1e3a8a"))
+                    Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#1e3a8a")),
+                    FontWeight = FontWeights.Bold
                 };
 
-                dock.Children.Add(txtQtd);
-                dock.Children.Add(txtNome);
+                dock.Children.Add(imgProduto);
+                dock.Children.Add(txtQtd);    
+                dock.Children.Add(txtNome);    
+
                 bordaItem.Child = dock;
                 itensPedidoStackPanel.Children.Add(bordaItem);
             }
@@ -102,7 +120,7 @@ namespace PDV_LANCHES.Views
 
                 if (pedidoDataEntregaInfo.SelectedDate.HasValue)
                 {
-                    pedido.DataEntrega = pedidoDataEntregaInfo.SelectedDate.Value;
+                    pedido.DataCriacao = pedidoDataEntregaInfo.SelectedDate.Value;
                 }
 
                 foreach (var child in itensPedidoStackPanel.Children)
