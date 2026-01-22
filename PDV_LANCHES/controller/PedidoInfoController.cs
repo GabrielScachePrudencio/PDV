@@ -24,12 +24,14 @@ namespace PDV_LANCHES.controller
 
         public async Task<bool> AtualizarPedido(PedidoDTO pedido)
         {
-            var response = await ApiClient.Client.PutAsJsonAsync("api/pedidos/add-pedido-itens", pedido);
+            var response = await ApiClient.Client.PutAsJsonAsync("api/pedidos/", pedido);
             if (!response.IsSuccessStatusCode)
                 throw new Exception("Falha ao atualizar o pedido.");
                
             return true;
         }
+
+
 
 
     }

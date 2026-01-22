@@ -3,6 +3,7 @@ using PDV_LANCHES.model;
 using ServidorLanches.model.dto;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -13,6 +14,13 @@ namespace PDV_LANCHES.Views
         private PedidoDTO? pedido;
         private int id;
         private PedidoInfoController pedidoInfoController = new PedidoInfoController();
+        private List<string> statusPedidos = new List<string>
+        {
+            "Pendente",
+            "Preparando",
+            "Entregue",
+            "Cancelado"
+        };
 
         public PedidoInfo(int id)
         {
@@ -21,12 +29,26 @@ namespace PDV_LANCHES.Views
 
             CarregarPedidoAssincrono();
         }
+        public PedidoInfo(PedidoDTO pedidoCompleto)
+        {
+            InitializeComponent();
+            if(pedidoCompleto != null)
+            {
+                this.pedido = pedidoCompleto;
+                this.id = pedidoCompleto.Id;
+            }
+
+            CarregarPedidoAssincrono();
+        }
 
         private async void CarregarPedidoAssincrono()
         {
             try
             {
-                pedido = await pedidoInfoController.getPedidoById(id);
+                if(pedido == null)
+                {
+                    pedido = await pedidoInfoController.getPedidoById(id);
+                }
 
                 if (pedido != null)
                 {
@@ -48,63 +70,96 @@ namespace PDV_LANCHES.Views
             if (pedido == null) return;
 
             pedidoCpfInfo.Text = pedido.CpfCliente;
-            pedidoDataInfo.Text = pedido.DataCriacao.ToString("g");
-            pedidoDataEntregaInfo.SelectedDate = pedido.DataCriacao;
+            // Removi a data da edição direta para limpar o layout, mas mantive o valor se necessário
             pedidoTotalInfo.Text = pedido.ValorTotal.ToString("C2");
 
             itensPedidoStackPanel.Children.Clear();
+
+            // Carregar Status (Apenas se a lista estiver vazia para não duplicar)
+            if (ComboBoxStatusPedido.Items.Count == 0)
+            {
+                foreach (var status in statusPedidos)
+                {
+                    ComboBoxStatusPedido.Items.Add(new ComboBoxItem { Content = status });
+                }
+            }
+            ComboBoxStatusPedido.SelectedIndex = statusPedidos.IndexOf(pedido.StatusPedido.ToString());
 
             foreach (var item in pedido.Itens)
             {
                 Border bordaItem = new Border
                 {
-                    Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f1f5f9")),
-                    Padding = new Thickness(10),
-                    Margin = new Thickness(0, 0, 0, 8),
-                    CornerRadius = new CornerRadius(8)
+                    Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#1E293B")),
+                    Padding = new Thickness(12),
+                    Margin = new Thickness(0, 0, 0, 10),
+                    CornerRadius = new CornerRadius(12),
+                    BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#334155")),
+                    BorderThickness = new Thickness(1)
                 };
 
                 DockPanel dock = new DockPanel();
 
-                Image imgProduto = new Image
+                // Botão Excluir (Ícone de lixeira ou X)
+                Button excluir = new Button
                 {
-                    Width = 50,
-                    Height = 50,
-                    Margin = new Thickness(0, 0, 10, 0),
-                    Stretch = Stretch.UniformToFill
+                    Content = "✕",
+                    Width = 28,
+                    Height = 28,
+                    Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#450A0A")),
+                    Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#F87171")),
+                    FontWeight = FontWeights.Bold,
+                    BorderThickness = new Thickness(0),
+                    Cursor = Cursors.Hand,
+                    Tag = item
                 };
+                excluir.Click += ExcluirItem_Click;
+                // Arredondar botão excluir
+                Style s = new Style(typeof(Border));
+                s.Setters.Add(new Setter(Border.CornerRadiusProperty, new CornerRadius(6)));
+                excluir.Resources.Add(typeof(Border), s);
 
-                if (!string.IsNullOrEmpty(item.pahCardapioImg))
-                {
-                    try
-                    {
-                        imgProduto.Source = new BitmapImage(new Uri(item.pahCardapioImg, UriKind.Absolute));
-                    }
-                    catch { }
-                }
+                DockPanel.SetDock(excluir, Dock.Right);
 
+                // Quantidade
                 TextBox txtQtd = new TextBox
                 {
                     Text = item.Quantidade.ToString(),
-                    Width = 40,
-                    Height = 30,
+                    Width = 35,
+                    Height = 28,
+                    Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#020617")),
+                    Foreground = new SolidColorBrush(Colors.White),
+                    BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#334155")),
                     VerticalContentAlignment = VerticalAlignment.Center,
                     HorizontalContentAlignment = HorizontalAlignment.Center,
-                    Tag = item
-                };
+                    Margin = new Thickness(10, 0, 10, 0),
+                    Tag = item,
 
+                };
+                DockPanel.SetDock(txtQtd, Dock.Right);
+
+                // Nome do Produto
                 TextBlock txtNome = new TextBlock
                 {
-                    Text = $" {item.NomeCardapio} (ID: {item.IdCardapio})",
+                    Text = item.NomeCardapio.ToUpper(),
                     VerticalAlignment = VerticalAlignment.Center,
-                    Margin = new Thickness(10, 0, 0, 0),
-                    Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#1e3a8a")),
-                    FontWeight = FontWeights.Bold
+                    Foreground = new SolidColorBrush(Colors.White),
+                    FontSize = 12,
+                    FontWeight = FontWeights.SemiBold
                 };
 
-                dock.Children.Add(imgProduto);
-                dock.Children.Add(txtQtd);    
-                dock.Children.Add(txtNome);    
+                Image image = new Image
+                {
+                    Width = 40,
+                    Height = 40,
+                    Margin = new Thickness(0, 0, 10, 0),
+                    Source = new BitmapImage(new Uri(item.pahCardapioImg, UriKind.RelativeOrAbsolute))
+                };
+
+                
+                dock.Children.Add(image);
+                dock.Children.Add(excluir);
+                dock.Children.Add(txtQtd);
+                dock.Children.Add(txtNome);
 
                 bordaItem.Child = dock;
                 itensPedidoStackPanel.Children.Add(bordaItem);
@@ -116,25 +171,32 @@ namespace PDV_LANCHES.Views
         {
             try
             {
+                if (pedido == null) return;
+
                 pedido.CpfCliente = pedidoCpfInfo.Text;
 
-                if (pedidoDataEntregaInfo.SelectedDate.HasValue)
-                {
-                    pedido.DataCriacao = pedidoDataEntregaInfo.SelectedDate.Value;
-                }
+                pedido.StatusPedido = (StatusPedido)Enum.Parse(
+                    typeof(StatusPedido),
+                    ((ComboBoxItem)ComboBoxStatusPedido.SelectedItem).Content.ToString()
+                );
+
+               
 
                 foreach (var child in itensPedidoStackPanel.Children)
                 {
                     if (child is Border b && b.Child is DockPanel d)
                     {
                         var input = d.Children.OfType<TextBox>().FirstOrDefault();
-                        if (input != null && input.Tag is ItemPedido item)
+                        if (input?.Tag is ItemPedidoCardapioDTO item &&
+                            int.TryParse(input.Text, out int novaQtd))
                         {
-                            if (int.TryParse(input.Text, out int novaQtd))
-                                item.Quantidade = novaQtd;
+                            item.Quantidade = novaQtd;
                         }
                     }
                 }
+
+                pedido.ValorTotal = pedido.Itens.Sum(i => i.Quantidade * i.ValorUnitario);
+                MontarPedidoTela();
 
                 bool sucesso = await pedidoInfoController.AtualizarPedido(pedido);
 
@@ -151,10 +213,55 @@ namespace PDV_LANCHES.Views
                 MessageBox.Show("Erro ao salvar alterações: " + ex.Message);
             }
         }
+
+        public void cardapioCompleto_click(object sender, RoutedEventArgs e)
+        {
+            var btn = sender as Button;
+
+            if (btn?.Tag is ItemPedidoCardapioDTO item)
+            {
+                pedido.Itens.Remove(item);
+                MontarPedidoTela(); 
+            }
+            else
+            {
+                MessageBox.Show("Erro ao excluir item.");
+            }
+
+        }
+        public void ExcluirItem_Click(object sender, RoutedEventArgs e)
+        {
+            var btn = sender as Button;
+
+            if (btn?.Tag is ItemPedidoCardapioDTO item)
+            {
+                pedido.Itens.Remove(item);
+                MontarPedidoTela(); 
+            }
+            else
+            {
+                MessageBox.Show("Erro ao excluir item.");
+            }
+
+        }
+
         private void Fechar_Click(object sender, RoutedEventArgs e) {
             Home home = new Home();
             home.Show();
             this.Close();
         }
+        private void CardapioCompleto_click(object sender, RoutedEventArgs e) {
+            CardapioCompleto cardapiocompleto = new CardapioCompleto(pedido);
+            cardapiocompleto.Show();
+            this.Close();
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Lógica para quando a seleção mudar, se necessário
+        }
+        
+
+
     }
 }

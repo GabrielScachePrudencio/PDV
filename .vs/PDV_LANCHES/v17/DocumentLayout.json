@@ -1,157 +1,173 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\",
+  "WorkspaceRootPath": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\views\\home.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\home.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\views\\home.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\views\\home.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\home.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\model\\dto\\pedidodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\model\\dto\\pedidodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\model\\pedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\model\\pedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\views\\novopedido.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\novopedido.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\model\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\model\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\controller\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\controller\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\controller\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\views\\pedidoinfo.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\pedidoinfo.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\views\\pedidoinfo.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\pedidoinfo.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\controller\\pedidoinfocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\controller\\pedidoinfocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\controller\\novopedidocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\controller\\novopedidocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\views\\novopedido.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\novopedido.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\model\\cardapio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\model\\cardapio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\model\\dto\\itempedidocardapiodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\model\\dto\\itempedidocardapiodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\controller\\homeadministrativocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\controller\\homeadministrativocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\views\\escolhaqualhome.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\escolhaqualhome.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\views\\homeadministrativo.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\homeadministrativo.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\views\\homeadministrativo.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\homeadministrativo.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\views\\viewsadministrativo\\allusuario.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\viewsadministrativo\\allusuario.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\views\\viewsadministrativo\\allcardapio.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\viewsadministrativo\\allcardapio.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\views\\viewsadministrativo\\allcardapio.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\viewsadministrativo\\allcardapio.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\views\\viewsadministrativo\\allrelatorio.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\viewsadministrativo\\allrelatorio.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\views\\viewsadministrativo\\configuracaofiscal.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\viewsadministrativo\\configuracaofiscal.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\views\\viewsadministrativo\\allrelatorio.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\viewsadministrativo\\allrelatorio.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\views\\viewsadministrativo\\configuracaobanco.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\viewsadministrativo\\configuracaobanco.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\controller\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\controller\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\controller\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\views\\viewsadministrativo\\configuracaofiscal.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\viewsadministrativo\\configuracaofiscal.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\views\\home.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\home.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\views\\viewsadministrativo\\configuracoesgeraisva2.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\viewsadministrativo\\configuracoesgeraisva2.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\controller\\novopedidocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\controller\\novopedidocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\views\\viewsadministrativo\\allusuario.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\viewsadministrativo\\allusuario.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\controller\\pedidoinfocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\controller\\pedidoinfocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\controller\\apiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\views\\pedidoinfo.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\pedidoinfo.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\views\\pedidoinfo.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\pedidoinfo.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\views\\cardapiocompleto.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\cardapiocompleto.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\model\\cardapio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\model\\cardapio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\views\\cardapiocompleto.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\cardapiocompleto.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\views\\novopedido.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\novopedido.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\obj\\debug\\net8.0-windows\\views\\pedidoinfo.g.i.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\obj\\debug\\net8.0-windows\\views\\pedidoinfo.g.i.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\views\\novopedido.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\novopedido.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\model\\dto\\itempedidocardapiodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\model\\dto\\itempedidocardapiodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\controller\\apiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\controller\\apiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\model\\itempedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\views\\homeadministrativo.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\homeadministrativo.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\controller\\homeadministrativocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\controller\\homeadministrativocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\model\\dto\\pedidodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\model\\dto\\pedidodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\model\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\model\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\model\\pedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\model\\pedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\views\\escolhaqualhome.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\escolhaqualhome.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\views\\homeadministrativo.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\homeadministrativo.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\views\\viewsadministrativo\\allusuario.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\viewsadministrativo\\allusuario.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\views\\viewsadministrativo\\allcardapio.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\viewsadministrativo\\allcardapio.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\views\\viewsadministrativo\\allcardapio.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\viewsadministrativo\\allcardapio.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\views\\viewsadministrativo\\allrelatorio.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\viewsadministrativo\\allrelatorio.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\views\\viewsadministrativo\\configuracaofiscal.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\viewsadministrativo\\configuracaofiscal.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\views\\viewsadministrativo\\allrelatorio.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\viewsadministrativo\\allrelatorio.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\views\\viewsadministrativo\\configuracaobanco.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\viewsadministrativo\\configuracaobanco.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\views\\viewsadministrativo\\configuracaofiscal.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\viewsadministrativo\\configuracaofiscal.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\views\\viewsadministrativo\\configuracoesgeraisva2.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\viewsadministrativo\\configuracoesgeraisva2.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\views\\viewsadministrativo\\allusuario.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\viewsadministrativo\\allusuario.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\model\\itempedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\model\\itempedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\views\\viewsadministrativo\\configuracoesgeraisva2.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\views\\viewsadministrativo\\configuracoesgeraisva2.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\viewsadministrativo\\configuracoesgeraisva2.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\model\\configuracoesgerais.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\model\\configuracoesgerais.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\model\\configuracoesgerais.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\views\\escolhaqualhome.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\views\\escolhaqualhome.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\escolhaqualhome.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\views\\viewsadministrativo\\configuracaobanco.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\views\\viewsadministrativo\\configuracaobanco.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\views\\viewsadministrativo\\configuracaobanco.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\net\\wpf\\pdv_lanches\\pdv_lanches\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|c:\\users\\flavio\\desktop\\pdvservidor_lanches\\pdv_lanches\\pdv_lanches\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0902E9CE-3791-4FB0-A65D-19B8D0A0F7E7}|PDV_LANCHES\\PDV_LANCHES.csproj|solutionrelative:pdv_lanches\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -165,7 +181,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 282,
-          "SelectedChildIndex": 14,
+          "SelectedChildIndex": 17,
           "Children": [
             {
               "$type": "Bookmark",
@@ -173,36 +189,86 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "ItemPedidoCardapioDTO.cs",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\model\\dto\\ItemPedidoCardapioDTO.cs",
-              "RelativeDocumentMoniker": "PDV_LANCHES\\model\\dto\\ItemPedidoCardapioDTO.cs",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\model\\dto\\ItemPedidoCardapioDTO.cs",
-              "RelativeToolTip": "PDV_LANCHES\\model\\dto\\ItemPedidoCardapioDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAkAAAAAAAAAA==",
+              "DocumentIndex": 8,
+              "Title": "CardapioCompleto.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\CardapioCompleto.xaml.cs",
+              "RelativeDocumentMoniker": "PDV_LANCHES\\Views\\CardapioCompleto.xaml.cs",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\CardapioCompleto.xaml.cs",
+              "RelativeToolTip": "PDV_LANCHES\\Views\\CardapioCompleto.xaml.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAADwvysAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-20T01:56:19.669Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PedidoDTO.cs",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\model\\dto\\PedidoDTO.cs",
-              "RelativeDocumentMoniker": "PDV_LANCHES\\model\\dto\\PedidoDTO.cs",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\model\\dto\\PedidoDTO.cs",
-              "RelativeToolTip": "PDV_LANCHES\\model\\dto\\PedidoDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAwAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-20T01:50:06.091Z",
+              "WhenOpened": "2026-01-22T02:30:42.96Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 10,
+              "Title": "CardapioCompleto.xaml",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\CardapioCompleto.xaml",
+              "RelativeDocumentMoniker": "PDV_LANCHES\\Views\\CardapioCompleto.xaml",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\CardapioCompleto.xaml",
+              "RelativeToolTip": "PDV_LANCHES\\Views\\CardapioCompleto.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-22T02:30:32.711Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "PedidoInfo.g.i.cs",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\obj\\Debug\\net8.0-windows\\Views\\PedidoInfo.g.i.cs",
+              "RelativeDocumentMoniker": "PDV_LANCHES\\obj\\Debug\\net8.0-windows\\Views\\PedidoInfo.g.i.cs",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\obj\\Debug\\net8.0-windows\\Views\\PedidoInfo.g.i.cs",
+              "RelativeToolTip": "PDV_LANCHES\\obj\\Debug\\net8.0-windows\\Views\\PedidoInfo.g.i.cs",
+              "ViewState": "AgIAAGkAAAAAAAAAAADgv4QAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-22T00:27:51.818Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\App.xaml",
+              "RelativeDocumentMoniker": "PDV_LANCHES\\App.xaml",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\App.xaml",
+              "RelativeToolTip": "PDV_LANCHES\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-21T23:26:36.181Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ItemPedidoCardapioDTO.cs",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\model\\dto\\ItemPedidoCardapioDTO.cs",
+              "RelativeDocumentMoniker": "PDV_LANCHES\\model\\dto\\ItemPedidoCardapioDTO.cs",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\model\\dto\\ItemPedidoCardapioDTO.cs",
+              "RelativeToolTip": "PDV_LANCHES\\model\\dto\\ItemPedidoCardapioDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-20T01:56:19.669Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "PedidoDTO.cs",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\model\\dto\\PedidoDTO.cs",
+              "RelativeDocumentMoniker": "PDV_LANCHES\\model\\dto\\PedidoDTO.cs",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\model\\dto\\PedidoDTO.cs",
+              "RelativeToolTip": "PDV_LANCHES\\model\\dto\\PedidoDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-20T01:50:06.091Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
               "Title": "AllCardapio.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\AllCardapio.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\AllCardapio.xaml.cs",
               "RelativeDocumentMoniker": "PDV_LANCHES\\Views\\ViewsAdministrativo\\AllCardapio.xaml.cs",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\AllCardapio.xaml.cs",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\AllCardapio.xaml.cs",
               "RelativeToolTip": "PDV_LANCHES\\Views\\ViewsAdministrativo\\AllCardapio.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -210,35 +276,35 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 27,
               "Title": "AllCardapio.xaml",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\AllCardapio.xaml",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\AllCardapio.xaml",
               "RelativeDocumentMoniker": "PDV_LANCHES\\Views\\ViewsAdministrativo\\AllCardapio.xaml",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\AllCardapio.xaml",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\AllCardapio.xaml",
               "RelativeToolTip": "PDV_LANCHES\\Views\\ViewsAdministrativo\\AllCardapio.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2026-01-19T00:38:34.419Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "HomeController.cs",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\controller\\HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\controller\\HomeController.cs",
               "RelativeDocumentMoniker": "PDV_LANCHES\\controller\\HomeController.cs",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\controller\\HomeController.cs",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\controller\\HomeController.cs",
               "RelativeToolTip": "PDV_LANCHES\\controller\\HomeController.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAtwB0AAABKAAAAAAAAAA==",
+              "ViewState": "AgIAACAAAAAAAAAAAAAywDIAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-19T00:10:13.748Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 18,
               "Title": "HomeAdministrativoController.cs",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\controller\\HomeAdministrativoController.cs",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\controller\\HomeAdministrativoController.cs",
               "RelativeDocumentMoniker": "PDV_LANCHES\\controller\\HomeAdministrativoController.cs",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\controller\\HomeAdministrativoController.cs",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\controller\\HomeAdministrativoController.cs",
               "RelativeToolTip": "PDV_LANCHES\\controller\\HomeAdministrativoController.cs",
               "ViewState": "AgIAAAcAAAAAAAAAAAArwBwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -246,11 +312,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 37,
               "Title": "ConfiguracoesGeraisVA2.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracoesGeraisVA2.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracoesGeraisVA2.xaml.cs",
               "RelativeDocumentMoniker": "PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracoesGeraisVA2.xaml.cs",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracoesGeraisVA2.xaml.cs",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracoesGeraisVA2.xaml.cs",
               "RelativeToolTip": "PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracoesGeraisVA2.xaml.cs",
               "ViewState": "AgIAAEMAAAAAAAAAAAAcwE0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -258,55 +324,55 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 26,
               "Title": "AllUsuario.xaml",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\AllUsuario.xaml",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\AllUsuario.xaml",
               "RelativeDocumentMoniker": "PDV_LANCHES\\Views\\ViewsAdministrativo\\AllUsuario.xaml",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\AllUsuario.xaml",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\AllUsuario.xaml",
               "RelativeToolTip": "PDV_LANCHES\\Views\\ViewsAdministrativo\\AllUsuario.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2026-01-19T00:40:15.754Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 34,
               "Title": "ConfiguracoesGeraisVA2.xaml",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracoesGeraisVA2.xaml",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracoesGeraisVA2.xaml",
               "RelativeDocumentMoniker": "PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracoesGeraisVA2.xaml",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracoesGeraisVA2.xaml",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracoesGeraisVA2.xaml",
               "RelativeToolTip": "PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracoesGeraisVA2.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2026-01-18T05:32:39.212Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 30,
               "Title": "ConfiguracaoFiscal.xaml",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracaoFiscal.xaml",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracaoFiscal.xaml",
               "RelativeDocumentMoniker": "PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracaoFiscal.xaml",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracaoFiscal.xaml",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracaoFiscal.xaml",
               "RelativeToolTip": "PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracaoFiscal.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2026-01-18T04:02:40.015Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 22,
               "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\MainWindow.xaml",
               "RelativeDocumentMoniker": "PDV_LANCHES\\MainWindow.xaml",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\MainWindow.xaml",
               "RelativeToolTip": "PDV_LANCHES\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2026-01-18T03:38:03.45Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 38,
               "Title": "ConfiguracoesGerais.cs",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\model\\ConfiguracoesGerais.cs",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\model\\ConfiguracoesGerais.cs",
               "RelativeDocumentMoniker": "PDV_LANCHES\\model\\ConfiguracoesGerais.cs",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\model\\ConfiguracoesGerais.cs",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\model\\ConfiguracoesGerais.cs",
               "RelativeToolTip": "PDV_LANCHES\\model\\ConfiguracoesGerais.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwAcAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -314,24 +380,24 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Home.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\Home.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\Home.xaml.cs",
               "RelativeDocumentMoniker": "PDV_LANCHES\\Views\\Home.xaml.cs",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\Home.xaml.cs",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\Home.xaml.cs",
               "RelativeToolTip": "PDV_LANCHES\\Views\\Home.xaml.cs",
-              "ViewState": "AgIAAKQAAAAAAAAAAAAuwCkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAM0AAAAAAAAAAADgv+MAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-17T04:11:45.197Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Home.xaml",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\Home.xaml",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\Home.xaml",
               "RelativeDocumentMoniker": "PDV_LANCHES\\Views\\Home.xaml",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\Home.xaml",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\Home.xaml",
               "RelativeToolTip": "PDV_LANCHES\\Views\\Home.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2026-01-17T04:09:49.384Z",
@@ -339,11 +405,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 39,
               "Title": "EscolhaQualHome.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\EscolhaQualHome.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\EscolhaQualHome.xaml.cs",
               "RelativeDocumentMoniker": "PDV_LANCHES\\Views\\EscolhaQualHome.xaml.cs",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\EscolhaQualHome.xaml.cs",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\EscolhaQualHome.xaml.cs",
               "RelativeToolTip": "PDV_LANCHES\\Views\\EscolhaQualHome.xaml.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAADwvxYAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -351,22 +417,22 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 23,
               "Title": "EscolhaQualHome.xaml",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\EscolhaQualHome.xaml",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\EscolhaQualHome.xaml",
               "RelativeDocumentMoniker": "PDV_LANCHES\\Views\\EscolhaQualHome.xaml",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\EscolhaQualHome.xaml",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\EscolhaQualHome.xaml",
               "RelativeToolTip": "PDV_LANCHES\\Views\\EscolhaQualHome.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2026-01-17T03:51:14.053Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 40,
               "Title": "ConfiguracaoBanco.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracaoBanco.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracaoBanco.xaml.cs",
               "RelativeDocumentMoniker": "PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracaoBanco.xaml.cs",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracaoBanco.xaml.cs",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracaoBanco.xaml.cs",
               "RelativeToolTip": "PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracaoBanco.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -374,11 +440,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 33,
               "Title": "ConfiguracaoFiscal.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracaoFiscal.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracaoFiscal.xaml.cs",
               "RelativeDocumentMoniker": "PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracaoFiscal.xaml.cs",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracaoFiscal.xaml.cs",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracaoFiscal.xaml.cs",
               "RelativeToolTip": "PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracaoFiscal.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwBkAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -386,11 +452,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 29,
               "Title": "AllRelatorio.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\AllRelatorio.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\AllRelatorio.xaml.cs",
               "RelativeDocumentMoniker": "PDV_LANCHES\\Views\\ViewsAdministrativo\\AllRelatorio.xaml.cs",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\AllRelatorio.xaml.cs",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\AllRelatorio.xaml.cs",
               "RelativeToolTip": "PDV_LANCHES\\Views\\ViewsAdministrativo\\AllRelatorio.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -398,44 +464,44 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 17,
               "Title": "HomeAdministrativo.xaml",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\HomeAdministrativo.xaml",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\HomeAdministrativo.xaml",
               "RelativeDocumentMoniker": "PDV_LANCHES\\Views\\HomeAdministrativo.xaml",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\HomeAdministrativo.xaml",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\HomeAdministrativo.xaml",
               "RelativeToolTip": "PDV_LANCHES\\Views\\HomeAdministrativo.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2026-01-17T01:48:08.083Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 31,
               "Title": "AllRelatorio.xaml",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\AllRelatorio.xaml",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\AllRelatorio.xaml",
               "RelativeDocumentMoniker": "PDV_LANCHES\\Views\\ViewsAdministrativo\\AllRelatorio.xaml",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\AllRelatorio.xaml",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\AllRelatorio.xaml",
               "RelativeToolTip": "PDV_LANCHES\\Views\\ViewsAdministrativo\\AllRelatorio.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2026-01-17T03:32:20.696Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 32,
               "Title": "ConfiguracaoBanco.xaml",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracaoBanco.xaml",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracaoBanco.xaml",
               "RelativeDocumentMoniker": "PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracaoBanco.xaml",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracaoBanco.xaml",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracaoBanco.xaml",
               "RelativeToolTip": "PDV_LANCHES\\Views\\ViewsAdministrativo\\ConfiguracaoBanco.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2026-01-17T03:32:04.401Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 35,
               "Title": "AllUsuario.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\AllUsuario.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\AllUsuario.xaml.cs",
               "RelativeDocumentMoniker": "PDV_LANCHES\\Views\\ViewsAdministrativo\\AllUsuario.xaml.cs",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\AllUsuario.xaml.cs",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\ViewsAdministrativo\\AllUsuario.xaml.cs",
               "RelativeToolTip": "PDV_LANCHES\\Views\\ViewsAdministrativo\\AllUsuario.xaml.cs",
               "ViewState": "AgIAAA8AAAAAAAAAAAAAwCMAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -443,11 +509,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 25,
               "Title": "HomeAdministrativo.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\HomeAdministrativo.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\HomeAdministrativo.xaml.cs",
               "RelativeDocumentMoniker": "PDV_LANCHES\\Views\\HomeAdministrativo.xaml.cs",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\HomeAdministrativo.xaml.cs",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\HomeAdministrativo.xaml.cs",
               "RelativeToolTip": "PDV_LANCHES\\Views\\HomeAdministrativo.xaml.cs",
               "ViewState": "AgIAAHYAAAAAAAAAAAAywIUAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -455,12 +521,12 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 42,
               "Title": "XamlReader.cs",
               "DocumentMoniker": "C:\\Users\\Flavio\\AppData\\Local\\Temp\\.vsdbgsrc\\a2c8e1e784dd9d2cc211f086114d89c8eacc6df076f290e28c4559989e7d9562\\XamlReader.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\a2c8e1e784dd9d2cc211f086114d89c8eacc6df076f290e28c4559989e7d9562\\XamlReader.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\a2c8e1e784dd9d2cc211f086114d89c8eacc6df076f290e28c4559989e7d9562\\XamlReader.cs",
               "ToolTip": "C:\\Users\\Flavio\\AppData\\Local\\Temp\\.vsdbgsrc\\a2c8e1e784dd9d2cc211f086114d89c8eacc6df076f290e28c4559989e7d9562\\XamlReader.cs [Somente Leitura]",
-              "RelativeToolTip": "..\\..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\a2c8e1e784dd9d2cc211f086114d89c8eacc6df076f290e28c4559989e7d9562\\XamlReader.cs [Somente Leitura]",
+              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\a2c8e1e784dd9d2cc211f086114d89c8eacc6df076f290e28c4559989e7d9562\\XamlReader.cs [Somente Leitura]",
               "ViewState": "AgIAAO4BAAAAAAAAAAAowP4BAAACAAAAAQAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-11T23:20:18.88Z",
@@ -468,109 +534,112 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "PedidoInfoController.cs",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\controller\\PedidoInfoController.cs",
-              "RelativeDocumentMoniker": "PDV_LANCHES\\controller\\PedidoInfoController.cs",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\controller\\PedidoInfoController.cs",
-              "RelativeToolTip": "PDV_LANCHES\\controller\\PedidoInfoController.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAqwA0AAABBAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-11T22:34:08.643Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "PedidoInfo.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\PedidoInfo.xaml.cs",
-              "RelativeDocumentMoniker": "PDV_LANCHES\\Views\\PedidoInfo.xaml.cs",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\PedidoInfo.xaml.cs",
-              "RelativeToolTip": "PDV_LANCHES\\Views\\PedidoInfo.xaml.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAYwEQAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-11T22:32:53.499Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "enums.cs",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\model\\enums.cs",
-              "RelativeDocumentMoniker": "PDV_LANCHES\\model\\enums.cs",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\model\\enums.cs",
-              "RelativeToolTip": "PDV_LANCHES\\model\\enums.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAIAywCAAAAAAAAAAAAAAAA==",
+              "Title": "PedidoInfoController.cs",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\controller\\PedidoInfoController.cs",
+              "RelativeDocumentMoniker": "PDV_LANCHES\\controller\\PedidoInfoController.cs",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\controller\\PedidoInfoController.cs",
+              "RelativeToolTip": "PDV_LANCHES\\controller\\PedidoInfoController.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAIwCAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-08T03:16:38.643Z",
+              "WhenOpened": "2026-01-11T22:34:08.643Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "NovoPedidoController.cs",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\controller\\NovoPedidoController.cs",
-              "RelativeDocumentMoniker": "PDV_LANCHES\\controller\\NovoPedidoController.cs",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\controller\\NovoPedidoController.cs",
-              "RelativeToolTip": "PDV_LANCHES\\controller\\NovoPedidoController.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAIwCYAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 7,
+              "Title": "PedidoInfo.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\PedidoInfo.xaml.cs",
+              "RelativeDocumentMoniker": "PDV_LANCHES\\Views\\PedidoInfo.xaml.cs",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\PedidoInfo.xaml.cs",
+              "RelativeToolTip": "PDV_LANCHES\\Views\\PedidoInfo.xaml.cs",
+              "ViewState": "AgIAAO0AAAAAAAAAAAAkwAYBAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-08T02:48:14.772Z"
+              "WhenOpened": "2026-01-11T22:32:53.499Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Cardapio.cs",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\model\\Cardapio.cs",
-              "RelativeDocumentMoniker": "PDV_LANCHES\\model\\Cardapio.cs",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\model\\Cardapio.cs",
-              "RelativeToolTip": "PDV_LANCHES\\model\\Cardapio.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAdAAAAAAAAAA==",
+              "DocumentIndex": 20,
+              "Title": "enums.cs",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\model\\enums.cs",
+              "RelativeDocumentMoniker": "PDV_LANCHES\\model\\enums.cs",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\model\\enums.cs",
+              "RelativeToolTip": "PDV_LANCHES\\model\\enums.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAD4vx0AAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-08T02:04:19.301Z"
+              "WhenOpened": "2026-01-08T03:16:38.643Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "NovoPedidoController.cs",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\controller\\NovoPedidoController.cs",
+              "RelativeDocumentMoniker": "PDV_LANCHES\\controller\\NovoPedidoController.cs",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\controller\\NovoPedidoController.cs",
+              "RelativeToolTip": "PDV_LANCHES\\controller\\NovoPedidoController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAjwBwAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-08T02:48:14.772Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Cardapio.cs",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\model\\Cardapio.cs",
+              "RelativeDocumentMoniker": "PDV_LANCHES\\model\\Cardapio.cs",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\model\\Cardapio.cs",
+              "RelativeToolTip": "PDV_LANCHES\\model\\Cardapio.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-08T02:04:19.301Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "NovoPedido.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\NovoPedido.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\NovoPedido.xaml.cs",
               "RelativeDocumentMoniker": "PDV_LANCHES\\Views\\NovoPedido.xaml.cs",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\NovoPedido.xaml.cs",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\NovoPedido.xaml.cs",
               "RelativeToolTip": "PDV_LANCHES\\Views\\NovoPedido.xaml.cs",
-              "ViewState": "AgIAAE0AAAAAAAAAAAAAwGAAAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAAMUAAAAAAAAAAAAswOwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-08T01:55:01.896Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 11,
               "Title": "NovoPedido.xaml",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\NovoPedido.xaml",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\NovoPedido.xaml",
               "RelativeDocumentMoniker": "PDV_LANCHES\\Views\\NovoPedido.xaml",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\NovoPedido.xaml",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\NovoPedido.xaml",
               "RelativeToolTip": "PDV_LANCHES\\Views\\NovoPedido.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-01-08T01:48:08.779Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Pedido.cs",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\model\\Pedido.cs",
-              "RelativeDocumentMoniker": "PDV_LANCHES\\model\\Pedido.cs",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\model\\Pedido.cs",
-              "RelativeToolTip": "PDV_LANCHES\\model\\Pedido.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-05T02:36:08.278Z",
+              "WhenOpened": "2026-01-08T01:48:08.779Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 21,
+              "Title": "Pedido.cs",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\model\\Pedido.cs",
+              "RelativeDocumentMoniker": "PDV_LANCHES\\model\\Pedido.cs",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\model\\Pedido.cs",
+              "RelativeToolTip": "PDV_LANCHES\\model\\Pedido.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-05T02:36:08.278Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
               "Title": "ItemPedido.cs",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\model\\ItemPedido.cs",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\model\\ItemPedido.cs",
               "RelativeDocumentMoniker": "PDV_LANCHES\\model\\ItemPedido.cs",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\model\\ItemPedido.cs",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\model\\ItemPedido.cs",
               "RelativeToolTip": "PDV_LANCHES\\model\\ItemPedido.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwAgAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -578,46 +647,49 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 2,
               "Title": "Login.cs",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\controller\\Login.cs",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\controller\\Login.cs",
               "RelativeDocumentMoniker": "PDV_LANCHES\\controller\\Login.cs",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\controller\\Login.cs",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\controller\\Login.cs",
               "RelativeToolTip": "PDV_LANCHES\\controller\\Login.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAYwB0AAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAlwBwAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-05T00:17:01.671Z"
+              "WhenOpened": "2026-01-05T00:17:01.671Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 15,
               "Title": "ApiClient.cs",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\controller\\ApiClient.cs",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\controller\\ApiClient.cs",
               "RelativeDocumentMoniker": "PDV_LANCHES\\controller\\ApiClient.cs",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\controller\\ApiClient.cs",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\controller\\ApiClient.cs",
               "RelativeToolTip": "PDV_LANCHES\\controller\\ApiClient.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-05T00:16:34.963Z"
+              "WhenOpened": "2026-01-05T00:16:34.963Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 6,
               "Title": "PedidoInfo.xaml",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\PedidoInfo.xaml",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\PedidoInfo.xaml",
               "RelativeDocumentMoniker": "PDV_LANCHES\\Views\\PedidoInfo.xaml",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\Views\\PedidoInfo.xaml",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\Views\\PedidoInfo.xaml",
               "RelativeToolTip": "PDV_LANCHES\\Views\\PedidoInfo.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-01-11T22:32:48.729Z"
+              "WhenOpened": "2026-01-11T22:32:48.729Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 41,
               "Title": "AssemblyInfo.cs",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\AssemblyInfo.cs",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\AssemblyInfo.cs",
               "RelativeDocumentMoniker": "PDV_LANCHES\\AssemblyInfo.cs",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\AssemblyInfo.cs",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\AssemblyInfo.cs",
               "RelativeToolTip": "PDV_LANCHES\\AssemblyInfo.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -625,11 +697,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 24,
               "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "PDV_LANCHES\\MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\MainWindow.xaml.cs",
               "RelativeToolTip": "PDV_LANCHES\\MainWindow.xaml.cs",
               "ViewState": "AgIAAFUAAAAAAAAAAAAcwHAAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",

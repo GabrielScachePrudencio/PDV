@@ -81,8 +81,7 @@ namespace PDV_LANCHES.Views
             if (usuario == null)
             {
                 MessageBox.Show("Sessão expirada. Faça login novamente.");
-                Close();
-                return;
+                this.Close();
             }
 
             usuarioLogado = usuario;
@@ -165,13 +164,28 @@ namespace PDV_LANCHES.Views
                 this.Close();
             }
         }
-
-        private async void Sair_Click(object sender, RoutedEventArgs e)
+        public async void ApagarPedido_Click(object sender, RoutedEventArgs e)
         {
-            await homeController.Logout();
-            MainWindow loginWindow = new MainWindow();
-            loginWindow.Show();
-            this.Close();
+
+            
+
+            MessageBoxResult resultado = MessageBox.Show("Tem certeza que deseja excluir o pedido selecionado?", "Confirmação", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (resultado == MessageBoxResult.Yes)
+            {
+                var botao = sender as Button;
+                var pedidoSelecionado = botao.DataContext as PedidoDTO;
+                bool sucess = await homeController.ExcluirAlgumPedido(pedidoSelecionado.Id);
+                if (sucess)
+                {
+                    Home home = new Home();
+                    home.Show();
+                    this.Close();
+                }else
+                {
+                    MessageBox.Show("Erro ao excluir o pedido.");
+                }
+            }
         }
 
         private void novoPedido_Click(object sender, RoutedEventArgs e)
@@ -181,12 +195,64 @@ namespace PDV_LANCHES.Views
             this.Close();
         }
 
+        private void comboStatusPedido_Loaded(object sender, RoutedEventArgs e)
+        {
+            var combo = sender as ComboBox;
+            var pedido = combo.Tag as PedidoDTO;
+
+            if (pedido != null)
+            {
+                combo.ItemsSource = Enum.GetNames(typeof(StatusPedido));
+
+                combo.SelectedItem = pedido.StatusPedido.ToString();
+            }
+        }
+
+        private async void ComboBoxPedido_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var combo = sender as ComboBox;
+
+            if (!combo.IsLoaded) return;
+
+            var pedido = combo.Tag as PedidoDTO;
+            string novoStatusTexto = combo.SelectedItem as string;
+
+            if (pedido != null && !string.IsNullOrEmpty(novoStatusTexto))
+            {
+                if (Enum.TryParse(novoStatusTexto, out StatusPedido novoStatus))
+                {
+                    if (pedido.StatusPedido == novoStatus) return;
+
+                    string sucesso = await homeController.AtualizarStatusPedido(pedido.Id, novoStatus);
+
+                    if (sucesso == "ok")
+                    {
+                        pedido.StatusPedido = novoStatus;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao atualizar status no servidor.");
+                        combo.SelectedItem = pedido.StatusPedido.ToString();
+                    }
+                }
+            }
+        }
+
+
         private void VoltarParaEscolha_Click(object sender, RoutedEventArgs e)
         {
             EscolhaQualHome tela = new EscolhaQualHome();
             tela.Show();
             Close();
         }
+        private async void Sair_Click(object sender, RoutedEventArgs e)
+        {
+            await homeController.Logout();
+            MainWindow loginWindow = new MainWindow();
+            loginWindow.Show();
+            this.Close();
+        }
+
 
         
     }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ENH730S/1nM=",
+  "dgSpecHash": "CTSHjR97SF8=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Flavio\\Desktop\\Net\\wpf\\PDV_LANCHES\\PDV_LANCHES\\PDV_LANCHES.csproj",
+  "projectFilePath": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\PDV_LANCHES.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Flavio\\.nuget\\packages\\bouncycastle.cryptography\\2.6.2\\bouncycastle.cryptography.2.6.2.nupkg.sha512",
     "C:\\Users\\Flavio\\.nuget\\packages\\google.protobuf\\3.32.0\\google.protobuf.3.32.0.nupkg.sha512",
