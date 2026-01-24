@@ -15,6 +15,7 @@ namespace PDV_LANCHES.model
         public decimal ValorTotal { get; set; }
         public DateTime DataCriacao { get; set; }
         public DateTime DataEntrega { get; set; }
+        public string pahCardapioImg { get; set; }
         public List<ItemPedido> Itens { get; set; }
 
     }

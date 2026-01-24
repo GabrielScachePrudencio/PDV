@@ -108,7 +108,7 @@ namespace PDV_LANCHES.Views
 
         private void AllCardapio(object sender, RoutedEventArgs e)
         {
-            ConteudoConfiguracoes.Content = new AllCardapio();
+            ConteudoConfiguracoes.Content = new AllProduto();
         }
 
         private void AllRelatorio(object sender, RoutedEventArgs e)

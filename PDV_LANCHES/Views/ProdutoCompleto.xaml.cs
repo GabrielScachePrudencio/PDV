@@ -24,7 +24,7 @@ namespace PDV_LANCHES.Views
     {
 
         private PedidoDTO pedido;
-        private List<Cardapio> cardapio;
+        private List<Produto> cardapio;
         private NovoPedidoController controller = new NovoPedidoController();
 
         public CardapioCompleto(PedidoDTO pedidoAtual)
@@ -40,18 +40,18 @@ namespace PDV_LANCHES.Views
 
         private async void CarregarCardapio()
         {
-            cardapio = await controller.getAllCardapio();
+            cardapio = await controller.getAllProduto();
             ListaCardapioCompleto.ItemsSource = cardapio;
         }
 
         private void AdicionarItem_Click(object sender, RoutedEventArgs e)
         {
-            var produto = (sender as Button)?.Tag as Cardapio;
+            var produto = (sender as Button)?.Tag as Produto;
             if (produto == null) return;
 
             int qtdAApender = produto.QuantidadeSelecionada <= 0 ? 1 : produto.QuantidadeSelecionada;
 
-            var existente = pedido.Itens.FirstOrDefault(i => i.IdCardapio == produto.Id);
+            var existente = pedido.Itens.FirstOrDefault(i => i.IdProduto == produto.Id);
 
             if (existente != null)
             {
@@ -61,12 +61,12 @@ namespace PDV_LANCHES.Views
             {
                 pedido.Itens.Add(new ItemPedidoCardapioDTO
                 {
-                    IdCardapio = produto.Id,
-                    NomeCardapio = produto.Nome,
+                    IdProduto = produto.Id,
+                    NomeProduto = produto.Nome,
                     ValorUnitario = produto.Valor,
                     Quantidade = qtdAApender,
-                    pahCardapioImg = produto.pathImg,
-                    Categoria = produto.Categoria
+                    pathProdutoImg = produto.pathImg,
+                    Categoria = produto.IdCategoria.ToString()
                 });
             }
 

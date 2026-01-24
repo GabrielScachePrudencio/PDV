@@ -6,12 +6,12 @@ using System.Windows.Controls;
 
 namespace PDV_LANCHES.Views.ViewsAdministrativo
 {
-    public partial class AllCardapio : UserControl
+    public partial class AllProduto : UserControl
     {
-        private List<Cardapio> listaCardapio;
+        private List<Produto> listaCardapio;
         private NovoPedidoController novoPedido = new NovoPedidoController();
 
-        public AllCardapio()
+        public AllProduto()
         {
             InitializeComponent();
             CarregarCardapio();
@@ -19,7 +19,7 @@ namespace PDV_LANCHES.Views.ViewsAdministrativo
 
         private async void CarregarCardapio()
         {
-            listaCardapio = await novoPedido.getAllCardapio();
+            listaCardapio = await novoPedido.getAllProduto();
 
             dgCardapio.ItemsSource = listaCardapio;
         }
@@ -31,7 +31,7 @@ namespace PDV_LANCHES.Views.ViewsAdministrativo
 
         private void Editar_Click(object sender, RoutedEventArgs e)
         {
-            var item = (sender as Button)?.DataContext as Cardapio;
+            var item = (sender as Button)?.DataContext as Produto;
             if (item == null) return;
 
             MessageBox.Show($"Editar: {item.Nome}");
@@ -39,7 +39,7 @@ namespace PDV_LANCHES.Views.ViewsAdministrativo
 
         private void Excluir_Click(object sender, RoutedEventArgs e)
         {
-            var item = (sender as Button)?.DataContext as Cardapio;
+            var item = (sender as Button)?.DataContext as Produto;
             if (item == null) return;
 
             if (MessageBox.Show($"Excluir {item.Nome}?",

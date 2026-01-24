@@ -106,7 +106,8 @@
 
                 <StackPanel Grid.Column="1" Margin="0,0,0,15">
                     <TextBlock Text="STATUS" Foreground="#64748B" FontSize="10" FontWeight="Bold" Margin="0,0,0,8"/>
-                    <ComboBox Style="{StaticResource DarkComboBox}" x:Name="ComboBoxStatusPedido" Height="40" Background="#0F172A" Foreground="White" BorderBrush="#1E293B" SelectionChanged="ComboBox_SelectionChanged">
+                    <ComboBox 
+                        Style="{StaticResource DarkComboBox}" x:Name="ComboBoxStatusPedido" Height="40" Background="#0F172A" Foreground="White" BorderBrush="#1E293B" SelectionChanged="ComboBox_SelectionChanged">
                     </ComboBox>
                 </StackPanel>
 

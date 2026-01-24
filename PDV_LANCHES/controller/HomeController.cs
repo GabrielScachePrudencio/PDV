@@ -2,6 +2,7 @@
 using ServidorLanches.model;
 using ServidorLanches.model.dto;
 using System.Net.Http.Json;
+using static Org.BouncyCastle.Math.EC.ECCurve;
 
 namespace PDV_LANCHES.controller
 {
@@ -49,35 +50,79 @@ namespace PDV_LANCHES.controller
                 return false;
             }
         }
-        public async Task<string> AtualizarStatusPedido(int id, StatusPedido status)
+        public async Task<bool> AtualizarStatusPedido(int id, int idstatus)
         {
             try
             {
-                // 1. Enviamos o nome do enum como string (ex: "Cancelado")
-                // O servidor espera um JSON body contendo apenas a string entre aspas
-                // No seu WPF
-                var response = await ApiClient.Client.PutAsync($"api/pedidos/{id}/status/{status.ToString()}", null);
-                // 2. Lemos o que o servidor escreveu no corpo da resposta (Body)
+                var response = await ApiClient.Client.PutAsync($"api/pedidos/{id}/status/{idstatus}", null);
                 string conteudoResposta = await response.Content.ReadAsStringAsync();
 
                 if (response.IsSuccessStatusCode)
                 {
-                    return conteudoResposta; // Retorna "Sucesso" ou o que você deu de Ok()
+                    return true; 
                 }
                 else
                 {
-                    // Retorna a mensagem de erro vinda do servidor (ex: "ID não encontrado")
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public async Task<string> AtualizarStatusPedido(int id, string status)
+        {
+            try
+            {
+                var response = await ApiClient.Client.PutAsync($"api/pedidos/{id}/status/{status.ToString()}", null);
+                string conteudoResposta = await response.Content.ReadAsStringAsync();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return conteudoResposta; 
+                }
+                else
+                {
                     return $"Erro {response.StatusCode}: {conteudoResposta}";
                 }
             }
             catch (Exception ex)
             {
-                // Em caso de explosão (sem internet, servidor offline), retorna o erro técnico
                 return $"Exception: {ex.Message}\n{ex.StackTrace}";
             }
         }
+
+
+        public async Task<List<CategoriaProduto>> getAllCategoria()
+            {
+                try
+                {
+                    var response = await ApiClient.Client.GetAsync("api/administrativo/categoria");
+
+                    return await response.Content.ReadFromJsonAsync<List<CategoriaProduto>>();
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+
+        }
+
+        public async Task<List<TipoStatusPedido>> getAllStatus()
+            {
+                try
+                {
+                    var response = await ApiClient.Client.GetAsync("api/administrativo/statuspedido");
+
+                    return await response.Content.ReadFromJsonAsync<List<TipoStatusPedido>>();
+                }
+                catch (Exception e)
+                {
+                    return null; 
+                }
+        }
+
+        }
+
     }
-
-
-    }
-

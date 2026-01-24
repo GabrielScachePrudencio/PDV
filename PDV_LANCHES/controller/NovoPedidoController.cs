@@ -21,12 +21,12 @@ namespace PDV_LANCHES.controller
             return await response.Content.ReadFromJsonAsync<Usuario>();
         }
 
-        public async Task<List<Cardapio>> getAllCardapio()
+        public async Task<List<Produto>> getAllProduto()
         {
-            var response = await ApiClient.Client.GetAsync("api/cardapio");
+            var response = await ApiClient.Client.GetAsync("api/produtos");
             if (!response.IsSuccessStatusCode)
                 return null;
-            return await response.Content.ReadFromJsonAsync<List<Cardapio>>();
+            return await response.Content.ReadFromJsonAsync<List<Produto>>();
         }
 
         public async Task<bool> criarPedido(PedidoDTO pedido)

@@ -1,9 +1,11 @@
-﻿using PDV_LANCHES.controller;
+﻿using Mysqlx;
+using PDV_LANCHES.controller;
 using PDV_LANCHES.model;
 using ServidorLanches.model;
 using ServidorLanches.model.dto;
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
@@ -31,38 +33,46 @@ namespace PDV_LANCHES.Views
         }
 
 
-        private void PopularFiltroStatus()
+        private async Task PopularFiltroStatus()
         {
-            var opcoes = new List<string> { "Todos" };
-            opcoes.AddRange(Enum.GetNames(typeof(StatusPedido)));
-            
-            comboStatusFiltro.ItemsSource = opcoes;
-            comboStatusFiltro.SelectedIndex = 0;
+            await Status_Categorias.Instancia.CarregarAsync();
+
+            var lista = new List<TipoStatusPedido>
+                {
+                    new TipoStatusPedido { id = -1, nome = "Todos" }
+                };
+
+            lista.AddRange(Status_Categorias.Instancia.TipoStatusPedido);
+
+            comboStatusFiltro.ItemsSource = lista;
+            comboStatusFiltro.DisplayMemberPath = "nome";
+            comboStatusFiltro.SelectedValuePath = "id";
+            comboStatusFiltro.SelectedValue = -1;
         }
+
 
         private void AplicarFiltros()
         {
             if (pedidos == null) return;
 
-            string statusSelecionado = comboStatusFiltro.SelectedItem as string;
-            string buscaTexto = txtBuscaCliente.Text?.Trim().ToLower();
+            int statusId = (int)comboStatusFiltro.SelectedValue;
+            string buscaTexto = txtBuscaCliente.Text?.Trim();
 
             var listaFiltrada = pedidos.Where(p =>
             {
-                bool statusOk =
-                    statusSelecionado == "Todos" ||
-                    p.StatusPedido.ToString() == statusSelecionado;
+                bool statusOk = statusId == -1 || p.IdStatus == statusId;
 
                 bool buscaOk =
                     string.IsNullOrEmpty(buscaTexto) ||
                     (!string.IsNullOrEmpty(p.CpfCliente) &&
-                     p.CpfCliente.ToLower().Contains(buscaTexto));
+                     p.CpfCliente.Contains(buscaTexto));
 
                 return statusOk && buscaOk;
             }).ToList();
 
             ListaPedidos.ItemsSource = listaFiltrada;
         }
+
 
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -195,48 +205,62 @@ namespace PDV_LANCHES.Views
             this.Close();
         }
 
-        private void comboStatusPedido_Loaded(object sender, RoutedEventArgs e)
+        private void todasVendas_Click(object sender, RoutedEventArgs e)
         {
+            TodasVendasCompleto todasvendacompl = new TodasVendasCompleto();
+            todasvendacompl.Show();
+            this.Close();
+        }
+
+        private async void comboStatusPedido_Loaded(object sender, RoutedEventArgs e)
+        {
+            await Status_Categorias.Instancia.CarregarAsync();
+
+
             var combo = sender as ComboBox;
             var pedido = combo.Tag as PedidoDTO;
 
-            if (pedido != null)
+            if(Status_Categorias.Instancia.TipoStatusPedido == null)
             {
-                combo.ItemsSource = Enum.GetNames(typeof(StatusPedido));
-
-                combo.SelectedItem = pedido.StatusPedido.ToString();
+                MessageBox.Show("erro veio null status pedidos");
             }
+
+            combo.ItemsSource = Status_Categorias.Instancia.TipoStatusPedido;
+            combo.DisplayMemberPath = "nome";
+            combo.SelectedValuePath = "id";
+
+            if (pedido != null)
+                combo.SelectedValue = pedido.IdStatus;
         }
+
 
         private async void ComboBoxPedido_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var combo = sender as ComboBox;
-
             if (!combo.IsLoaded) return;
 
             var pedido = combo.Tag as PedidoDTO;
-            string novoStatusTexto = combo.SelectedItem as string;
+            var statusSelecionado = combo.SelectedItem as TipoStatusPedido;
 
-            if (pedido != null && !string.IsNullOrEmpty(novoStatusTexto))
+            if (pedido == null || statusSelecionado == null) return;
+            if (pedido.IdStatus == statusSelecionado.id) return;
+
+            bool sucesso = await homeController.AtualizarStatusPedido(
+                pedido.Id,
+                statusSelecionado.id
+            );
+
+            if (sucesso)
             {
-                if (Enum.TryParse(novoStatusTexto, out StatusPedido novoStatus))
-                {
-                    if (pedido.StatusPedido == novoStatus) return;
-
-                    string sucesso = await homeController.AtualizarStatusPedido(pedido.Id, novoStatus);
-
-                    if (sucesso == "ok")
-                    {
-                        pedido.StatusPedido = novoStatus;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Erro ao atualizar status no servidor.");
-                        combo.SelectedItem = pedido.StatusPedido.ToString();
-                    }
-                }
+                pedido.IdStatus = statusSelecionado.id;
+            }
+            else
+            {
+                MessageBox.Show("Erro ao atualizar status.");
+                combo.SelectedValue = pedido.IdStatus;
             }
         }
+
 
 
         private void VoltarParaEscolha_Click(object sender, RoutedEventArgs e)

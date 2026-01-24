@@ -14,21 +14,18 @@ namespace PDV_LANCHES.Views
         private PedidoDTO? pedido;
         private int id;
         private PedidoInfoController pedidoInfoController = new PedidoInfoController();
-        private List<string> statusPedidos = new List<string>
-        {
-            "Pendente",
-            "Preparando",
-            "Entregue",
-            "Cancelado"
-        };
+        bool veioDeTodasVendas = false;
 
-        public PedidoInfo(int id)
+        public PedidoInfo(int id, bool veioDeTodasVendas = false)
         {
             InitializeComponent(); 
             this.id = id;
-
+            this.veioDeTodasVendas = veioDeTodasVendas;
             CarregarPedidoAssincrono();
         }
+
+
+
         public PedidoInfo(PedidoDTO pedidoCompleto)
         {
             InitializeComponent();
@@ -37,21 +34,25 @@ namespace PDV_LANCHES.Views
                 this.pedido = pedidoCompleto;
                 this.id = pedidoCompleto.Id;
             }
-
+            CarregarStatusAsync();
             CarregarPedidoAssincrono();
         }
+
+        
+
 
         private async void CarregarPedidoAssincrono()
         {
             try
             {
-                if(pedido == null)
+                if (pedido == null)
                 {
                     pedido = await pedidoInfoController.getPedidoById(id);
                 }
 
                 if (pedido != null)
                 {
+                    await CarregarStatusAsync();   // 👈 AQUI
                     MontarPedidoTela();
                 }
                 else
@@ -64,6 +65,14 @@ namespace PDV_LANCHES.Views
                 MessageBox.Show("Erro ao carregar: " + ex.Message);
             }
         }
+        private async Task CarregarStatusAsync()
+        {
+            await Status_Categorias.Instancia.CarregarAsync();
+
+            ComboBoxStatusPedido.ItemsSource = Status_Categorias.Instancia.TipoStatusPedido;
+            ComboBoxStatusPedido.DisplayMemberPath = "nome";
+            ComboBoxStatusPedido.SelectedValuePath = "id";
+        }
 
         public void MontarPedidoTela()
         {
@@ -74,16 +83,8 @@ namespace PDV_LANCHES.Views
             pedidoTotalInfo.Text = pedido.ValorTotal.ToString("C2");
 
             itensPedidoStackPanel.Children.Clear();
+            ComboBoxStatusPedido.SelectedValue = pedido.IdStatus;
 
-            // Carregar Status (Apenas se a lista estiver vazia para não duplicar)
-            if (ComboBoxStatusPedido.Items.Count == 0)
-            {
-                foreach (var status in statusPedidos)
-                {
-                    ComboBoxStatusPedido.Items.Add(new ComboBoxItem { Content = status });
-                }
-            }
-            ComboBoxStatusPedido.SelectedIndex = statusPedidos.IndexOf(pedido.StatusPedido.ToString());
 
             foreach (var item in pedido.Itens)
             {
@@ -140,7 +141,7 @@ namespace PDV_LANCHES.Views
                 // Nome do Produto
                 TextBlock txtNome = new TextBlock
                 {
-                    Text = item.NomeCardapio.ToUpper(),
+                    Text = item.NomeProduto.ToUpper(),
                     VerticalAlignment = VerticalAlignment.Center,
                     Foreground = new SolidColorBrush(Colors.White),
                     FontSize = 12,
@@ -152,7 +153,7 @@ namespace PDV_LANCHES.Views
                     Width = 40,
                     Height = 40,
                     Margin = new Thickness(0, 0, 10, 0),
-                    Source = new BitmapImage(new Uri(item.pahCardapioImg, UriKind.RelativeOrAbsolute))
+                    Source = new BitmapImage(new Uri(item.pathProdutoImg, UriKind.RelativeOrAbsolute))
                 };
 
                 
@@ -175,12 +176,18 @@ namespace PDV_LANCHES.Views
 
                 pedido.CpfCliente = pedidoCpfInfo.Text;
 
-                pedido.StatusPedido = (StatusPedido)Enum.Parse(
-                    typeof(StatusPedido),
-                    ((ComboBoxItem)ComboBoxStatusPedido.SelectedItem).Content.ToString()
-                );
+                if (ComboBoxStatusPedido.SelectedItem is TipoStatusPedido status)
+                {
+                    pedido.IdStatus = status.id;
+                }
+                else
+                {
+                    MessageBox.Show("Status inválido.");
+                    return;
+                }
 
-               
+
+
 
                 foreach (var child in itensPedidoStackPanel.Children)
                 {
@@ -246,9 +253,19 @@ namespace PDV_LANCHES.Views
         }
 
         private void Fechar_Click(object sender, RoutedEventArgs e) {
-            Home home = new Home();
-            home.Show();
-            this.Close();
+            if(veioDeTodasVendas == false)
+            {
+                Home home = new Home();
+                home.Show();
+                this.Close();
+            }
+            else
+            {
+                TodasVendasCompleto todasVendasCompleto = new TodasVendasCompleto();
+                todasVendasCompleto.Show();
+                this.Close();
+            }
+
         }
         private void CardapioCompleto_click(object sender, RoutedEventArgs e) {
             CardapioCompleto cardapiocompleto = new CardapioCompleto(pedido);

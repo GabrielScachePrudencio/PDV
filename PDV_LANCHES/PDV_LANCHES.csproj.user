@@ -2,7 +2,7 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-    <Compile Update="Views\CardapioCompleto.xaml.cs">
+    <Compile Update="Views\ProdutoCompleto.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\EscolhaQualHome.xaml.cs">
@@ -20,7 +20,7 @@
     <Compile Update="Views\PedidoInfo.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\ViewsAdministrativo\AllCardapio.xaml.cs">
+    <Compile Update="Views\ViewsAdministrativo\AllProduto.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\ViewsAdministrativo\AllRelatorio.xaml.cs">
@@ -36,6 +36,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\ViewsAdministrativo\ConfiguracoesGeraisVA2.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\TodasVendasCompleto.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

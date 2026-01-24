@@ -16,7 +16,7 @@ namespace PDV_LANCHES.Views
     {
         private NovoPedidoController controller;
         private PedidoDTO pedido;
-        private ObservableCollection<Cardapio> cardapios = new ObservableCollection<Cardapio>();
+        private ObservableCollection<Produto> cardapios = new ObservableCollection<Produto>();
         private ObservableCollection<ItemPedidoCardapioDTO> itensPedido = new ObservableCollection<ItemPedidoCardapioDTO>();
         private EtapaPedido etapaAtual = EtapaPedido.InformarCpf;
 
@@ -30,7 +30,7 @@ namespace PDV_LANCHES.Views
 
         private async void CarregarCardapioAoIniciar()
         {
-            var lista = await controller.getAllCardapio();
+            var lista = await controller.getAllProduto();
             if (lista != null)
             {
                 foreach (var item in lista)
@@ -78,6 +78,8 @@ namespace PDV_LANCHES.Views
 
         private async Task ValidarCpfEAvancar()
         {
+            await Status_Categorias.Instancia.CarregarAsync();
+
             if (string.IsNullOrWhiteSpace(inputCpfCliente.Text))
             {
                 MessageBox.Show("Por favor, informe o CPF do cliente.");
@@ -95,7 +97,14 @@ namespace PDV_LANCHES.Views
             pedido.IdUsuario = usuario.Id;
             pedido.CpfCliente = inputCpfCliente.Text;
             pedido.DataCriacao = DateTime.Now;
-            pedido.StatusPedido = StatusPedido.Pendente;
+
+
+            var statusPendente = Status_Categorias.Instancia
+            .TipoStatusPedido
+            .First(s => s.nome == "Pendente");
+
+            pedido.IdStatus = statusPendente.id;
+
 
             inputCpfCliente.IsEnabled = false;
             LabelCPF.Text = $"✅ Cliente: {pedido.CpfCliente}";
@@ -122,7 +131,7 @@ namespace PDV_LANCHES.Views
 
             foreach (var item in itensPedido)
             {
-                var nomeProd = cardapios.First(c => c.Id == item.IdCardapio).Nome;
+                var nomeProd = cardapios.First(c => c.Id == item.IdProduto).Nome;
                 var linha = new TextBlock
                 {
                     Text = $"• {item.Quantidade}x {nomeProd} - R$ {(item.Quantidade * item.ValorUnitario):F2}",
@@ -138,7 +147,12 @@ namespace PDV_LANCHES.Views
 
         private async Task FinalizarVenda()
         {
+            await Status_Categorias.Instancia.CarregarAsync();
+
+             ;
+
             pedido.Itens = itensPedido.ToList();
+            pedido.StatusPedido = Status_Categorias.Instancia.TipoStatusPedido.FirstOrDefault().nome;
 
             if (pedido.Itens.Count == 0)
             {
@@ -165,13 +179,13 @@ namespace PDV_LANCHES.Views
         private void AdicionarItem_Click(object sender, RoutedEventArgs e)
         {
             var btn = sender as Button;
-            var produto = btn.Tag as Cardapio;
+            var produto = btn.Tag as Produto;
 
             if (produto == null) return;
 
             int qtd = produto.QuantidadeSelecionada > 0 ? produto.QuantidadeSelecionada : 1;
 
-            var existente = itensPedido.FirstOrDefault(i => i.IdCardapio == produto.Id);
+            var existente = itensPedido.FirstOrDefault(i => i.IdProduto == produto.Id);
             if (existente != null)
             {
                 existente.Quantidade += qtd;
@@ -180,10 +194,10 @@ namespace PDV_LANCHES.Views
             {
                 itensPedido.Add(new ItemPedidoCardapioDTO
                 {
-                    IdCardapio = produto.Id,
-                    NomeCardapio = produto.Nome,
-                    Categoria = produto.Categoria,
-                    pahCardapioImg = !string.IsNullOrEmpty(produto.pathImg) ? produto.pathImg : "default.png",
+                    IdProduto = produto.Id,
+                    NomeProduto = produto.Nome,
+                    Categoria = produto.IdCategoria.ToString(),
+                    pathProdutoImg = !string.IsNullOrEmpty(produto.pathImg) ? produto.pathImg : "default.png",
                     ValorUnitario = produto.Valor,
                     Quantidade = qtd
                 });

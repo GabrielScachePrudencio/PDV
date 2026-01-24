@@ -80,7 +80,6 @@ C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\ne
 C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\HomeAdministrativo.baml
 C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\NovoPedido.baml
 C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\PedidoInfo.baml
-C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\ViewsAdministrativo\AllCardapio.baml
 C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\ViewsAdministrativo\AllRelatorio.baml
 C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\ViewsAdministrativo\AllUsuario.baml
 C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\ViewsAdministrativo\ConfiguracaoBanco.baml
@@ -92,7 +91,6 @@ C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\ne
 C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\HomeAdministrativo.g.cs
 C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\NovoPedido.g.cs
 C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\PedidoInfo.g.cs
-C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\ViewsAdministrativo\AllCardapio.g.cs
 C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\ViewsAdministrativo\AllRelatorio.g.cs
 C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\ViewsAdministrativo\AllUsuario.g.cs
 C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\ViewsAdministrativo\ConfiguracaoBanco.g.cs
@@ -112,5 +110,9 @@ C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\ne
 C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\PDV_LANCHES.pdb
 C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\PDV_LANCHES.genruntimeconfig.cache
 C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\ref\PDV_LANCHES.dll
-C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\CardapioCompleto.baml
-C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\CardapioCompleto.g.cs
+C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\ProdutoCompleto.baml
+C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\ViewsAdministrativo\AllProduto.baml
+C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\ProdutoCompleto.g.cs
+C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\ViewsAdministrativo\AllProduto.g.cs
+C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\TodasVendasCompleto.baml
+C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\TodasVendasCompleto.g.cs

@@ -135,14 +135,31 @@
 
                 <StackPanel Margin="0,40,0,30">
                     <Border Width="90" Height="90" CornerRadius="45" BorderBrush="#22C55E" BorderThickness="2" Padding="4" HorizontalAlignment="Center">
-                        <Border CornerRadius="45" ClipToBounds="True" Background="#020617">
-                            <Grid>
-                                <Image x:Name="imgLogoMenu" Stretch="UniformToFill" />
-                                <TextBlock x:Name="txtLogoPlaceholder" Text="🍴" FontSize="35" Foreground="#334155" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"/>
-                            </Grid>
-                        </Border>
+                        <Grid>
+                            <Ellipse x:Name="CircleMask" Fill="#020617"/>
+
+                            <Border CornerRadius="45" ClipToBounds="True">
+                                <Grid>
+                                    <Image x:Name="imgLogoMenu" Stretch="UniformToFill">
+                                        <Image.OpacityMask>
+                                            <VisualBrush Visual="{Binding ElementName=CircleMask}"/>
+                                        </Image.OpacityMask>
+                                    </Image>
+
+                                    <TextBlock x:Name="txtLogoPlaceholder" 
+                               Text="🍴" 
+                               FontSize="35" 
+                               Foreground="#334155" 
+                               HorizontalAlignment="Center" 
+                               VerticalAlignment="Center" 
+                               Visibility="Collapsed"/>
+                                </Grid>
+                            </Border>
+                        </Grid>
                     </Border>
+
                     <TextBlock x:Name="txtNomeLoja" Text="CARREGANDO..." Foreground="White" FontSize="15" FontWeight="Black" Margin="15,15,15,0" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap"/>
+
                     <Border Background="#064E3B" CornerRadius="4" Padding="8,2" HorizontalAlignment="Center" Margin="0,8,0,0">
                         <TextBlock Text="OPERACIONAL" Foreground="#34D399" FontSize="9" FontWeight="Black" />
                     </Border>
@@ -150,6 +167,7 @@
 
                 <StackPanel Grid.Row="1">
                     <Button Style="{StaticResource MenuButtonStyle}" x:Name="novoPedido" Content="➕  Novo Pedido" Click="novoPedido_Click" Foreground="White" Background="#166534" Margin="12,4,12,20"/>
+                    <Button Style="{StaticResource MenuButtonStyle}" x:Name="todasAsVendas" Content="Todas as vendas" Click="todasVendas_Click" Foreground="White" Background="#166534" Margin="12,4,12,20"/>
                     <Button Style="{StaticResource MenuButtonStyle}" Content="📋  Pedidos Ativos" />
                     <Button Style="{StaticResource MenuButtonStyle}" Content="✅  Finalizados" />
                     <Button Style="{StaticResource MenuButtonStyle}" Content="📦  Estoque Rápido" />
@@ -281,7 +299,7 @@
                                                         <TextBlock Foreground="White" FontSize="12">
                                                             <Run Text="{Binding Quantidade}" FontWeight="Bold" Foreground="#22C55E"/>
                                                             <Run Text="x"/>
-                                                            <Run Text="{Binding NomeCardapio}"/>
+                                                            <Run Text="{Binding NomeProduto}"/>
                                                         </TextBlock>
                                                     </Border>
                                                 </DataTemplate>
