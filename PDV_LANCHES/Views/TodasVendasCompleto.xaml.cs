@@ -26,7 +26,7 @@ namespace PDV_LANCHES.Views
 
         private async void Home_Loaded(object sender, RoutedEventArgs e)
         {
-            await Task.WhenAll(CarregarDadosUsuario(), CarregarDadosPedidos(), CarregarDadosEmpresa());
+            await Task.WhenAll(CarregarDadosUsuario(), CarregarDadosPedidos());
         }
 
         private async Task CarregarDadosUsuario()
@@ -39,54 +39,16 @@ namespace PDV_LANCHES.Views
             }
 
             usuarioLogado = usuario;
-            usuarioLogadoHome.Text = usuario.Nome;
 
-            
+
         }
 
-        private async Task CarregarDadosEmpresa()
-        {
-            try
-            {
-                Login login = new Login();
-                ConfiguracoesGerais config = await login.ConfiguracoesGerais();
 
-                if (config != null)
-                {
-                    // Define o nome da loja
-                    txtNomeLoja.Text = (config.nomeFantasia ?? config.nome ?? "MINHA LOJA").ToUpper();
-
-                    // Carrega a imagem da logo
-                    if (!string.IsNullOrEmpty(config.pathImagemLogo) && File.Exists(config.pathImagemLogo))
-                    {
-                        imgLogoMenu.Source = LoadImage(config.pathImagemLogo);
-                        txtLogoPlaceholder.Visibility = Visibility.Collapsed;
-                    }
-                    else
-                    {
-                        txtLogoPlaceholder.Visibility = Visibility.Visible;
-                    }
-                }
-            }
-            catch
-            {
-                txtNomeLoja.Text = "PDV LANCHES";
-                txtLogoPlaceholder.Visibility = Visibility.Visible;
-            }
-        }
-
-        private BitmapImage LoadImage(string path)
-        {
-            BitmapImage bitmap = new BitmapImage();
-            bitmap.BeginInit();
-            bitmap.UriSource = new Uri(path, UriKind.Absolute);
-            bitmap.CacheOption = BitmapCacheOption.OnLoad; // Importante para não travar o arquivo
-            bitmap.EndInit();
-            return bitmap;
-        }
 
         private async Task CarregarDadosPedidos()
         {
+            await Status_Categorias.Instancia.CarregarAsync();
+
             var lista = await homeController.PegarTodosPedidos();
             if (lista == null)
             {
@@ -100,8 +62,24 @@ namespace PDV_LANCHES.Views
                 pedidos.Add(l);
             }
 
-            dgVendas.ItemsSource = pedidos;
+
+
+
+            //status
+            comboStatus.ItemsSource = Status_Categorias.Instancia.TipoStatusPedido;
+            comboStatus.DisplayMemberPath = "nome";
+            comboStatus.SelectedValuePath = "id";
+
+
+            //formas de pagamentos 
+            comboFormaDePagamento.ItemsSource = Status_Categorias.Instancia.FormaDePagamentos;
+            comboFormaDePagamento.DisplayMemberPath = "Descricao";
+            comboFormaDePagamento.SelectedValuePath = "Id";
+
+
+            ListaVendas.ItemsSource = pedidos;
         }
+
         private void VerDetalhes_click(object sender, MouseButtonEventArgs e)
         {
             var grid = sender as DataGrid;
@@ -109,21 +87,25 @@ namespace PDV_LANCHES.Views
             if (grid != null && grid.SelectedItem != null)
             {
                 var pedido = (PedidoDTO)grid.SelectedItem;
-                bool veioDeTodasVendas = true;
 
-                PedidoInfo pedidoInfo = new PedidoInfo(pedido.Id, veioDeTodasVendas);
+                PedidoInfo pedidoInfo = new PedidoInfo(pedido.Id, true);
                 pedidoInfo.Show();
                 this.Close();
             }
         }
 
-        private void novoPedido_Click(object sender, RoutedEventArgs e) { /* Lógica */ }
+        private void novoPedido_Click(object sender, RoutedEventArgs e)
+        {
+            NovoPedido novoPedido = new NovoPedido(true);
+            novoPedido.Show();
+            this.Close();
+        }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) { /* Filtro Status */ }
 
         private void txtBuscaCliente_KeyUp(object sender, KeyEventArgs e) { /* Filtro CPF */ }
 
-        private void VoltarPedidos_Click(object sender, RoutedEventArgs e)
+        private void Voltar_Click(object sender, RoutedEventArgs e)
         {
             Home home = new Home();
             home.Show();
@@ -136,13 +118,76 @@ namespace PDV_LANCHES.Views
 
         private void ComboBoxPedido_SelectionChanged(object sender, SelectionChangedEventArgs e) { /* Mudar status */ }
 
-        private void VerDetalhes_click(object sender, RoutedEventArgs e) { /* Detalhes */ }
+        private void VerDetalhes_PreviewMouseDown(object sender, RoutedEventArgs e)
+        {
+            FrameworkElement elemento = e.OriginalSource as FrameworkElement;
+
+            if (elemento != null)
+            {
+                // 2. O DataContext desse elemento contém o seu objeto de negócio (ex: Venda)
+                // O WPF propaga o DataContext do ItemTemplate para todos os filhos.
+                var pedido = elemento.DataContext;
+
+                if (pedido is PedidoDTO pedidoDTO)
+                {
+                    PedidoInfo pedidoInfo = new PedidoInfo(pedidoDTO.Id, true);
+                    pedidoInfo.Show();
+                    this.Close();
+                }
+            }
+        }
 
         private void ApagarPedido_Click(object sender, RoutedEventArgs e) { /* Deletar */ }
 
         private void dgVendas_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void Pesquisar_Click(object sender, RoutedEventArgs e)
+        {
+            IEnumerable<PedidoDTO> filtrados = pedidos;
+
+            if (!string.IsNullOrWhiteSpace(txtBuscaCliente.Text))
+            {
+                string busca = txtBuscaCliente.Text.ToLower().Trim();
+                filtrados = filtrados.Where(p =>
+                    (p.NomeCliente != null && p.NomeCliente.ToLower().Contains(busca)) ||
+                    (p.CpfCliente != null && p.CpfCliente.Contains(busca))
+                );
+            }
+
+            if (comboStatus.SelectedItem != null)
+            {
+                dynamic statusSelecionado = comboStatus.SelectedItem;
+                string nomeStatus = statusSelecionado.nome;
+
+                if (nomeStatus != "Todos" && nomeStatus != "Não se aplica")
+                {
+                    int idStatus = (int)comboStatus.SelectedValue;
+                    filtrados = filtrados.Where(p => p.IdStatus == idStatus);
+                }
+            }
+
+            if (comboFormaDePagamento.SelectedItem != null)
+            {
+                dynamic pgtoSelecionado = comboFormaDePagamento.SelectedItem;
+                string descPgto = pgtoSelecionado.Descricao;
+
+                if (descPgto != "Todos")
+                {
+                    int idPagto = (int)comboFormaDePagamento.SelectedValue;
+                    filtrados = filtrados.Where(p => p.IdFormaPagamento == idPagto);
+                }
+            }
+
+            if (dtInicio.SelectedDate.HasValue)
+                filtrados = filtrados.Where(p => p.DataCriacao.Date >= dtInicio.SelectedDate.Value.Date);
+
+            if (dtFim.SelectedDate.HasValue)
+                filtrados = filtrados.Where(p => p.DataCriacao.Date <= dtFim.SelectedDate.Value.Date);
+
+            ListaVendas.ItemsSource = filtrados.ToList();
         }
     }
 }

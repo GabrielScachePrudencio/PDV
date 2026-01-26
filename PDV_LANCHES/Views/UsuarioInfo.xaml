@@ -1,0 +1,169 @@
+﻿<Window x:Class="PDV_LANCHES.Views.UsuarioInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Informações do Usuário" 
+        WindowState="Maximized" 
+        WindowStyle="SingleBorderWindow"
+        WindowStartupLocation="CenterScreen" 
+        Background="#020617">
+
+    <Window.Resources>
+        <Style x:Key="DarkComboBox" TargetType="ComboBox">
+            <Setter Property="Background" Value="#1E293B"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#334155"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Padding" Value="12,0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid x:Name="MainGrid">
+                            <ToggleButton x:Name="ToggleButton" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
+                                <ToggleButton.Template>
+                                    <ControlTemplate TargetType="ToggleButton">
+                                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" CornerRadius="8">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="30"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Path x:Name="Arrow" Grid.Column="1" Data="M 0 0 L 4 4 L 8 0 Z" Fill="#94A3B8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Grid>
+                                        </Border>
+                                    </ControlTemplate>
+                                </ToggleButton.Template>
+                            </ToggleButton>
+                            <ContentPresenter Content="{TemplateBinding SelectionBoxItem}" Margin="{TemplateBinding Padding}" VerticalAlignment="Center" IsHitTestVisible="False"/>
+                            <Popup x:Name="PART_Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True">
+                                <Border Background="#0F172A" BorderBrush="#334155" BorderThickness="1" CornerRadius="8">
+                                    <ItemsPresenter />
+                                </Border>
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="DarkTextBox" TargetType="TextBox">
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Padding" Value="12"/>
+            <Setter Property="Background" Value="#0F172A"/>
+            <Setter Property="BorderBrush" Value="#1E293B"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" CornerRadius="8">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="280"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" Background="#0F172A" BorderBrush="#1E293B" BorderThickness="0,0,1,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Margin="0,40,0,30">
+                    <Border Width="60" Height="60" CornerRadius="30" BorderBrush="#3B82F6" BorderThickness="2" HorizontalAlignment="Center">
+                        <TextBlock Text="👤" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                    <TextBlock Text="PERFIL DO USUÁRIO" Foreground="White" FontSize="14" FontWeight="Black" Margin="0,15,0,0" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="txtDataCriacao" Text="Membro desde --/--" Foreground="#64748B" FontSize="11" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Column="1" Margin="60,40">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Margin="0,0,0,40">
+                <TextBlock Text="GERENCIAMENTO DE ACESSO" FontSize="11" FontWeight="Black" Foreground="#3B82F6"/>
+                <TextBlock Text="Informações da Conta" FontSize="28" FontWeight="SemiBold" Foreground="White" Margin="0,5,0,0"/>
+                <Separator Margin="0,15,0,0" Background="#1E293B"/>
+            </StackPanel>
+
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <StackPanel MaxWidth="800" HorizontalAlignment="Left">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="NOME COMPLETO" Foreground="#64748B" FontSize="10" FontWeight="Bold" Margin="0,0,0,8"/>
+                            <TextBox x:Name="txtNomeUsuario" Style="{StaticResource DarkTextBox}" Margin="0,0,0,20"/>
+
+                            <TextBlock Text="E-MAIL" Foreground="#64748B" FontSize="10" FontWeight="Bold" Margin="0,0,0,8"/>
+                            <TextBox x:Name="txtEmailUsuario" Style="{StaticResource DarkTextBox}" Margin="0,0,0,20"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Text="TIPO DE USUÁRIO" Foreground="#64748B" FontSize="10" FontWeight="Bold" Margin="0,0,0,8"/>
+                            <ComboBox x:Name="cbTipoUsuario" Style="{StaticResource DarkComboBox}" Margin="0,0,0,20">
+                            </ComboBox>
+
+                            <TextBlock Text="NOVA SENHA" Foreground="#64748B" FontSize="10" FontWeight="Bold" Margin="0,0,0,8"/>
+                            <PasswordBox x:Name="txtSenhaUsuario" Height="45">
+                                <PasswordBox.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="8"/>
+                                        <Setter Property="Background" Value="#0F172A"/>
+                                        <Setter Property="BorderBrush" Value="#1E293B"/>
+                                        <Setter Property="BorderThickness" Value="1"/>
+                                    </Style>
+                                </PasswordBox.Resources>
+                            </PasswordBox>
+                            <TextBlock Text="* Deixe em branco para manter a senha atual" Foreground="#475569" FontSize="10" Margin="0,5,0,0"/>
+                        </StackPanel>
+                    </Grid>
+
+                </StackPanel>
+            </ScrollViewer>
+
+            <Grid Grid.Row="2" Margin="0,40,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="1" Content="VOLTAR" Width="180" Height="55" Margin="0,0,15,0" Background="Transparent" Foreground="#64748B" FontWeight="Bold" BorderBrush="#1E293B" BorderThickness="1" Cursor="Hand" Click="Voltar_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="12"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+                <Button Grid.Column="2" x:Name="btnSalvarUsuario" Content="SALVAR ALTERAÇÕES" Width="250" Height="55" Background="#3B82F6" Foreground="White" FontWeight="Black" FontSize="15" Cursor="Hand" Click="Salvar_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="12"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

@@ -24,8 +24,6 @@ namespace PDV_LANCHES.Views
             CarregarPedidoAssincrono();
         }
 
-
-
         public PedidoInfo(PedidoDTO pedidoCompleto)
         {
             InitializeComponent();
@@ -52,7 +50,8 @@ namespace PDV_LANCHES.Views
 
                 if (pedido != null)
                 {
-                    await CarregarStatusAsync();   // 👈 AQUI
+                    await CarregarStatusAsync();
+                    await CarregarFormasDePagamentosAsync();
                     MontarPedidoTela();
                 }
                 else
@@ -73,6 +72,14 @@ namespace PDV_LANCHES.Views
             ComboBoxStatusPedido.DisplayMemberPath = "nome";
             ComboBoxStatusPedido.SelectedValuePath = "id";
         }
+        private async Task CarregarFormasDePagamentosAsync()
+        {
+            await Status_Categorias.Instancia.CarregarAsync();
+
+            ComboBoxAlterarFormaDePagamento.ItemsSource = Status_Categorias.Instancia.FormaDePagamentos;
+
+            ComboBoxAlterarFormaDePagamento.SelectedValuePath = "Id";
+        }
 
         public void MontarPedidoTela()
         {
@@ -84,7 +91,7 @@ namespace PDV_LANCHES.Views
 
             itensPedidoStackPanel.Children.Clear();
             ComboBoxStatusPedido.SelectedValue = pedido.IdStatus;
-
+            ComboBoxAlterarFormaDePagamento.SelectedValue = pedido.IdFormaPagamento;
 
             foreach (var item in pedido.Itens)
             {
@@ -186,6 +193,10 @@ namespace PDV_LANCHES.Views
                     return;
                 }
 
+                if (ComboBoxAlterarFormaDePagamento.SelectedValue != null)
+                {
+                    pedido.IdFormaPagamento = (int)ComboBoxAlterarFormaDePagamento.SelectedValue;
+                }
 
 
 
@@ -210,9 +221,18 @@ namespace PDV_LANCHES.Views
                 if (sucesso)
                 {
                     MessageBox.Show("Pedido atualizado com sucesso!");
-                    Home home = new Home(); 
-                    home.Show();
-                    this.Close();
+                    if (veioDeTodasVendas == false)
+                    {
+                        Home home = new Home();
+                        home.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        TodasVendasCompleto todasVendasCompleto = new TodasVendasCompleto();
+                        todasVendasCompleto.Show();
+                        this.Close();
+                    }
                 }
             }
             catch (Exception ex)
@@ -274,6 +294,10 @@ namespace PDV_LANCHES.Views
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Lógica para quando a seleção mudar, se necessário
+        }
+        private void ComboBoxAlterarFormaDePagamento_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // Lógica para quando a seleção mudar, se necessário
         }

@@ -10,6 +10,7 @@ namespace PDV_LANCHES.Views.ViewsAdministrativo
     {
         private List<Produto> listaCardapio;
         private NovoPedidoController novoPedido = new NovoPedidoController();
+        private HomeAdministrativoController homeAdministrativoController = new HomeAdministrativoController();
 
         public AllProduto()
         {
@@ -21,23 +22,40 @@ namespace PDV_LANCHES.Views.ViewsAdministrativo
         {
             listaCardapio = await novoPedido.getAllProduto();
 
+            await Status_Categorias.Instancia.CarregarAsync();
+            var categorias = Status_Categorias.Instancia.CategoriaProdutos;
+
+            foreach (var produto in listaCardapio)
+            {
+                var cat = categorias.FirstOrDefault(c => c.id == produto.IdCategoria);
+                produto.NomeCategoria = cat != null ? cat.nome : "Sem Categoria";
+            }
+
+            dgCardapio.ItemsSource = null;
             dgCardapio.ItemsSource = listaCardapio;
         }
 
         private void Adicionar_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Abrir modal para adicionar item");
+            NovoProduto np = new NovoProduto();
+            np.Show();
+            
         }
 
         private void Editar_Click(object sender, RoutedEventArgs e)
         {
             var item = (sender as Button)?.DataContext as Produto;
             if (item == null) return;
+            NovoProduto novoProduto = new NovoProduto(item);
+            novoProduto.Closed += (s, args) =>
+            {
+                CarregarCardapio();
+            };
+            novoProduto.ShowDialog();
 
-            MessageBox.Show($"Editar: {item.Nome}");
         }
 
-        private void Excluir_Click(object sender, RoutedEventArgs e)
+        private async void Excluir_Click(object sender, RoutedEventArgs e)
         {
             var item = (sender as Button)?.DataContext as Produto;
             if (item == null) return;
@@ -47,7 +65,15 @@ namespace PDV_LANCHES.Views.ViewsAdministrativo
                                 MessageBoxButton.YesNo,
                                 MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
-                listaCardapio.Remove(item);
+                if (await homeAdministrativoController.deletarProduto(item.Id)){
+                    MessageBox.Show("produto excluido");
+                }
+                else { 
+                
+                    MessageBox.Show("erro ao excluir produto");
+                }
+
+                    listaCardapio.Remove(item);
             }
         }
     }

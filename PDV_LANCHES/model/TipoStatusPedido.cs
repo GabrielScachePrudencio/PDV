@@ -11,6 +11,7 @@ namespace PDV_LANCHES.model
         public int id { get; set; }
         public string nome { get; set; }
 
+        public bool ativo { get; set; }
         public override string ToString()
         {
             return nome; 

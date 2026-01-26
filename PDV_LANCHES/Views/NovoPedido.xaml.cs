@@ -8,7 +8,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace PDV_LANCHES.Views
 {
@@ -19,6 +18,7 @@ namespace PDV_LANCHES.Views
         private ObservableCollection<Produto> cardapios = new ObservableCollection<Produto>();
         private ObservableCollection<ItemPedidoCardapioDTO> itensPedido = new ObservableCollection<ItemPedidoCardapioDTO>();
         private EtapaPedido etapaAtual = EtapaPedido.InformarCpf;
+        private bool veioDeTodosOsPedidos = false;
 
         public NovoPedido()
         {
@@ -27,6 +27,15 @@ namespace PDV_LANCHES.Views
             pedido = new PedidoDTO();
             CarregarCardapioAoIniciar();
         }
+        public NovoPedido(bool veioDeTodosOsPedidos)
+        {
+            this.veioDeTodosOsPedidos = veioDeTodosOsPedidos;
+            InitializeComponent();
+            controller = new NovoPedidoController();
+            pedido = new PedidoDTO();
+            CarregarCardapioAoIniciar();
+        }
+
 
         private async void CarregarCardapioAoIniciar()
         {
@@ -34,30 +43,14 @@ namespace PDV_LANCHES.Views
             if (lista != null)
             {
                 foreach (var item in lista)
-
                 {
-
-                    if (!string.IsNullOrEmpty(item.pathImg))
-                    {
-                        try
-                        {
-                            if (!item.pathImg.StartsWith("file:///"))
-                            {
-                                item.pathImg = new Uri(item.pathImg, UriKind.Absolute).AbsoluteUri;
-                            }
-                        }
-                        catch
-
-                        {
-                            item.pathImg = null;
-                        }
-                    }
                     item.QuantidadeSelecionada = 1;
                     cardapios.Add(item);
                 }
                 ListaCardapioItems.ItemsSource = cardapios;
             }
         }
+
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             switch (etapaAtual)
@@ -65,11 +58,9 @@ namespace PDV_LANCHES.Views
                 case EtapaPedido.InformarCpf:
                     await ValidarCpfEAvancar();
                     break;
-
                 case EtapaPedido.SelecionarItens:
                     IrParaResumo();
                     break;
-
                 case EtapaPedido.ConfirmarPedido:
                     await FinalizarVenda();
                     break;
@@ -80,40 +71,34 @@ namespace PDV_LANCHES.Views
         {
             await Status_Categorias.Instancia.CarregarAsync();
 
-            if (string.IsNullOrWhiteSpace(inputCpfCliente.Text))
+            if (string.IsNullOrWhiteSpace(inputCpfCliente.Text) || inputCpfCliente.Text.Length < 14)
             {
-                MessageBox.Show("Por favor, informe o CPF do cliente.");
+                MessageBox.Show("Por favor, informe um CPF válido no formato 000.000.000-00.");
                 return;
             }
 
             var usuario = await controller.pegarUsuarioLogado();
+            if (usuario == null) { fecharAquiEAbrirHome(); return; }
 
-            if (usuario == null) {
-                fecharAquiEAbrirHome();
-                return;
-            }
-
-
+            // Preenchimento inicial do DTO
             pedido.IdUsuario = usuario.Id;
+            pedido.NomeUsuario = usuario.Nome;
             pedido.CpfCliente = inputCpfCliente.Text;
+            pedido.NomeCliente = string.IsNullOrWhiteSpace(inputNomeCliente.Text) ? "Cliente" : inputNomeCliente.Text;
             pedido.DataCriacao = DateTime.Now;
 
-
-            var statusPendente = Status_Categorias.Instancia
-            .TipoStatusPedido
-            .First(s => s.nome == "Pendente");
-
-            pedido.IdStatus = statusPendente.id;
-
+            var statusPendente = Status_Categorias.Instancia.TipoStatusPedido.FirstOrDefault(s => s.nome == "Pendente");
+            pedido.IdStatus = statusPendente?.id ?? 0;
+            pedido.StatusPedido = statusPendente?.nome ?? "Pendente";
 
             inputCpfCliente.IsEnabled = false;
-            LabelCPF.Text = $"✅ Cliente: {pedido.CpfCliente}";
+            inputNomeCliente.IsEnabled = false;
+            LabelCPF.Text = $"✅ {pedido.NomeCliente}";
 
             buttonProximo.Content = "VER RESUMO";
             etapaAtual = EtapaPedido.SelecionarItens;
         }
 
-        
         private void IrParaResumo()
         {
             if (!itensPedido.Any())
@@ -126,20 +111,23 @@ namespace PDV_LANCHES.Views
             borderResumo.Visibility = Visibility.Visible;
             stackResumoItens.Children.Clear();
 
-            // Título do Resumo
-            stackResumoItens.Children.Add(new TextBlock { Text = "Resumo do Pedido", FontSize = 20, FontWeight = FontWeights.Bold, Margin = new Thickness(0, 0, 0, 20) });
+            // Título
+            stackResumoItens.Children.Add(new TextBlock { Text = "Resumo do Pedido", FontSize = 20, FontWeight = FontWeights.Bold, Foreground = System.Windows.Media.Brushes.White, Margin = new Thickness(0, 0, 0, 20) });
 
             foreach (var item in itensPedido)
             {
-                var nomeProd = cardapios.First(c => c.Id == item.IdProduto).Nome;
-                var linha = new TextBlock
+                stackResumoItens.Children.Add(new TextBlock
                 {
-                    Text = $"• {item.Quantidade}x {nomeProd} - R$ {(item.Quantidade * item.ValorUnitario):F2}",
+                    Text = $"• {item.Quantidade}x {item.NomeProduto} - R$ {(item.Quantidade * item.ValorUnitario):F2}",
                     FontSize = 14,
+                    Foreground = System.Windows.Media.Brushes.White,
                     Margin = new Thickness(0, 5, 0, 5)
-                };
-                stackResumoItens.Children.Add(linha);
+                });
             }
+
+            // Carrega Formas de Pagamento no ComboBox
+            comboPagamento.ItemsSource = Status_Categorias.Instancia.FormaDePagamentos;
+            if (comboPagamento.Items.Count > 0) comboPagamento.SelectedIndex = 0;
 
             buttonProximo.Content = "FINALIZAR E IMPRIMIR";
             etapaAtual = EtapaPedido.ConfirmarPedido;
@@ -147,32 +135,29 @@ namespace PDV_LANCHES.Views
 
         private async Task FinalizarVenda()
         {
-            await Status_Categorias.Instancia.CarregarAsync();
-
-             ;
-
-            pedido.Itens = itensPedido.ToList();
-            pedido.StatusPedido = Status_Categorias.Instancia.TipoStatusPedido.FirstOrDefault().nome;
-
-            if (pedido.Itens.Count == 0)
+            if (comboPagamento.SelectedValue == null)
             {
-                MessageBox.Show("O pedido não possui itens para ser enviado!");
+                MessageBox.Show("Selecione uma forma de pagamento!");
                 return;
             }
 
-            pedido.ValorTotal = pedido.Itens.Sum(i => i.ValorUnitario * i.Quantidade);
+            pedido.IdFormaPagamento = (int)comboPagamento.SelectedValue;
+            var forma = comboPagamento.SelectedItem as FormaDePagamento;
+            pedido.FormaPagamento = forma?.Descricao ?? "";
+
+            pedido.Itens = itensPedido.ToList();
+            pedido.ValorTotal = itensPedido.Sum(i => i.ValorUnitario * i.Quantidade);
 
             var sucesso = await controller.criarPedido(pedido);
 
             if (sucesso)
             {
                 MessageBox.Show("Pedido realizado com sucesso!");
-                new Home().Show();
-                this.Close();
+                fecharAquiEAbrirHome();
             }
             else
             {
-                MessageBox.Show("Erro ao adicionar pedido! Detalhes: ");
+                MessageBox.Show("Erro ao salvar pedido!");
             }
         }
 
@@ -180,72 +165,104 @@ namespace PDV_LANCHES.Views
         {
             var btn = sender as Button;
             var produto = btn.Tag as Produto;
-
             if (produto == null) return;
 
             int qtd = produto.QuantidadeSelecionada > 0 ? produto.QuantidadeSelecionada : 1;
-
             var existente = itensPedido.FirstOrDefault(i => i.IdProduto == produto.Id);
+
             if (existente != null)
             {
                 existente.Quantidade += qtd;
             }
             else
             {
+                // 1. Buscar o NOME da categoria usando o ID que está no produto
+                // Procura na lista carregada no Singleton o objeto que tem o mesmo ID
+                var categoriaObj = Status_Categorias.Instancia.CategoriaProdutos
+                                    .FirstOrDefault(c => c.id == produto.IdCategoria);
+
+                // Se achar, usa o nome, senão coloca "Geral"
+                string nomeCategoria = categoriaObj?.nome ?? "Geral";
+
+                // 2. Montar o DTO com os nomes de texto
                 itensPedido.Add(new ItemPedidoCardapioDTO
                 {
                     IdProduto = produto.Id,
                     NomeProduto = produto.Nome,
-                    Categoria = produto.IdCategoria.ToString(),
-                    pathProdutoImg = !string.IsNullOrEmpty(produto.pathImg) ? produto.pathImg : "default.png",
+                    Categoria = nomeCategoria,           // Agora vai o NOME (string)
+                    pathProdutoImg = produto.pathImg,
                     ValorUnitario = produto.Valor,
                     Quantidade = qtd
                 });
             }
-
             AtualizarTotal();
-
-            // Feedback visual opcional
-            // MessageBox.Show($"{qtd}x {produto.Nome} adicionado!"); 
         }
-
         private void AtualizarTotal()
         {
             pedido.ValorTotal = itensPedido.Sum(i => i.ValorUnitario * i.Quantidade);
-
             txtTotalDisplay.Text = $"R$ {pedido.ValorTotal:F2}";
         }
 
-
         private void btnVoltar_Click(object sender, RoutedEventArgs e)
         {
-            switch (etapaAtual)
+            if (etapaAtual == EtapaPedido.ConfirmarPedido)
             {
-                case EtapaPedido.InformarCpf:
-                    fecharAquiEAbrirHome();
-                    break;
+                etapaAtual = EtapaPedido.SelecionarItens;
+                borderResumo.Visibility = Visibility.Collapsed;
+                scrollCardapio.Visibility = Visibility.Visible;
+                buttonProximo.Content = "VER RESUMO";
+            }
+            else if (etapaAtual == EtapaPedido.SelecionarItens)
+            {
+                etapaAtual = EtapaPedido.InformarCpf;
+                inputCpfCliente.IsEnabled = true;
+                inputNomeCliente.IsEnabled = true;
+                LabelCPF.Text = "";
+                buttonProximo.Content = "PRÓXIMO";
+            }
+            else fecharAquiEAbrirHome();
+        }
 
-                case EtapaPedido.SelecionarItens:
-                    etapaAtual = EtapaPedido.InformarCpf;
-                    inputCpfCliente.IsEnabled = true;
-                    LabelCPF.Text = "";
-                    buttonProximo.Content = "PRÓXIMO";
-                    break;
+        private void inputCpfCliente_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            if (textBox == null) return;
 
-                case EtapaPedido.ConfirmarPedido:
-                    etapaAtual = EtapaPedido.SelecionarItens;
-                    borderResumo.Visibility = Visibility.Collapsed;
-                    scrollCardapio.Visibility = Visibility.Visible;
-                    buttonProximo.Content = "VER RESUMO";
-                    break;
+            string textoApenasNumeros = new string(textBox.Text.Where(char.IsDigit).ToArray());
+
+            string textoFormatado = "";
+
+            if (textoApenasNumeros.Length > 0)
+            {
+                if (textoApenasNumeros.Length <= 3)
+                    textoFormatado = textoApenasNumeros;
+                else if (textoApenasNumeros.Length <= 6)
+                    textoFormatado = $"{textoApenasNumeros.Substring(0, 3)}.{textoApenasNumeros.Substring(3)}";
+                else if (textoApenasNumeros.Length <= 9)
+                    textoFormatado = $"{textoApenasNumeros.Substring(0, 3)}.{textoApenasNumeros.Substring(3, 3)}.{textoApenasNumeros.Substring(6)}";
+                else
+                    textoFormatado = $"{textoApenasNumeros.Substring(0, 3)}.{textoApenasNumeros.Substring(3, 3)}.{textoApenasNumeros.Substring(6, 3)}-{textoApenasNumeros.Substring(9, Math.Min(2, textoApenasNumeros.Length - 9))}";
+            }
+
+            if (textBox.Text != textoFormatado)
+            {
+                textBox.Text = textoFormatado;
+                textBox.CaretIndex = textBox.Text.Length; 
             }
         }
 
         private void fecharAquiEAbrirHome()
         {
-            Home home = new Home();
-            home.Show();
+            if (veioDeTodosOsPedidos)
+            {
+                new TodasVendasCompleto().Show();
+            }
+            else
+            {
+                new Home().Show();
+            }
             this.Close();
         }
     }
+
 }

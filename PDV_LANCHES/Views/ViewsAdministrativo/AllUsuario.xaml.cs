@@ -1,5 +1,6 @@
 ﻿using PDV_LANCHES.controller;
 using PDV_LANCHES.model;
+using ServidorLanches.model.dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,17 +46,50 @@ namespace PDV_LANCHES.Views.ViewsAdministrativo
         {
             var usuario = (sender as Button)?.DataContext as Usuario;
             if (usuario == null) return;
-
-            MessageBox.Show($"Editar: {usuario.Nome}");
+            UsuarioInfo usuarioInfo = new UsuarioInfo(usuario);
+            usuarioInfo.ShowDialog();
+            
         }
 
-        private void Excluir_Click(object sender, RoutedEventArgs e)
+        private async void Excluir_Click(object sender, RoutedEventArgs e)
         {
             var usuario = (sender as Button)?.DataContext as Usuario;
             if (usuario == null) return;
 
-            MessageBox.Show($"Excluir: {usuario.Nome}");
+            if (await administrativoController.deletarUsuario(usuario.Id))
+            {
+                MessageBox.Show("usuario deletado");
+                CarregarUsuarios();
+            } else
+            {
+                MessageBox.Show("erro ao deletar usuario");
+            }
+
+
         }
 
+        private void verDetalhes(object sender, MouseButtonEventArgs e)
+        {
+            // Obtém o usuário da linha clicada
+            var usuarioSelecionado = dgUsuario.SelectedItem as Usuario;
+
+            if (usuarioSelecionado != null)
+            {
+                UsuarioInfo infoWindow = new UsuarioInfo(usuarioSelecionado);
+
+                // Abre como diálogo. Se retornar true, atualizamos a lista
+                if (infoWindow.ShowDialog() == true)
+                {
+                    CarregarUsuarios();
+                }
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NovoUsuario novoUsuario = new NovoUsuario();
+            novoUsuario.ShowDialog();
+            
+        }
     }
 }

@@ -145,5 +145,46 @@ namespace PDV_LANCHES.Views
             voltarParaEscolha.Show();
             this.Close();
         }
+
+        // Método para expandir/recolher Produtos
+        private void ToggleProdutos_Click(object sender, RoutedEventArgs e)
+        {
+            SubMenuProdutos.Visibility = SubMenuProdutos.Visibility == Visibility.Collapsed
+                ? Visibility.Visible : Visibility.Collapsed;
+
+            // Opcional: Fechar o outro menu ao abrir este
+            SubMenuFiscal.Visibility = Visibility.Collapsed;
+        }
+
+        // Método para expandir/recolher Fiscal
+        private void ToggleFiscal_Click(object sender, RoutedEventArgs e)
+        {
+            SubMenuFiscal.Visibility = SubMenuFiscal.Visibility == Visibility.Collapsed
+                ? Visibility.Visible : Visibility.Collapsed;
+
+            // Opcional: Fechar o outro menu ao abrir este
+            SubMenuProdutos.Visibility = Visibility.Collapsed;
+        }
+
+        // Eventos para as novas telas (Categorias, Cupons, etc)
+        private void Categorias_Click(object sender, RoutedEventArgs e)
+        {
+            ConteudoConfiguracoes.Content = new AllCategorias();
+        }
+
+        private void Cupons_Click(object sender, RoutedEventArgs e)
+        {
+            ConteudoConfiguracoes.Content = new AlllCuponsDeDesconto();
+        }
+
+        private void StatusPedidos_Click(object sender, RoutedEventArgs e)
+        {
+            ConteudoConfiguracoes.Content = new AllStatusPedidos();
+        }
+
+        private void FormasPagamento_Click(object sender, RoutedEventArgs e)
+        {
+            ConteudoConfiguracoes.Content = new AllFormasDePagamentos();
+        }
     }
 }

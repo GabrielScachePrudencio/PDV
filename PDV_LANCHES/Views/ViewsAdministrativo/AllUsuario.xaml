@@ -1,9 +1,26 @@
 ﻿<UserControl x:Class="PDV_LANCHES.Views.ViewsAdministrativo.AllUsuario"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             Background="Transparent" Height="400" Width="738">
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="800"
+             Background="Transparent">
 
     <UserControl.Resources>
+        <Style TargetType="DataGridCell">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Foreground" Value="#3B82F6"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
         <Style TargetType="DataGridRow">
             <Setter Property="Background" Value="#020617"/>
             <Setter Property="Foreground" Value="White"/>
@@ -27,27 +44,78 @@
                 <Grid Grid.Row="0" Margin="0,0,0,25">
                     <StackPanel>
                         <TextBlock Text="Equipe" FontSize="24" FontWeight="Bold" Foreground="White"/>
+                        <TextBlock Text="Gerencie os níveis de acesso dos funcionários." Foreground="#94A3B8" FontSize="13"/>
                     </StackPanel>
-                    <Button HorizontalAlignment="Right" Content="+ Novo Usuário" Width="180" Height="42" Background="#3B82F6" Foreground="White" FontWeight="Bold" BorderThickness="0" />
+
+                    <Button HorizontalAlignment="Right" Content="+ Novo Usuário" Width="180" Height="42" 
+                            Background="#3B82F6" Foreground="White" FontWeight="Bold" BorderThickness="0" Cursor="Hand" Click="Button_Click">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="8"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
                 </Grid>
 
                 <Border Grid.Row="1" CornerRadius="12" ClipToBounds="True" BorderBrush="#1E293B" BorderThickness="1">
                     <DataGrid x:Name="dgUsuario" AutoGenerateColumns="False" CanUserAddRows="False" Background="#020617" 
-                              BorderThickness="0" HeadersVisibility="Column" RowHeight="60" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#1E293B">
+                              BorderThickness="0" HeadersVisibility="Column" RowHeight="60" MouseDoubleClick="verDetalhes" 
+                              GridLinesVisibility="None" SelectionUnit="FullRow">
+
                         <DataGrid.ColumnHeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="Background" Value="#1E293B"/>
-                                <Setter Property="Foreground" Value="#94A3B8"/>
+                                <Setter Property="Foreground" Value="#F8FAFC"/>
+                                <Setter Property="Padding" Value="15,0"/>
+                                <Setter Property="FontWeight" Value="SemiBold"/>
                                 <Setter Property="Height" Value="45"/>
                             </Style>
                         </DataGrid.ColumnHeaderStyle>
+
                         <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="" Width="60">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Border Width="35" Height="35" Background="#1E293B" CornerRadius="17.5" HorizontalAlignment="Center">
+                                            <TextBlock Text="👤" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16"/>
+                                        </Border>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
                             <DataGridTextColumn Header="Nome" Binding="{Binding Nome}" Width="*"/>
-                            <DataGridTextColumn Header="Acesso" Binding="{Binding TipoUsuario}" Width="150"/>
+
+                            <DataGridTemplateColumn Header="Acesso" Width="150">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Border Background="#1E293B" CornerRadius="6" Padding="8,4" HorizontalAlignment="Left">
+                                            <TextBlock Text="{Binding TipoUsuario}" Foreground="#94A3B8" FontSize="11" FontWeight="Bold"/>
+                                        </Border>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
                             <DataGridTemplateColumn Header="Ações" Width="100">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button Content="X" Width="32" Height="32" Background="#450A0A" Foreground="#F87171" Click="Excluir_Click"/>
+                                        <Button Click="Excluir_Click" Background="Transparent" BorderThickness="0" Cursor="Hand">
+                                            <Button.Style>
+                                                <Style TargetType="Button">
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="RenderTransform">
+                                                                <Setter.Value>
+                                                                    <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+                                            <Border Background="#450A0A" CornerRadius="8" Width="32" Height="32">
+                                                <TextBlock Text="🗑️" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14"/>
+                                            </Border>
+                                        </Button>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>

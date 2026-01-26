@@ -108,15 +108,31 @@
                         <Border Height="1" Background="#1E293B" Margin="40,20,40,10"/>
                     </StackPanel>
 
-                    <StackPanel Grid.Row="1">
-                        <Button Style="{StaticResource MenuButtonStyle}" Content="⚙  Configurações Gerais" Click="ConfiguracoesGeraisVA"/>
-                        <Button Style="{StaticResource MenuButtonStyle}" Content="🍔  Cardápio" Click="AllCardapio"/>
-                        <Button Style="{StaticResource MenuButtonStyle}" Content="📊  Relatórios" Click="AllRelatorio"/>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+              HorizontalScrollBarVisibility="Disabled" Grid.Row="1" >
+                        <StackPanel >
+                            <Button Style="{StaticResource MenuButtonStyle}" Content="⚙  Configurações Gerais" Click="ConfiguracoesGeraisVA"/>
 
-                        <Button x:Name="btnUsuarios" Style="{StaticResource MenuButtonStyle}" Content="👥  Usuários" Click="AllUsuario"/>
-                        <Button Style="{StaticResource MenuButtonStyle}" Content="📄  Fiscal" Click="ConfiguracaoFiscal"/>
-                        <Button x:Name="btnBanco" Style="{StaticResource MenuButtonStyle}" Content="💾  Banco de Dados" Click="ConfiguracaoBanco"/>
-                    </StackPanel>
+                            <Button Style="{StaticResource MenuButtonStyle}" Content="🍔  Produtos" Click="ToggleProdutos_Click"/>
+                            <StackPanel x:Name="SubMenuProdutos" Visibility="Collapsed" Margin="30,0,0,10">
+                                <Button Style="{StaticResource MenuButtonStyle}" Content="•  Todos os Produtos" Click="AllCardapio" Height="35" FontSize="13"/>
+                                <Button Style="{StaticResource MenuButtonStyle}" Content="•  Categorias" Click="Categorias_Click" Height="35" FontSize="13"/>
+                            </StackPanel>
+
+                            <Button Style="{StaticResource MenuButtonStyle}" Content="📊  Relatórios" Click="AllRelatorio"/>
+                            <Button x:Name="btnUsuarios" Style="{StaticResource MenuButtonStyle}" Content="👥  Usuários" Click="AllUsuario"/>
+
+                            <Button Style="{StaticResource MenuButtonStyle}" Content="📄  Fiscal" Click="ToggleFiscal_Click"/>
+                            <StackPanel x:Name="SubMenuFiscal" Visibility="Collapsed" Margin="30,0,0,10">
+                                <Button Style="{StaticResource MenuButtonStyle}" Content="•  Configuração Fiscal" Click="ConfiguracaoFiscal" Height="35" FontSize="13"/>
+                                <Button Style="{StaticResource MenuButtonStyle}" Content="•  Cupons de Desconto" Click="Cupons_Click" Height="35" FontSize="13"/>
+                                <Button Style="{StaticResource MenuButtonStyle}" Content="•  Status de Pedidos" Click="StatusPedidos_Click" Height="35" FontSize="13"/>
+                                <Button Style="{StaticResource MenuButtonStyle}" Content="•  Formas de Pagamento" Click="FormasPagamento_Click" Height="35" FontSize="13"/>
+                            </StackPanel>
+
+                            <Button x:Name="btnBanco" Style="{StaticResource MenuButtonStyle}" Content="💾  Banco de Dados" Click="ConfiguracaoBanco"/>
+                        </StackPanel>
+                    </ScrollViewer>
                 </Grid>
             </Border>
 

@@ -94,35 +94,7 @@ namespace PDV_LANCHES.controller
         }
 
 
-        public async Task<List<CategoriaProduto>> getAllCategoria()
-            {
-                try
-                {
-                    var response = await ApiClient.Client.GetAsync("api/administrativo/categoria");
 
-                    return await response.Content.ReadFromJsonAsync<List<CategoriaProduto>>();
-                }
-                catch (Exception)
-                {
-                    return null;
-                }
-
-        }
-
-        public async Task<List<TipoStatusPedido>> getAllStatus()
-            {
-                try
-                {
-                    var response = await ApiClient.Client.GetAsync("api/administrativo/statuspedido");
-
-                    return await response.Content.ReadFromJsonAsync<List<TipoStatusPedido>>();
-                }
-                catch (Exception e)
-                {
-                    return null; 
-                }
-        }
-
-        }
+    }
 
     }

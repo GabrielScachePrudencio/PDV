@@ -37,10 +37,7 @@ namespace PDV_LANCHES.Views
         {
             await Status_Categorias.Instancia.CarregarAsync();
 
-            var lista = new List<TipoStatusPedido>
-                {
-                    new TipoStatusPedido { id = -1, nome = "Todos" }
-                };
+            var lista = new List<TipoStatusPedido>();
 
             lista.AddRange(Status_Categorias.Instancia.TipoStatusPedido);
 
@@ -51,21 +48,26 @@ namespace PDV_LANCHES.Views
         }
 
 
-        private void AplicarFiltros()
-        {
+            private void AplicarFiltros()
+            {
             if (pedidos == null) return;
 
-            int statusId = (int)comboStatusFiltro.SelectedValue;
-            string buscaTexto = txtBuscaCliente.Text?.Trim();
+            var statusSelecionado = comboStatusFiltro.SelectedItem as TipoStatusPedido;
+            string buscaTexto = txtBuscaCliente.Text?.Trim().ToLower();
 
             var listaFiltrada = pedidos.Where(p =>
             {
-                bool statusOk = statusId == -1 || p.IdStatus == statusId;
+                bool statusOk = true;
+                if (statusSelecionado != null &&
+                    statusSelecionado.nome != "Todos" &&
+                    statusSelecionado.nome != "Não se aplica")
+                {
+                    statusOk = p.IdStatus == statusSelecionado.id;
+                }
 
-                bool buscaOk =
-                    string.IsNullOrEmpty(buscaTexto) ||
-                    (!string.IsNullOrEmpty(p.CpfCliente) &&
-                     p.CpfCliente.Contains(buscaTexto));
+                bool buscaOk = string.IsNullOrEmpty(buscaTexto) ||
+                               (p.CpfCliente != null && p.CpfCliente.Contains(buscaTexto)) ||
+                               (p.NomeCliente != null && p.NomeCliente.ToLower().Contains(buscaTexto));
 
                 return statusOk && buscaOk;
             }).ToList();
@@ -174,6 +176,12 @@ namespace PDV_LANCHES.Views
                 this.Close();
             }
         }
+        public void Estoque_Click(object sender, RoutedEventArgs e)
+        {
+            Estoque estoque = new Estoque();
+            estoque.Show();
+            this.Close();
+        }
         public async void ApagarPedido_Click(object sender, RoutedEventArgs e)
         {
 
@@ -232,7 +240,27 @@ namespace PDV_LANCHES.Views
             if (pedido != null)
                 combo.SelectedValue = pedido.IdStatus;
         }
+        
+        private async void comboFormaPagamento_Loaded(object sender, RoutedEventArgs e)
+        {
+            await Status_Categorias.Instancia.CarregarAsync();
 
+
+            var combo = sender as ComboBox;
+            var pedido = combo.Tag as PedidoDTO;
+
+            if(Status_Categorias.Instancia.FormaDePagamentos == null)
+            {
+                MessageBox.Show("erro veio null forma de pagamento");
+            }
+
+            combo.ItemsSource = Status_Categorias.Instancia.FormaDePagamentos;
+            combo.DisplayMemberPath = "Descricao";
+            combo.SelectedValuePath = "Id";
+
+            if (pedido != null)
+                combo.SelectedValue = pedido.IdFormaPagamento;
+        }
 
         private async void ComboBoxPedido_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -261,6 +289,34 @@ namespace PDV_LANCHES.Views
             }
         }
 
+        private async void ComboBoxPedidoFormaDePagamento_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var combo = sender as ComboBox;
+            if (!combo.IsLoaded) return;
+
+            var pedido = combo.Tag as PedidoDTO;
+            var formaDePagamento = combo.SelectedItem as FormaDePagamento;
+
+            if (pedido == null || formaDePagamento == null) return;
+            if (pedido.IdFormaPagamento == formaDePagamento.Id) return;
+
+            bool sucesso = await homeController.AtualizarStatusPedido(
+                pedido.Id,
+                formaDePagamento.Id
+            );
+
+            if (sucesso)
+            {
+                pedido.IdStatus = formaDePagamento.Id;
+            }
+            else
+            {
+                MessageBox.Show("Erro ao atualizar status.");
+                combo.SelectedValue = pedido.IdStatus;
+            }
+        }
+
+        
 
 
         private void VoltarParaEscolha_Click(object sender, RoutedEventArgs e)

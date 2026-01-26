@@ -1,0 +1,13 @@
+{
+    "Id": 1,
+    "TipoConexao": "MySQL",
+    "Host": "localhost",
+    "Porta": 3306,
+    "NomeBanco": "Lanches",
+    "Usuario": "root",
+    "BackupAutomatico": true,
+    "CaminhoBackup": "C:\\Users\\Flavio\\Desktop\\PDVSERVIDOR_LANCHES\\PDV_LANCHES\\PDV_LANCHES\\src\\date\\backup\\",
+    "UltimoBackup": "2024-05-20T22:00:00",
+    "DataCriacao": "2024-05-20T10:00:00",
+    "DataAtualizacao": "2024-05-20T10:00:00"
+}

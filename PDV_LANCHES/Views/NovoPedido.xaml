@@ -4,6 +4,92 @@
         WindowState="Maximized" WindowStyle="SingleBorderWindow"
         Title="Novo Pedido" Height="650" Width="1000"
         WindowStartupLocation="CenterScreen" Background="#0f172a">
+    <Window.Resources>
+        <Style x:Key="DarkComboBox" TargetType="ComboBox">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#1E293B"/>
+            <Setter Property="BorderBrush" Value="#334155"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Padding" Value="12,0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid x:Name="MainGrid" SnapsToDevicePixels="True">
+                            <ToggleButton x:Name="ToggleButton"
+                              Grid.ColumnSpan="2"
+                              Background="{TemplateBinding Background}"
+                              BorderBrush="{TemplateBinding BorderBrush}"
+                              BorderThickness="{TemplateBinding BorderThickness}"
+                              IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                              Focusable="False"
+                              ClickMode="Press">
+                                <ToggleButton.Template>
+                                    <ControlTemplate TargetType="ToggleButton">
+                                        <Border x:Name="templateRoot" 
+                                    Background="{TemplateBinding Background}" 
+                                    BorderBrush="{TemplateBinding BorderBrush}" 
+                                    BorderThickness="{TemplateBinding BorderThickness}" 
+                                    CornerRadius="8">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="30"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Path x:Name="Arrow" 
+                                          Grid.Column="1"
+                                          Data="M 0 0 L 4 4 L 8 0 Z"
+                                          Fill="#94A3B8"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                                            </Grid>
+                                        </Border>
+                                    </ControlTemplate>
+                                </ToggleButton.Template>
+                            </ToggleButton>
+
+                            <ContentPresenter x:Name="ContentSite"
+                                  IsHitTestVisible="False"
+                                  Content="{TemplateBinding SelectionBoxItem}"
+                                  ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                  ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                  Margin="{TemplateBinding Padding}"
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Left"/>
+
+                            <Popup x:Name="PART_Popup"
+                       Placement="Bottom"
+                       IsOpen="{TemplateBinding IsDropDownOpen}"
+                       AllowsTransparency="True"
+                       Focusable="False"
+                       PopupAnimation="Slide">
+                                <Border x:Name="DropDownBorder"
+                            Background="#0F172A" 
+                            BorderBrush="#334155"
+                            BorderThickness="1"
+                            CornerRadius="8"
+                            MinWidth="{Binding ActualWidth, ElementName=MainGrid}"
+                            Margin="0,4,0,0">
+                                    <ScrollViewer MaxHeight="300" SnapsToDevicePixels="True">
+                                        <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained" />
+                                    </ScrollViewer>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="HasItems" Value="false">
+                                <Setter TargetName="DropDownBorder" Property="Height" Value="95"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" Value="#22C55E"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -27,12 +113,23 @@
 
         <Border Grid.Row="1" Background="#1e293b" CornerRadius="12" Padding="20" Margin="10,0,10,20" BorderBrush="#334155" BorderThickness="1">
             <StackPanel Orientation="Horizontal">
-                <StackPanel Margin="0,0,30,0">
-                    <TextBlock Text="IDENTIFICAÇÃO DO CLIENTE" FontSize="10" FontWeight="Bold" Foreground="#94a3b8" Margin="0,0,0,8"/>
-                    <TextBox x:Name="inputCpfCliente" Width="280" Height="45" Padding="12,0" FontSize="15" 
-                             VerticalContentAlignment="Center" Background="#0f172a" Foreground="White" 
-                             BorderThickness="1" BorderBrush="#475569" CaretBrush="White"/>
+                <StackPanel Margin="0,0,20,0">
+                    <TextBlock Text="CPF DO CLIENTE" FontSize="10" FontWeight="Bold" Foreground="#94a3b8" Margin="0,0,0,8"/>
+                    <TextBox x:Name="inputCpfCliente" 
+                     Width="200" Height="45" Padding="12,0" FontSize="15" 
+                     MaxLength="14"
+                     TextChanged="inputCpfCliente_TextChanged"
+                     VerticalContentAlignment="Center" Background="#0f172a" Foreground="White" 
+                     BorderThickness="1" BorderBrush="#475569" CaretBrush="White"/>
                 </StackPanel>
+
+                <StackPanel Margin="0,0,20,0">
+                    <TextBlock Text="NOME DO CLIENTE" FontSize="10" FontWeight="Bold" Foreground="#94a3b8" Margin="0,0,0,8"/>
+                    <TextBox x:Name="inputNomeCliente" Text="" Width="350" Height="45" Padding="12,0" FontSize="15" 
+                             VerticalContentAlignment="Center" Background="#0f172a" Foreground="White" 
+                             BorderThickness="1" BorderBrush="#475569" CaretBrush="White" />
+                </StackPanel>
+
                 <TextBlock x:Name="LabelCPF" VerticalAlignment="Bottom" Margin="0,0,0,10" FontSize="18" FontWeight="Bold" Foreground="#60a5fa"/>
             </StackPanel>
         </Border>
@@ -52,11 +149,9 @@
                                     <Border CornerRadius="10" ClipToBounds="True" Margin="0,0,0,10">
                                         <Image Source="{Binding pathImg}" Width="200" Height="120" Stretch="UniformToFill"/>
                                     </Border>
-
                                     <TextBlock Text="{Binding Categoria}" FontSize="10" Foreground="#94a3b8" FontWeight="Bold"/>
                                     <TextBlock Text="{Binding Nome}" FontSize="16" FontWeight="Bold" Foreground="White" Margin="0,5"/>
                                     <TextBlock Text="{Binding Valor, StringFormat='R$ {0:F2}'}" FontSize="18" Foreground="#60a5fa" FontWeight="Bold"/>
-
                                     <Grid Margin="0,15,0,0">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="65"/>
@@ -65,7 +160,6 @@
                                         <TextBox Text="{Binding QuantidadeSelecionada, UpdateSourceTrigger=PropertyChanged}" 
                                                  Height="38" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
                                                  Background="#0f172a" Foreground="White" BorderThickness="1" BorderBrush="#475569"/>
-
                                         <Button Grid.Column="1" Content="ADICIONAR" Height="38" Margin="8,0,0,0" 
                                                 Background="#3b82f6" Foreground="White" FontWeight="Bold" BorderThickness="0" 
                                                 Cursor="Hand" Click="AdicionarItem_Click" Tag="{Binding}">
@@ -85,7 +179,38 @@
 
             <Border x:Name="borderResumo" Visibility="Collapsed" Background="#1e293b" CornerRadius="15" Padding="30" BorderBrush="#334155" BorderThickness="1">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <StackPanel x:Name="stackResumoItens"/>
+                    <StackPanel>
+                        <StackPanel x:Name="stackResumoItens"/>
+
+                        <StackPanel Margin="0,20,0,0">
+                            <TextBlock Text="FORMA DE PAGAMENTO" FontSize="10" FontWeight="Bold" Foreground="#94a3b8" Margin="0,0,0,8"/>
+                            <ComboBox x:Name="comboPagamento" 
+                                      Style="{StaticResource DarkComboBox}"
+                                      Background="#0f172a" Foreground="White" 
+                                      BorderBrush="#475569" BorderThickness="1" 
+                                      Height="45" DisplayMemberPath="Descricao" SelectedValuePath="Id">
+                                <ComboBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel Background="#0f172a"/>
+                                    </ItemsPanelTemplate>
+                                </ComboBox.ItemsPanel>
+                                <ComboBox.ItemContainerStyle>
+                                    <Style TargetType="ComboBoxItem">
+                                        <Setter Property="Background" Value="#1e293b"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                        <Setter Property="Padding" Value="10"/>
+                                        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                                        <Setter Property="BorderBrush" Value="#334155"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#3b82f6"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ComboBox.ItemContainerStyle>
+                            </ComboBox>
+                        </StackPanel>
+                    </StackPanel>
                 </ScrollViewer>
             </Border>
         </Grid>
@@ -99,13 +224,11 @@
 
                 <Button x:Name="buttonProximo" 
                         Content="PRÓXIMO ➔" 
-                        HorizontalAlignment="Right" 
-                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Right" VerticalAlignment="Center" 
                         Width="220" Height="55" 
                         Background="#22c55e" Foreground="White" 
                         FontSize="16" FontWeight="ExtraBold" 
-                        BorderThickness="0" Cursor="Hand"
-                        Click="Button_Click">
+                        BorderThickness="0" Cursor="Hand" Click="Button_Click">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="12"/>
