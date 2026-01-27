@@ -19,7 +19,7 @@ namespace PDV_LANCHES.Views
         private ObservableCollection<ItemPedidoCardapioDTO> itensPedido = new ObservableCollection<ItemPedidoCardapioDTO>();
         private EtapaPedido etapaAtual = EtapaPedido.InformarCpf;
         private bool veioDeTodosOsPedidos = false;
-
+        private bool darBaixaDepois = false;
         public NovoPedido()
         {
             InitializeComponent();
@@ -110,6 +110,7 @@ namespace PDV_LANCHES.Views
             scrollCardapio.Visibility = Visibility.Collapsed;
             borderResumo.Visibility = Visibility.Visible;
             stackResumoItens.Children.Clear();
+            buttonSairSemDarBaixa.Visibility = Visibility.Visible;
 
             // Título
             stackResumoItens.Children.Add(new TextBlock { Text = "Resumo do Pedido", FontSize = 20, FontWeight = FontWeights.Bold, Foreground = System.Windows.Media.Brushes.White, Margin = new Thickness(0, 0, 0, 20) });
@@ -129,10 +130,14 @@ namespace PDV_LANCHES.Views
             comboPagamento.ItemsSource = Status_Categorias.Instancia.FormaDePagamentos;
             if (comboPagamento.Items.Count > 0) comboPagamento.SelectedIndex = 0;
 
+
+            //AQUI DA BAIXA no estoque
             buttonProximo.Content = "FINALIZAR E IMPRIMIR";
             etapaAtual = EtapaPedido.ConfirmarPedido;
         }
 
+
+        //AQUI DA BAIXA no estoque
         private async Task FinalizarVenda()
         {
             if (comboPagamento.SelectedValue == null)
@@ -144,16 +149,30 @@ namespace PDV_LANCHES.Views
             pedido.IdFormaPagamento = (int)comboPagamento.SelectedValue;
             var forma = comboPagamento.SelectedItem as FormaDePagamento;
             pedido.FormaPagamento = forma?.Descricao ?? "";
-
+           
             pedido.Itens = itensPedido.ToList();
             pedido.ValorTotal = itensPedido.Sum(i => i.ValorUnitario * i.Quantidade);
+
+            if (darBaixaDepois)
+            {
+                pedido.IdStatus = 3;
+                pedido.StatusPedido = "Pronto";
+
+            }
+            else
+            {
+                pedido.IdStatus = 5;
+                pedido.StatusPedido = "Finalizado";
+            }
+
+
 
             var sucesso = await controller.criarPedido(pedido);
 
             if (sucesso)
             {
                 MessageBox.Show("Pedido realizado com sucesso!");
-                fecharAquiEAbrirHome();
+                fecharAquiEAbrirHome(); 
             }
             else
             {
@@ -176,20 +195,16 @@ namespace PDV_LANCHES.Views
             }
             else
             {
-                // 1. Buscar o NOME da categoria usando o ID que está no produto
-                // Procura na lista carregada no Singleton o objeto que tem o mesmo ID
                 var categoriaObj = Status_Categorias.Instancia.CategoriaProdutos
                                     .FirstOrDefault(c => c.id == produto.IdCategoria);
 
-                // Se achar, usa o nome, senão coloca "Geral"
                 string nomeCategoria = categoriaObj?.nome ?? "Geral";
 
-                // 2. Montar o DTO com os nomes de texto
                 itensPedido.Add(new ItemPedidoCardapioDTO
                 {
                     IdProduto = produto.Id,
                     NomeProduto = produto.Nome,
-                    Categoria = nomeCategoria,           // Agora vai o NOME (string)
+                    Categoria = nomeCategoria,          
                     pathProdutoImg = produto.pathImg,
                     ValorUnitario = produto.Valor,
                     Quantidade = qtd
@@ -203,6 +218,11 @@ namespace PDV_LANCHES.Views
             txtTotalDisplay.Text = $"R$ {pedido.ValorTotal:F2}";
         }
 
+        private async void ButtonSairSemDarBaixa_Click(object sender, EventArgs e)
+        {
+            darBaixaDepois = true;
+            await FinalizarVenda();
+        }
         private void btnVoltar_Click(object sender, RoutedEventArgs e)
         {
             if (etapaAtual == EtapaPedido.ConfirmarPedido)

@@ -235,6 +235,20 @@
                         </Style>
                     </Button.Resources>
                 </Button>
+
+                <Button x:Name="buttonSairSemDarBaixa"  Visibility="Hidden"
+                        Content="Dar baixa depois" 
+                        HorizontalAlignment="Left" VerticalAlignment="Center" 
+                        Width="220" Height="55" 
+                        Foreground="Black" 
+                        FontSize="16" FontWeight="ExtraBold" 
+                        BorderThickness="0" Cursor="Hand" Click="ButtonSairSemDarBaixa_Click" Margin="412,0,0,0">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="12"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
             </Grid>
         </Border>
     </Grid>

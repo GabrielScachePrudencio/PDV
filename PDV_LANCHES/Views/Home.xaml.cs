@@ -93,7 +93,10 @@ namespace PDV_LANCHES.Views
             if (usuario == null)
             {
                 MessageBox.Show("Sessão expirada. Faça login novamente.");
+                MainWindow main = new MainWindow();
+                main.Show();
                 this.Close();
+                return;
             }
 
             usuarioLogado = usuario;
@@ -182,29 +185,9 @@ namespace PDV_LANCHES.Views
             estoque.Show();
             this.Close();
         }
-        public async void ApagarPedido_Click(object sender, RoutedEventArgs e)
-        {
 
-            
 
-            MessageBoxResult resultado = MessageBox.Show("Tem certeza que deseja excluir o pedido selecionado?", "Confirmação", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-            if (resultado == MessageBoxResult.Yes)
-            {
-                var botao = sender as Button;
-                var pedidoSelecionado = botao.DataContext as PedidoDTO;
-                bool sucess = await homeController.ExcluirAlgumPedido(pedidoSelecionado.Id);
-                if (sucess)
-                {
-                    Home home = new Home();
-                    home.Show();
-                    this.Close();
-                }else
-                {
-                    MessageBox.Show("Erro ao excluir o pedido.");
-                }
-            }
-        }
+        
 
         private void novoPedido_Click(object sender, RoutedEventArgs e)
         {

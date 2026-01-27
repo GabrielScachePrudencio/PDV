@@ -162,12 +162,12 @@
                         <TextBlock Text="DATA FIM" FontSize="10" FontWeight="Bold" Foreground="#475569" Margin="0,0,0,8"/>
                         <DatePicker x:Name="dtFim" Width="140" Style="{StaticResource ModernDatePicker}"/>
                     </StackPanel>
-                    <Button Click="Pesquisar_Click" Width="100" Height="40" Margin="5,0,0,0" Background="#3B82F6" Foreground="White" FontWeight="Bold" VerticalAlignment="Bottom">
+                    <Button Click="Pesquisar_Click" Width="100" Height="40" Margin="5,20,0,0" Style="{StaticResource ModernPrimaryButton}" Background="#3B82F6">
                         <TextBlock Text="🔍 FILTRAR"/>
                     </Button>
                 </WrapPanel>
-                <Button x:Name="novoPedido" Width="200"  Style="{StaticResource ModernPrimaryButton}" Click="novoPedido_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                    <StackPanel Orientation="Horizontal" >
+                <Button x:Name="novoPedido" Width="200" Style="{StaticResource ModernPrimaryButton}" Click="novoPedido_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                    <StackPanel Orientation="Horizontal">
                         <TextBlock Text="➕" FontSize="16" Margin="0,0,10,0" VerticalAlignment="Center"/>
                         <TextBlock Text="NOVO PEDIDO" VerticalAlignment="Center"/>
                     </StackPanel>
@@ -186,6 +186,7 @@
                     <ColumnDefinition Width="150"/>
                     <ColumnDefinition Width="140"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="120"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="ID" Foreground="#475569" FontWeight="Bold" Grid.Column="0"/>
                 <TextBlock Text="DATA E HORA" Foreground="#475569" FontWeight="Bold" Grid.Column="1"/>
@@ -194,11 +195,12 @@
                 <TextBlock Text="CPF" Foreground="#475569" FontWeight="Bold" Grid.Column="4"/>
                 <TextBlock Text="VENDEDOR" Foreground="#475569" FontWeight="Bold" Grid.Column="5"/>
                 <TextBlock Text="FORMA PGTO" Foreground="#475569" FontWeight="Bold" Grid.Column="6"/>
-                <TextBlock Text="TOTAL" Foreground="#475569" FontWeight="Bold" Grid.Column="7" HorizontalAlignment="Right"/>
+                <TextBlock Text="ITENS" Foreground="#475569" FontWeight="Bold" Grid.Column="7"/>
+                <TextBlock Text="TOTAL" Foreground="#475569" FontWeight="Bold" Grid.Column="8" HorizontalAlignment="Right"/>
             </Grid>
         </Border>
 
-        <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto" MouseDoubleClick="VerDetalhes_PreviewMouseDown">
+        <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto">
             <ItemsControl x:Name="ListaVendas">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -213,6 +215,9 @@
                                     <ColumnDefinition Width="150"/>
                                     <ColumnDefinition Width="140"/>
                                     <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="120"/>
+                                    <ColumnDefinition Width="45"/>
+                                    <ColumnDefinition Width="45"/>
                                 </Grid.ColumnDefinitions>
 
                                 <TextBlock Grid.Column="0" Text="{Binding Id, StringFormat='#{0}'}" Foreground="White" FontWeight="Bold" VerticalAlignment="Center"/>
@@ -226,7 +231,45 @@
                                 <TextBlock Grid.Column="4" Text="{Binding CpfCliente}" Foreground="#475569" FontSize="12" VerticalAlignment="Center"/>
                                 <TextBlock Grid.Column="5" Text="{Binding NomeUsuario}" Foreground="#94A3B8" VerticalAlignment="Center"/>
                                 <TextBlock Grid.Column="6" Text="{Binding FormaPagamento}" Foreground="#94A3B8" VerticalAlignment="Center"/>
-                                <TextBlock Grid.Column="7" Text="{Binding ValorTotal, StringFormat='R$ {0:N2}'}" Foreground="#22C55E" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+
+                                <ItemsControl Grid.Column="7" ItemsSource="{Binding Itens}" VerticalAlignment="Center">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Orientation="Horizontal"/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border Background="#1E293B" CornerRadius="6" Padding="6,2" Margin="0,0,5,5" BorderBrush="#334155" BorderThickness="1">
+                                                <TextBlock Foreground="White" FontSize="11">
+                                            <Run Text="{Binding Quantidade}" FontWeight="Bold" Foreground="#22C55E"/>
+                                            <Run Text="x" FontSize="9"/>
+                                            <Run Text="{Binding NomeProduto}"/>
+                                                </TextBlock>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+
+                                <TextBlock Grid.Column="8" Text="{Binding ValorTotal, StringFormat='R$ {0:N2}'}" Foreground="#22C55E" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+
+                                <Button Grid.Column="9" Click="VerDetalhes_click" Width="35" Height="35" Background="#1E293B" BorderBrush="#3B82F6" BorderThickness="1" Cursor="Hand">
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="8"/>
+                                        </Style>
+                                    </Button.Resources>
+                                    <TextBlock Text="👁" Foreground="#3B82F6" FontSize="16"/>
+                                </Button>
+
+                                <Button Grid.Column="10" Click="ApagarPedido_Click" Width="35" Height="35" Background="#450A0A" BorderThickness="0" Cursor="Hand">
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="8"/>
+                                        </Style>
+                                    </Button.Resources>
+                                    <TextBlock Text="🗑" Foreground="#F87171" FontSize="14"/>
+                                </Button>
                             </Grid>
                         </Border>
                     </DataTemplate>

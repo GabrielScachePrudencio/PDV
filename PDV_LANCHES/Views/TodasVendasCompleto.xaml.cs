@@ -80,17 +80,41 @@ namespace PDV_LANCHES.Views
             ListaVendas.ItemsSource = pedidos;
         }
 
-        private void VerDetalhes_click(object sender, MouseButtonEventArgs e)
+        public void VerDetalhes_click(object sender, RoutedEventArgs e)
         {
-            var grid = sender as DataGrid;
-
-            if (grid != null && grid.SelectedItem != null)
+            var botao = sender as Button;
+            var pedidoSelecionado = botao.DataContext as PedidoDTO;
+            if (pedidoSelecionado != null)
             {
-                var pedido = (PedidoDTO)grid.SelectedItem;
-
-                PedidoInfo pedidoInfo = new PedidoInfo(pedido.Id, true);
-                pedidoInfo.Show();
+                PedidoInfo telaInfo = new PedidoInfo(pedidoSelecionado.Id, true);
+                telaInfo.Show();
                 this.Close();
+            }
+        }
+
+
+        public async void ApagarPedido_Click(object sender, RoutedEventArgs e)
+        {
+
+
+
+            MessageBoxResult resultado = MessageBox.Show("Tem certeza que deseja excluir o pedido selecionado?", "Confirmação", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (resultado == MessageBoxResult.Yes)
+            {
+                var botao = sender as Button;
+                var pedidoSelecionado = botao.DataContext as PedidoDTO;
+                bool sucess = await homeController.ExcluirAlgumPedido(pedidoSelecionado.Id);
+                if (sucess)
+                {
+                    Home home = new Home();
+                    home.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Erro ao excluir o pedido.");
+                }
             }
         }
 
@@ -118,26 +142,7 @@ namespace PDV_LANCHES.Views
 
         private void ComboBoxPedido_SelectionChanged(object sender, SelectionChangedEventArgs e) { /* Mudar status */ }
 
-        private void VerDetalhes_PreviewMouseDown(object sender, RoutedEventArgs e)
-        {
-            FrameworkElement elemento = e.OriginalSource as FrameworkElement;
-
-            if (elemento != null)
-            {
-                // 2. O DataContext desse elemento contém o seu objeto de negócio (ex: Venda)
-                // O WPF propaga o DataContext do ItemTemplate para todos os filhos.
-                var pedido = elemento.DataContext;
-
-                if (pedido is PedidoDTO pedidoDTO)
-                {
-                    PedidoInfo pedidoInfo = new PedidoInfo(pedidoDTO.Id, true);
-                    pedidoInfo.Show();
-                    this.Close();
-                }
-            }
-        }
-
-        private void ApagarPedido_Click(object sender, RoutedEventArgs e) { /* Deletar */ }
+        
 
         private void dgVendas_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
