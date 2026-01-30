@@ -106,6 +106,9 @@ namespace PDV_LANCHES.Views.ViewsAdministrativo
                 produtoAProcessar.Valor = valorConvertido;
                 produtoAProcessar.Disponivel = chkDisponivel.IsChecked ?? false;
                 produtoAProcessar.pathImg = caminhoImagemSelecionada;
+                int quantidadeInicial = 0;
+                int.TryParse(txtQuantidade.Text, out quantidadeInicial);
+                produtoAProcessar.quantidade = quantidadeInicial;
 
                 bool resultado;
                 if (atualizar == null)
@@ -116,7 +119,6 @@ namespace PDV_LANCHES.Views.ViewsAdministrativo
                 if (resultado)
                 {
                     MessageBox.Show("Operação realizada com sucesso!");
-                    this.DialogResult = true;
                     this.Close();
                 }
                 else

@@ -21,11 +21,88 @@ namespace PDV_LANCHES
     /// </summary>
     public partial class MainWindow : Window
     {
-        private HomeController homeController = new HomeController();
+        private Login login = new Login();
+        ConfiguracoesBanco configguracao = new ConfiguracoesBanco();
         public MainWindow()
         {
             InitializeComponent();
             CarregarConfiguracoesGerais();
+        }
+
+
+        private async void Entrar_Click(object sender, RoutedEventArgs e)
+        {
+            // Sugestão: Mostrar um ProgressBar aqui se a conexão demorar
+           
+            var resultado = await login.VerificarConexaoServidor();
+
+            if (resultado.Sucesso)
+            {
+                MessageBox.Show("Conectado com sucesso!");
+                PainelInicial.Visibility = Visibility.Collapsed;
+
+                InformacoesNaEsquerda.Visibility = Visibility.Visible;
+                informacoesNaDireita.Visibility = Visibility.Visible;
+
+                CarregarConfiguracoesGerais();
+            }
+            else
+            {
+                MessageBox.Show("Não foi possível conectar ao servidor. Verifique sua rede.", "Erro de Conexão", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                switch (resultado.StatusCode)
+                {
+                    case 400:
+                        MessageBox.Show("Dados incompletos! Verifique se todos os campos (IP, Porta, Banco, Usuário) foram preenchidos.");
+                        break;
+                    case 404:
+                        MessageBox.Show("Não foi possível encontrar o Servidor. Verifique o IP e se o servidor está rodando.");
+                        break;
+                    case 503:
+                        MessageBox.Show("O Servidor está online, mas não conseguiu conectar ao MySQL com esses dados.");
+                        break;
+                    default:
+                        MessageBox.Show($"Erro inesperado: {resultado.StatusCode}");
+                        break;
+                }
+                
+            }
+            
+        }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string loginNome = inputLoginNome.Text;
+            string loginSenha = inputLoginSenha.Password;
+
+            // Correção da validação: string.IsNullOrWhiteSpace é mais seguro
+            if (!string.IsNullOrWhiteSpace(loginNome) && !string.IsNullOrWhiteSpace(loginSenha))
+            {
+                Login login = new Login();
+                Usuario usuario = await login.VerificarLogin(loginNome, loginSenha);
+
+                if (usuario != null)
+                {
+                    if (usuario.TipoUsuario == TipoUsuario.Administrador || usuario.TipoUsuario == TipoUsuario.Gerente)
+                    {
+                        new EscolhaQualHome().Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        new Home().Show();
+                        this.Close();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Usuário ou senha inválidos.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Preencha todos os campos!");
+            }
         }
 
         private async void CarregarConfiguracoesGerais()
@@ -35,11 +112,30 @@ namespace PDV_LANCHES
 
             if(config != null)
             {
-                if (config.pathImagemLogo != null)
+                if (!string.IsNullOrWhiteSpace(config.pathImagemLogo))
                 {
-                    pdvLogo.Source = new BitmapImage(new Uri(config.pathImagemLogo, UriKind.Absolute));
+                    try
+                    {
+            
+                        // 1. Verifica se o arquivo físico realmente existe no disco
+                        if (System.IO.File.Exists(config.pathImagemLogo))
+                        {
+                            pdvLogo.Source = new BitmapImage(new Uri(config.pathImagemLogo, UriKind.Absolute));
+                        }
+                        else
+                        {
+                            // 2. Se não existir, carrega uma imagem padrão do seu projeto (Resource)
+                            // Ou apenas define como null para não quebrar
+                            Console.WriteLine("Arquivo não encontrado: " + config.pathImagemLogo);
+                            // pdvLogo.Source = new BitmapImage(new Uri("pack://application:,,,/src/img/sem-foto.png"));
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Erro ao carregar imagem: " + ex.Message);
+                    }
                 }
-                
+
                 if (config.nomeFantasia != null)
                 {
                     pdvNome.Text = config.nomeFantasia;
@@ -49,14 +145,17 @@ namespace PDV_LANCHES
                     pdvNome.Text = config.nome;
                 }
             }
-            else
-            {
-                MessageBox.Show("ERro null");
-            }
+            
 
 
         }
 
+        private void configurarPdvNoServidor_Click(object sender, RoutedEventArgs e)
+        {
+            ConfiguracaoServidor configuracaoServidor = new ConfiguracaoServidor();
+            configuracaoServidor.Show();
+            this.Close();
+        }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -68,48 +167,18 @@ namespace PDV_LANCHES
 
         }
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            String loginNome = inputLoginNome.Text;
-            String loginSenha = inputLoginSenha.Password;
-        
-            if(loginNome != null || loginNome != "" || loginSenha != null || loginSenha != "")             
+            // Se o botão esquerdo do mouse for pressionado, permite arrastar
+            if (e.LeftButton == MouseButtonState.Pressed)
             {
-                Login login = new Login();  
-                Usuario usuario = await login.VerificarLogin(loginNome, loginSenha);
-                if (usuario != null)
-                {
-                    MessageBox.Show("Login Efetuado com Sucesso! " + usuario.TipoUsuario);
-
-                    if (usuario.TipoUsuario == TipoUsuario.Administrador || usuario.TipoUsuario == TipoUsuario.Gerente)
-                    {
-                        EscolhaQualHome homeEscolha = new EscolhaQualHome();
-                        homeEscolha.Show();
-                        this.Close();
-                    }
-                    else if(usuario.TipoUsuario == TipoUsuario.Vendedor)
-                    {
-                        Home home = new Home();
-                        home.Show();
-                        this.Close();
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Login ou Senha Incorretos!");
-                }
+                DragMove();
             }
-            else
-            {
-                MessageBox.Show("Login ou senha Nulos ou Vazios!");
-            }
-
-
         }
+
 
         private async void Fechar_Click(object sender, RoutedEventArgs e)
         {
-            await homeController.Logout();
             this.Close();
         }
     }

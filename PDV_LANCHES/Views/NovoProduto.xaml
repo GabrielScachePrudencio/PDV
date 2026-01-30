@@ -163,6 +163,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
                         <StackPanel Grid.Column="0" Margin="0,0,10,0">
@@ -170,13 +171,20 @@
                             <TextBox x:Name="txtValor" Height="45" Margin="0,0,0,20" Style="{StaticResource ModernTextBox}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                        <StackPanel Grid.Column="1" Margin="5,0,5,0">
+                            <TextBlock Text="QTD INICIAL" Foreground="#94A3B8" FontSize="11" FontWeight="Bold" Margin="0,0,0,8"/>
+                            <TextBox x:Name="txtQuantidade" Height="45" Margin="0,0,0,20" 
+                 Style="{StaticResource ModernTextBox}" 
+                 VerticalContentAlignment="Center" 
+                 Text="0"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2" Margin="10,0,0,0">
                             <TextBlock Text="STATUS" Foreground="#94A3B8" FontSize="11" FontWeight="Bold" Margin="0,0,0,8"/>
                             <CheckBox x:Name="chkDisponivel" Content="Disponível" Foreground="White" 
-                                      IsChecked="True" VerticalContentAlignment="Center" Height="45"/>
+                  IsChecked="True" VerticalContentAlignment="Center" Height="45"/>
                         </StackPanel>
                     </Grid>
-
                     <TextBlock Text="IMAGEM DO PRODUTO" Foreground="#94A3B8" FontSize="11" FontWeight="Bold" Margin="0,0,0,8"/>
                     <Border BorderBrush="#1E293B" BorderThickness="2" CornerRadius="10" Height="120" Background="#020617" Cursor="Hand" MouseLeftButtonDown="SelecionarImagem_Click">
                         <Grid>

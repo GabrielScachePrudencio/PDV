@@ -26,7 +26,7 @@ namespace PDV_LANCHES.Views.ViewsAdministrativo
                 txtHost.Text = _config.Host;
                 txtPorta.Text = _config.Porta.ToString();
                 txtBanco.Text = _config.NomeBanco;
-                txtUsuario.Text = _config.Usuario;
+                txtUsuario.Text = _config.UsuarioBanco;
                 txtCaminhoBackup.Text = _config.CaminhoBackup;
 
                 lblHost.Text = _config.Host;

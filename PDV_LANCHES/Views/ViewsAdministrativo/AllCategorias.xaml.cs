@@ -8,7 +8,7 @@ namespace PDV_LANCHES.Views.ViewsAdministrativo
 {
     public partial class AllCategorias : UserControl
     {
-        public List<CategoriaProduto> Categorias { get; set; }
+        public ObservableCollection<CategoriaProduto> Categorias { get; set; }
         private HomeAdministrativoController HomeAdministrativoController = new HomeAdministrativoController();
         public AllCategorias()
         {
@@ -19,7 +19,11 @@ namespace PDV_LANCHES.Views.ViewsAdministrativo
         private async void CarregarCategorias()
         {
             await Status_Categorias.Instancia.CarregarAsync();
-            Categorias = Status_Categorias.Instancia.CategoriaProdutos;
+            Categorias = new ObservableCollection<CategoriaProduto>(
+                Status_Categorias.Instancia.CategoriaProdutos
+            );
+
+            dgCategorias.ItemsSource = Categorias;
             dgCategorias.ItemsSource = Categorias;
         }
         private async void AlternarStatus_Click(object sender, RoutedEventArgs e)
@@ -80,6 +84,7 @@ namespace PDV_LANCHES.Views.ViewsAdministrativo
                 Status_Categorias.Instancia.CategoriaProdutos.Add(nova);
                 txtNomeCategoria.Clear();
                 MessageBox.Show("Categoria adicionada com sucesso!");
+                Categorias.Add(nova);
             }
             else
             {

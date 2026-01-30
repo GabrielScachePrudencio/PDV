@@ -155,13 +155,13 @@ namespace PDV_LANCHES.Views
 
             if (darBaixaDepois)
             {
-                pedido.IdStatus = 3;
+                pedido.IdStatus = 1;
                 pedido.StatusPedido = "Pronto";
 
             }
             else
             {
-                pedido.IdStatus = 5;
+                pedido.IdStatus = 2;
                 pedido.StatusPedido = "Finalizado";
             }
 
@@ -176,7 +176,7 @@ namespace PDV_LANCHES.Views
             }
             else
             {
-                MessageBox.Show("Erro ao salvar pedido!");
+                MessageBox.Show("Erro ao finalizar pedido!");
             }
         }
 

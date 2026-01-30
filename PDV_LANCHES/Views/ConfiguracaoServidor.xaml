@@ -1,0 +1,105 @@
+﻿<Window x:Class="PDV_LANCHES.Views.ConfiguracaoServidor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Configuração de Conexão" Height="720" Width="450"
+        WindowStartupLocation="CenterScreen" WindowStyle="None"
+        AllowsTransparency="True" Background="Transparent">
+
+    <Border Background="#020617" CornerRadius="15" BorderBrush="#1E293B" BorderThickness="2" MouseDown="Window_MouseDown">
+        <Grid>
+            
+        
+        <StackPanel Name="ParteDaSenhaBasica" Margin="30" >
+            <TextBlock Text="Para configurar digite a senha: " Foreground="#94A3B8" Margin="0,0,0,5" FontSize="12"/>
+            <Border Background="#0F172A" CornerRadius="8" BorderBrush="#1E293B" BorderThickness="1" Margin="0,0,0,15">
+                <PasswordBox x:Name="senhabasica"
+                     Height="40"
+                     Background="Transparent"
+                     Foreground="White"
+                     BorderThickness="0"
+                     Padding="10,0"/>
+
+            </Border>
+            
+            <Button Content="Continuar" Height="40" Background="#334155" Foreground="White" FontWeight="Bold" Margin="0,0,0,10" Click="validaSenhaBasica_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="8"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
+        
+        <StackPanel Margin="30" Name="ConfiguracaoPara" Visibility="Hidden">
+            <TextBlock Text="CONFIGURAÇÃO DO SERVIDOR" Foreground="White" FontSize="18" FontWeight="Bold" Margin="0,0,0,25" HorizontalAlignment="Center"/>
+
+            <TextBlock Text="Endereço do Servidor (IP ou Domínio)" Foreground="#94A3B8" Margin="0,0,0,5" FontSize="12"/>
+            <Border Background="#0F172A" CornerRadius="8" BorderBrush="#1E293B" BorderThickness="1" Margin="0,0,0,15">
+                <TextBox x:Name="txtIpServidor" Height="40" Background="Transparent" Foreground="White" BorderThickness="0" 
+                         VerticalContentAlignment="Center" Padding="10,0" Text="http://localhost"/>
+            </Border>
+
+            <TextBlock Text="Porta" Foreground="#94A3B8" Margin="0,0,0,5" FontSize="12"/>
+            <Border Background="#0F172A" CornerRadius="8" BorderBrush="#1E293B" BorderThickness="1" Margin="0,0,0,20">
+                <TextBox x:Name="txtPortaServidor" Height="40" Background="Transparent" Foreground="White" BorderThickness="0" 
+                         VerticalContentAlignment="Center" Padding="10,0" Text="5000"/>
+            </Border>
+            
+            <TextBlock Text="Nome Database" Foreground="#94A3B8" Margin="0,0,0,5" FontSize="12"/>
+            <Border Background="#0F172A" CornerRadius="8" BorderBrush="#1E293B" BorderThickness="1" Margin="0,0,0,20">
+                <TextBox x:Name="txtNomeDatabase" Height="40" Background="Transparent" Foreground="White" BorderThickness="0" 
+                         VerticalContentAlignment="Center" Padding="10,0" Text="5000"/>
+            </Border>
+
+            <TextBlock Text="PortaDoBanco" Foreground="#94A3B8" Margin="0,0,0,5" FontSize="12"/>
+            <Border Background="#0F172A" CornerRadius="8" BorderBrush="#1E293B" BorderThickness="1" Margin="0,0,0,20">
+                <TextBox x:Name="txtPortaDoBanco" Height="40" Background="Transparent" Foreground="White" BorderThickness="0" 
+            VerticalContentAlignment="Center" Padding="10,0" Text="5000"/>
+            </Border>
+
+                <TextBlock Text="Usuario criado para o Banco" Foreground="#94A3B8" Margin="0,0,0,5" FontSize="12"/>
+            <Border Background="#0F172A" CornerRadius="8" BorderBrush="#1E293B" BorderThickness="1" Margin="0,0,0,20">
+                <TextBox x:Name="txtUsuarioDatabase" Height="40" Background="Transparent" Foreground="White" BorderThickness="0" 
+                         VerticalContentAlignment="Center" Padding="10,0" Text="5000"/>
+            </Border>
+
+                <TextBlock Text="Senha criada para o Banco" Foreground="#94A3B8" Margin="0,0,0,5" FontSize="12"/>
+                <Border Background="#0F172A" CornerRadius="8" BorderBrush="#1E293B" BorderThickness="1" Margin="0,0,0,20">
+                <TextBox x:Name="txtSenhaDatabase" Height="40" Background="Transparent" Foreground="White" BorderThickness="0" 
+                         VerticalContentAlignment="Center" Padding="10,0" Text="5000"/>
+            </Border>
+
+            <Button Content="Testar Conexão" Height="40" Background="#334155" Foreground="White" FontWeight="Bold" Margin="0,0,0,10" Click="BtnTestar_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="8"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+
+            <Grid Margin="0,10,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Content="Salvar" Height="45" Background="#2563eb" Foreground="White" FontWeight="Bold" Margin="0,0,5,0" Click="BtnSalvar_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="8"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+                <Button Grid.Column="1" Content="Cancelar" Height="45" Background="Transparent" BorderBrush="#1E293B" BorderThickness="1" Foreground="#94A3B8" Margin="5,0,0,0" Click="BtnCancelar_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="8"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Grid>
+        </StackPanel>
+        </Grid>
+    </Border>
+</Window>

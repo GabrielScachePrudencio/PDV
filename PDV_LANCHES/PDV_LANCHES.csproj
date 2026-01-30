@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <Folder Include="src\date\backup\" />
+    <Folder Include="src\date\conexao\" />
   </ItemGroup>
 
 </Project>

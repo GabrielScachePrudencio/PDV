@@ -3,6 +3,7 @@ using PDV_LANCHES.model;
 using ServidorLanches.model.dto;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,17 +24,20 @@ namespace PDV_LANCHES.Views.ViewsAdministrativo
     /// </summary>
     public partial class AllUsuario : UserControl
     {
-        private List<Usuario> listaUsuarios;
+        private ObservableCollection<Usuario> listaUsuarios;
         private HomeAdministrativoController administrativoController = new HomeAdministrativoController();
 
         public AllUsuario()
         {
             InitializeComponent();
-            CarregarUsuarios();
+            _ = CarregarUsuarios();
+
         }
 
-        public async void CarregarUsuarios() {
-            listaUsuarios = await administrativoController.getAllUsuarios();
+        public async Task CarregarUsuarios() {
+            var usuarios = await administrativoController.getAllUsuarios();
+
+            listaUsuarios = new ObservableCollection<Usuario>(usuarios);
             dgUsuario.ItemsSource = listaUsuarios;
         }
 
@@ -48,7 +52,12 @@ namespace PDV_LANCHES.Views.ViewsAdministrativo
             if (usuario == null) return;
             UsuarioInfo usuarioInfo = new UsuarioInfo(usuario);
             usuarioInfo.ShowDialog();
-            
+
+            if (usuarioInfo.ShowDialog() == true)
+            {
+                _ = CarregarUsuarios();
+            }
+
         }
 
         private async void Excluir_Click(object sender, RoutedEventArgs e)
@@ -59,7 +68,7 @@ namespace PDV_LANCHES.Views.ViewsAdministrativo
             if (await administrativoController.deletarUsuario(usuario.Id))
             {
                 MessageBox.Show("usuario deletado");
-                CarregarUsuarios();
+                listaUsuarios.Remove(usuario);
             } else
             {
                 MessageBox.Show("erro ao deletar usuario");
@@ -80,7 +89,7 @@ namespace PDV_LANCHES.Views.ViewsAdministrativo
                 // Abre como diálogo. Se retornar true, atualizamos a lista
                 if (infoWindow.ShowDialog() == true)
                 {
-                    CarregarUsuarios();
+                    _ = CarregarUsuarios();
                 }
             }
         }
@@ -88,8 +97,11 @@ namespace PDV_LANCHES.Views.ViewsAdministrativo
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             NovoUsuario novoUsuario = new NovoUsuario();
-            novoUsuario.ShowDialog();
-            
+            if (novoUsuario.ShowDialog() == true)
+            {
+                _ = CarregarUsuarios();
+            }
+
         }
     }
 }

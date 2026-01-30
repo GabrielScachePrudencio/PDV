@@ -155,7 +155,7 @@ namespace PDV_LANCHES.Views
             var lista = await homeController.PegarTodosPedidos();
             if (lista == null)
             {
-                MessageBox.Show("Erro ao carregar pedidos.");
+                MessageBox.Show("Não ha pedidos");
                 return;
             }
 

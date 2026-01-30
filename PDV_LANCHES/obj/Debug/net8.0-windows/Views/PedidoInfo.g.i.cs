@@ -108,7 +108,7 @@ namespace PDV_LANCHES.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/PDV_LANCHES;component/views/pedidoinfo.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/PDV_LANCHES;V1.0.0.0;component/views/pedidoinfo.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\PedidoInfo.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

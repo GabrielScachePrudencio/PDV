@@ -25,14 +25,18 @@ namespace PDV_LANCHES.Views.ViewsAdministrativo
             await Status_Categorias.Instancia.CarregarAsync();
             var categorias = Status_Categorias.Instancia.CategoriaProdutos;
 
-            foreach (var produto in listaCardapio)
+            if(listaCardapio != null)
             {
-                var cat = categorias.FirstOrDefault(c => c.id == produto.IdCategoria);
-                produto.NomeCategoria = cat != null ? cat.nome : "Sem Categoria";
+                foreach (var produto in listaCardapio)
+                {
+                    var cat = categorias.FirstOrDefault(c => c.id == produto.IdCategoria);
+                    produto.NomeCategoria = cat != null ? cat.nome : "Sem Categoria";
+                }
+                dgCardapio.ItemsSource = null;
+                dgCardapio.ItemsSource = listaCardapio;
             }
 
-            dgCardapio.ItemsSource = null;
-            dgCardapio.ItemsSource = listaCardapio;
+            
         }
 
         private void Adicionar_Click(object sender, RoutedEventArgs e)

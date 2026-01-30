@@ -10,6 +10,8 @@
         public bool Disponivel { get; set; }
         public string pathImg { get; set; }
 
+        public int quantidade { get; set; }
+
 
         //nao ta no banco
         public int QuantidadeSelecionada { get; set; } = 1;
