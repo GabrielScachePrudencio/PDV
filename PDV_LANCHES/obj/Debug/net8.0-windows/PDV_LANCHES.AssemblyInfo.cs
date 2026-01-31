@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PDV_LANCHES")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f0fd764cb062f473806bd66f3ad064ccd8b17d06")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8a30b7b4b7363c6dc7ce42f9ffd6015ee45b7589")]
 [assembly: System.Reflection.AssemblyProductAttribute("PDV_LANCHES")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PDV_LANCHES")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

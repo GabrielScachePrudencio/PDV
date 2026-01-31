@@ -83,7 +83,9 @@ namespace PDV_LANCHES.Views.ViewsAdministrativo
 
             if (await HomeAdministrativoController.AddFormaPagamento(nova))
             {
-                Status_Categorias.Instancia.FormaDePagamentos.Add(nova);
+                await Status_Categorias.Instancia.RecarregarTudoAsync(); // Atualiza a lista global
+                dgCategorias.ItemsSource = Status_Categorias.Instancia.FormaDePagamentos; // Reatribui a lista
+                dgCategorias.Items.Refresh();
 
                 dgCategorias.Items.Refresh();
 

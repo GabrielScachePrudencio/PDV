@@ -81,10 +81,12 @@ namespace PDV_LANCHES.Views.ViewsAdministrativo
 
             if (await HomeAdministrativoController.AddCategoria(nova))
             {
+                Status_Categorias.Instancia.RecarregarTudoAsync();
                 Status_Categorias.Instancia.CategoriaProdutos.Add(nova);
                 txtNomeCategoria.Clear();
                 MessageBox.Show("Categoria adicionada com sucesso!");
                 Categorias.Add(nova);
+                CarregarCategorias();
             }
             else
             {

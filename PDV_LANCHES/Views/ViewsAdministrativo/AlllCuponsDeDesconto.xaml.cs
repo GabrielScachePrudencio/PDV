@@ -47,6 +47,7 @@ namespace PDV_LANCHES.Views.ViewsAdministrativo
 
             if (await _controller.AddCupom(novo)) 
             {
+                await Status_Categorias.Instancia.RecarregarTudoAsync();
                 ListaCupons.Add(novo);
                 dgCupons.Items.Refresh();
                 LimparCampos();

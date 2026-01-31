@@ -28,6 +28,13 @@ namespace PDV_LANCHES.controller
                 return null;
             return await response.Content.ReadFromJsonAsync<List<Produto>>();
         }
+        public async Task<List<Produto>> getAllProdutoAtivos()
+        {
+            var response = await ApiClient.Client.GetAsync("api/produtos/ativos");
+            if (!response.IsSuccessStatusCode)
+                return null;
+            return await response.Content.ReadFromJsonAsync<List<Produto>>();
+        }
 
         public async Task<bool> criarPedido(PedidoDTO pedido)
         {

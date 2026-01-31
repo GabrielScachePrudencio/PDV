@@ -35,5 +35,14 @@ namespace PDV_LANCHES.controller
             return response.IsSuccessStatusCode;
         }
 
+        public async Task<bool> AtualizarEstoque(int idP, int qtdd)
+        {
+            var response = await ApiClient.Client
+                .PostAsync($"api/estoques/atualizarQuantidade/{idP}/{qtdd}", null);
+
+            return response.IsSuccessStatusCode;
+        }
+
+
     }
 }

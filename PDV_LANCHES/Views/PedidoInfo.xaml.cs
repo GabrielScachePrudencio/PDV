@@ -90,7 +90,23 @@ namespace PDV_LANCHES.Views
             pedidoTotalInfo.Text = pedido.ValorTotal.ToString("C2");
 
             itensPedidoStackPanel.Children.Clear();
+
+            //if(pedido.IdStatus != 1)
+            //{
+            //    btnCardapioCompleto.Visibility = Visibility.Hidden;
+            //    ComboBoxAlterarFormaDePagamento.IsEnabled = false;
+            //    pedidoCpfInfo.IsEnabled = false;
+
+            //}
+
+            var statusPermitidos = ObterStatusPermitidos(pedido.IdStatus);
+
+            ComboBoxStatusPedido.ItemsSource = statusPermitidos;
+            ComboBoxStatusPedido.DisplayMemberPath = "nome";
+            ComboBoxStatusPedido.SelectedValuePath = "id";
             ComboBoxStatusPedido.SelectedValue = pedido.IdStatus;
+
+
             ComboBoxAlterarFormaDePagamento.SelectedValue = pedido.IdFormaPagamento;
 
             foreach (var item in pedido.Itens)
@@ -106,7 +122,7 @@ namespace PDV_LANCHES.Views
                 };
 
                 DockPanel dock = new DockPanel();
-
+                
                 // Botão Excluir (Ícone de lixeira ou X)
                 Button excluir = new Button
                 {
@@ -120,6 +136,7 @@ namespace PDV_LANCHES.Views
                     Cursor = Cursors.Hand,
                     Tag = item
                 };
+
                 excluir.Click += ExcluirItem_Click;
                 // Arredondar botão excluir
                 Style s = new Style(typeof(Border));
@@ -141,8 +158,8 @@ namespace PDV_LANCHES.Views
                     HorizontalContentAlignment = HorizontalAlignment.Center,
                     Margin = new Thickness(10, 0, 10, 0),
                     Tag = item,
-
                 };
+
                 DockPanel.SetDock(txtQtd, Dock.Right);
 
                 // Nome do Produto
@@ -165,12 +182,27 @@ namespace PDV_LANCHES.Views
 
                 
                 dock.Children.Add(image);
+                dock.Children.Add(txtNome);
                 dock.Children.Add(excluir);
                 dock.Children.Add(txtQtd);
-                dock.Children.Add(txtNome);
+
+                //if (pedido.IdStatus == 1)
+                //{
+                //    dock.Children.Add(excluir);
+                //    dock.Children.Add(txtQtd);
+                //}
+                //else
+                //{
+                //    txtQtd.IsEnabled = false;
+                //    dock.Children.Add(txtQtd);
+                //}
+
 
                 bordaItem.Child = dock;
                 itensPedidoStackPanel.Children.Add(bordaItem);
+
+                AtualizarBloqueioTela(pedido.IdStatus);
+
             }
         }
 
@@ -197,6 +229,8 @@ namespace PDV_LANCHES.Views
                 {
                     pedido.IdFormaPagamento = (int)ComboBoxAlterarFormaDePagamento.SelectedValue;
                 }
+
+
 
 
 
@@ -272,6 +306,62 @@ namespace PDV_LANCHES.Views
 
         }
 
+        private List<TipoStatusPedido> ObterStatusPermitidos(int statusAtual)
+        {
+            var todos = Status_Categorias.Instancia.TipoStatusPedido;
+
+            return statusAtual switch
+            {
+                // PRONTO → Finalizado ou Cancelado
+                1 => todos.Where(s => s.id == 1 || s.id == 2 || s.id == 3).ToList(),
+
+                // FINALIZADO → Estornado
+                2 => todos.Where(s => s.id == 2 || s.id == 4).ToList(),
+
+                // CANCELADO
+                3 => todos.Where(s => s.id == 3).ToList(),
+
+                // ESTORNADO → nada (status travado)
+                4 => todos.Where(s => s.id == 4).ToList(),
+
+
+                // COMPRA → não deveria nem existir
+                _ => new List<TipoStatusPedido>()
+            };
+        }
+        private void AtualizarBloqueioTela(int statusId)
+        {
+            bool bloqueado = statusId != 1;
+
+            // CPF
+            pedidoCpfInfo.IsReadOnly = bloqueado;
+
+            // Forma de pagamento
+            ComboBoxAlterarFormaDePagamento.IsEnabled = !bloqueado;
+
+            // Botão adicionar itens
+            btnCardapioCompleto.Visibility = bloqueado
+                ? Visibility.Hidden
+                : Visibility.Visible;
+
+            
+
+            // Itens do pedido (quantidade + excluir)
+            foreach (var child in itensPedidoStackPanel.Children)
+            {
+                if (child is Border b && b.Child is DockPanel d)
+                {
+                    foreach (var txt in d.Children.OfType<TextBox>())
+                        txt.IsReadOnly = bloqueado;
+
+                    foreach (var btn in d.Children.OfType<Button>())
+                        btn.IsEnabled = !bloqueado;
+                }
+            }
+        }
+
+
+
         private void Fechar_Click(object sender, RoutedEventArgs e) {
             if(veioDeTodasVendas == false)
             {
@@ -295,7 +385,10 @@ namespace PDV_LANCHES.Views
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Lógica para quando a seleção mudar, se necessário
+            if (ComboBoxStatusPedido.SelectedValue is int statusId)
+            {
+                AtualizarBloqueioTela(statusId);
+            }
         }
         private void ComboBoxAlterarFormaDePagamento_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

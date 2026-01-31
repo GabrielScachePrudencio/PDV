@@ -42,8 +42,12 @@ namespace PDV_LANCHES.Views.ViewsAdministrativo
         private void Adicionar_Click(object sender, RoutedEventArgs e)
         {
             NovoProduto np = new NovoProduto();
-            np.Show();
-            
+            np.Closed += (s, args) =>
+            {
+                CarregarCardapio(); 
+            };
+            np.ShowDialog();
+
         }
 
         private void Editar_Click(object sender, RoutedEventArgs e)

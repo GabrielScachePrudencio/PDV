@@ -20,6 +20,7 @@ namespace PDV_LANCHES.Views
         private EtapaPedido etapaAtual = EtapaPedido.InformarCpf;
         private bool veioDeTodosOsPedidos = false;
         private bool darBaixaDepois = false;
+
         public NovoPedido()
         {
             InitializeComponent();
@@ -27,6 +28,7 @@ namespace PDV_LANCHES.Views
             pedido = new PedidoDTO();
             CarregarCardapioAoIniciar();
         }
+
         public NovoPedido(bool veioDeTodosOsPedidos)
         {
             this.veioDeTodosOsPedidos = veioDeTodosOsPedidos;
@@ -36,10 +38,9 @@ namespace PDV_LANCHES.Views
             CarregarCardapioAoIniciar();
         }
 
-
         private async void CarregarCardapioAoIniciar()
         {
-            var lista = await controller.getAllProduto();
+            var lista = await controller.getAllProdutoAtivos();
             if (lista != null)
             {
                 foreach (var item in lista)
@@ -48,6 +49,7 @@ namespace PDV_LANCHES.Views
                     cardapios.Add(item);
                 }
                 ListaCardapioItems.ItemsSource = cardapios;
+                listCarrinho.ItemsSource = itensPedido;
             }
         }
 
@@ -80,7 +82,6 @@ namespace PDV_LANCHES.Views
             var usuario = await controller.pegarUsuarioLogado();
             if (usuario == null) { fecharAquiEAbrirHome(); return; }
 
-            // Preenchimento inicial do DTO
             pedido.IdUsuario = usuario.Id;
             pedido.NomeUsuario = usuario.Nome;
             pedido.CpfCliente = inputCpfCliente.Text;
@@ -107,129 +108,50 @@ namespace PDV_LANCHES.Views
                 return;
             }
 
+            // DESIGN: Esconde o cardápio e o carrinho lateral para mostrar o resumo gigante
             scrollCardapio.Visibility = Visibility.Collapsed;
+            panelCarrinho.Visibility = Visibility.Collapsed;
             borderResumo.Visibility = Visibility.Visible;
-            stackResumoItens.Children.Clear();
             buttonSairSemDarBaixa.Visibility = Visibility.Visible;
 
-            // Título
-            stackResumoItens.Children.Add(new TextBlock { Text = "Resumo do Pedido", FontSize = 20, FontWeight = FontWeights.Bold, Foreground = System.Windows.Media.Brushes.White, Margin = new Thickness(0, 0, 0, 20) });
+            stackResumoItens.Children.Clear();
+            stackResumoItens.Children.Add(new TextBlock { Text = "Resumo do Pedido", FontSize = 22, FontWeight = FontWeights.Bold, Foreground = System.Windows.Media.Brushes.White, Margin = new Thickness(0, 0, 0, 20) });
 
             foreach (var item in itensPedido)
             {
-                stackResumoItens.Children.Add(new TextBlock
-                {
-                    Text = $"• {item.Quantidade}x {item.NomeProduto} - R$ {(item.Quantidade * item.ValorUnitario):F2}",
-                    FontSize = 14,
-                    Foreground = System.Windows.Media.Brushes.White,
-                    Margin = new Thickness(0, 5, 0, 5)
-                });
+                var gridItem = new Grid { Margin = new Thickness(0, 5, 0, 5) };
+                gridItem.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+                gridItem.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+
+                var txtInfo = new TextBlock { Text = $"{item.Quantidade}x {item.NomeProduto}", FontSize = 15, Foreground = System.Windows.Media.Brushes.White };
+                var txtPreco = new TextBlock { Text = $"R$ {(item.Quantidade * item.ValorUnitario):F2}", FontSize = 15, FontWeight = FontWeights.SemiBold, Foreground = (System.Windows.Media.Brush)new System.Windows.Media.BrushConverter().ConvertFrom("#60a5fa"), Margin = new Thickness(20, 0, 0, 0) };
+
+                Grid.SetColumn(txtInfo, 0);
+                Grid.SetColumn(txtPreco, 1);
+                gridItem.Children.Add(txtInfo);
+                gridItem.Children.Add(txtPreco);
+                stackResumoItens.Children.Add(gridItem);
             }
 
-            // Carrega Formas de Pagamento no ComboBox
             comboPagamento.ItemsSource = Status_Categorias.Instancia.FormaDePagamentos;
             if (comboPagamento.Items.Count > 0) comboPagamento.SelectedIndex = 0;
 
-
-            //AQUI DA BAIXA no estoque
             buttonProximo.Content = "FINALIZAR E IMPRIMIR";
             etapaAtual = EtapaPedido.ConfirmarPedido;
         }
 
-
-        //AQUI DA BAIXA no estoque
-        private async Task FinalizarVenda()
-        {
-            if (comboPagamento.SelectedValue == null)
-            {
-                MessageBox.Show("Selecione uma forma de pagamento!");
-                return;
-            }
-
-            pedido.IdFormaPagamento = (int)comboPagamento.SelectedValue;
-            var forma = comboPagamento.SelectedItem as FormaDePagamento;
-            pedido.FormaPagamento = forma?.Descricao ?? "";
-           
-            pedido.Itens = itensPedido.ToList();
-            pedido.ValorTotal = itensPedido.Sum(i => i.ValorUnitario * i.Quantidade);
-
-            if (darBaixaDepois)
-            {
-                pedido.IdStatus = 1;
-                pedido.StatusPedido = "Pronto";
-
-            }
-            else
-            {
-                pedido.IdStatus = 2;
-                pedido.StatusPedido = "Finalizado";
-            }
-
-
-
-            var sucesso = await controller.criarPedido(pedido);
-
-            if (sucesso)
-            {
-                MessageBox.Show("Pedido realizado com sucesso!");
-                fecharAquiEAbrirHome(); 
-            }
-            else
-            {
-                MessageBox.Show("Erro ao finalizar pedido!");
-            }
-        }
-
-        private void AdicionarItem_Click(object sender, RoutedEventArgs e)
-        {
-            var btn = sender as Button;
-            var produto = btn.Tag as Produto;
-            if (produto == null) return;
-
-            int qtd = produto.QuantidadeSelecionada > 0 ? produto.QuantidadeSelecionada : 1;
-            var existente = itensPedido.FirstOrDefault(i => i.IdProduto == produto.Id);
-
-            if (existente != null)
-            {
-                existente.Quantidade += qtd;
-            }
-            else
-            {
-                var categoriaObj = Status_Categorias.Instancia.CategoriaProdutos
-                                    .FirstOrDefault(c => c.id == produto.IdCategoria);
-
-                string nomeCategoria = categoriaObj?.nome ?? "Geral";
-
-                itensPedido.Add(new ItemPedidoCardapioDTO
-                {
-                    IdProduto = produto.Id,
-                    NomeProduto = produto.Nome,
-                    Categoria = nomeCategoria,          
-                    pathProdutoImg = produto.pathImg,
-                    ValorUnitario = produto.Valor,
-                    Quantidade = qtd
-                });
-            }
-            AtualizarTotal();
-        }
-        private void AtualizarTotal()
-        {
-            pedido.ValorTotal = itensPedido.Sum(i => i.ValorUnitario * i.Quantidade);
-            txtTotalDisplay.Text = $"R$ {pedido.ValorTotal:F2}";
-        }
-
-        private async void ButtonSairSemDarBaixa_Click(object sender, EventArgs e)
-        {
-            darBaixaDepois = true;
-            await FinalizarVenda();
-        }
         private void btnVoltar_Click(object sender, RoutedEventArgs e)
         {
             if (etapaAtual == EtapaPedido.ConfirmarPedido)
             {
+                // VOLTA PARA O CARDÁPIO: Restaura o cardápio E o carrinho lateral
                 etapaAtual = EtapaPedido.SelecionarItens;
                 borderResumo.Visibility = Visibility.Collapsed;
+                buttonSairSemDarBaixa.Visibility = Visibility.Hidden;
+
                 scrollCardapio.Visibility = Visibility.Visible;
+                panelCarrinho.Visibility = Visibility.Visible; // <--- AQUI O CARRINHO VOLTA
+
                 buttonProximo.Content = "VER RESUMO";
             }
             else if (etapaAtual == EtapaPedido.SelecionarItens)
@@ -243,46 +165,110 @@ namespace PDV_LANCHES.Views
             else fecharAquiEAbrirHome();
         }
 
+        private async Task FinalizarVenda()
+        {
+            if (comboPagamento.SelectedValue == null)
+            {
+                MessageBox.Show("Selecione uma forma de pagamento!");
+                return;
+            }
+
+            try
+            {
+                pedido.IdFormaPagamento = (int)comboPagamento.SelectedValue;
+                var forma = comboPagamento.SelectedItem as FormaDePagamento;
+                pedido.FormaPagamento = forma?.Descricao ?? "";
+                pedido.Itens = itensPedido.ToList();
+                pedido.ValorTotal = itensPedido.Sum(i => i.ValorUnitario * i.Quantidade);
+
+                if (darBaixaDepois)
+                {
+                    pedido.IdStatus = 1;
+                    pedido.StatusPedido = "Pronto";
+                }
+                else
+                {
+                    pedido.IdStatus = 2;
+                    pedido.StatusPedido = "Finalizado";
+                }
+
+                var sucesso = await controller.criarPedido(pedido);
+                if (sucesso)
+                {
+                    MessageBox.Show("Pedido realizado com sucesso!");
+                    fecharAquiEAbrirHome();
+                }
+                else MessageBox.Show("Erro ao finalizar pedido!");
+            }
+            catch (Exception ex) { MessageBox.Show($"Erro: {ex.Message}"); }
+        }
+
+        private void AdicionarItem_Click(object sender, RoutedEventArgs e)
+        {
+            var btn = sender as Button;
+            var produto = btn.Tag as Produto;
+            if (produto == null) return;
+
+            int qtd = produto.QuantidadeSelecionada > 0 ? produto.QuantidadeSelecionada : 1;
+            var existente = itensPedido.FirstOrDefault(i => i.IdProduto == produto.Id);
+
+            if (existente != null) existente.Quantidade += qtd;
+            else
+            {
+                var categoriaObj = Status_Categorias.Instancia.CategoriaProdutos.FirstOrDefault(c => c.id == produto.IdCategoria);
+                itensPedido.Add(new ItemPedidoCardapioDTO
+                {
+                    IdProduto = produto.Id,
+                    NomeProduto = produto.Nome,
+                    Categoria = categoriaObj?.nome ?? "Geral",
+                    pathProdutoImg = produto.pathImg,
+                    ValorUnitario = produto.Valor,
+                    Quantidade = qtd
+                });
+            }
+            AtualizarTotal();
+        }
+
+        private void RemoverItem_Click(object sender, RoutedEventArgs e)
+        {
+            var btn = sender as Button;
+            var item = btn.Tag as ItemPedidoCardapioDTO;
+            if (item != null) { itensPedido.Remove(item); AtualizarTotal(); }
+        }
+
+        private void AtualizarTotal()
+        {
+            pedido.ValorTotal = itensPedido.Sum(i => i.ValorUnitario * i.Quantidade);
+            txtTotalDisplay.Text = $"R$ {pedido.ValorTotal:F2}";
+        }
+
+        private async void ButtonSairSemDarBaixa_Click(object sender, EventArgs e)
+        {
+            darBaixaDepois = true;
+            await FinalizarVenda();
+        }
+
         private void inputCpfCliente_TextChanged(object sender, TextChangedEventArgs e)
         {
             var textBox = sender as TextBox;
             if (textBox == null) return;
-
-            string textoApenasNumeros = new string(textBox.Text.Where(char.IsDigit).ToArray());
-
-            string textoFormatado = "";
-
-            if (textoApenasNumeros.Length > 0)
+            string num = new string(textBox.Text.Where(char.IsDigit).ToArray());
+            string fmt = "";
+            if (num.Length > 0)
             {
-                if (textoApenasNumeros.Length <= 3)
-                    textoFormatado = textoApenasNumeros;
-                else if (textoApenasNumeros.Length <= 6)
-                    textoFormatado = $"{textoApenasNumeros.Substring(0, 3)}.{textoApenasNumeros.Substring(3)}";
-                else if (textoApenasNumeros.Length <= 9)
-                    textoFormatado = $"{textoApenasNumeros.Substring(0, 3)}.{textoApenasNumeros.Substring(3, 3)}.{textoApenasNumeros.Substring(6)}";
-                else
-                    textoFormatado = $"{textoApenasNumeros.Substring(0, 3)}.{textoApenasNumeros.Substring(3, 3)}.{textoApenasNumeros.Substring(6, 3)}-{textoApenasNumeros.Substring(9, Math.Min(2, textoApenasNumeros.Length - 9))}";
+                if (num.Length <= 3) fmt = num;
+                else if (num.Length <= 6) fmt = $"{num.Substring(0, 3)}.{num.Substring(3)}";
+                else if (num.Length <= 9) fmt = $"{num.Substring(0, 3)}.{num.Substring(3, 3)}.{num.Substring(6)}";
+                else fmt = $"{num.Substring(0, 3)}.{num.Substring(3, 3)}.{num.Substring(6, 3)}-{num.Substring(9, Math.Min(2, num.Length - 9))}";
             }
-
-            if (textBox.Text != textoFormatado)
-            {
-                textBox.Text = textoFormatado;
-                textBox.CaretIndex = textBox.Text.Length; 
-            }
+            if (textBox.Text != fmt) { textBox.Text = fmt; textBox.CaretIndex = textBox.Text.Length; }
         }
 
         private void fecharAquiEAbrirHome()
         {
-            if (veioDeTodosOsPedidos)
-            {
-                new TodasVendasCompleto().Show();
-            }
-            else
-            {
-                new Home().Show();
-            }
+            if (veioDeTodosOsPedidos) new TodasVendasCompleto().Show();
+            else new Home().Show();
             this.Close();
         }
     }
-
 }

@@ -40,7 +40,7 @@ namespace PDV_LANCHES.Views
 
         private async void CarregarCardapio()
         {
-            cardapio = await controller.getAllProduto();
+            cardapio = await controller.getAllProdutoAtivos();
             ListaCardapioCompleto.ItemsSource = cardapio;
         }
 

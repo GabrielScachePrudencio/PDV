@@ -21,7 +21,7 @@ public class Status_Categorias
 
     private Status_Categorias()
     {
-        _homeAdministrativoController = new HomeAdministrativoController();
+         _homeAdministrativoController = new HomeAdministrativoController();
         CategoriaProdutos = new();
         TipoStatusPedido = new();
         FormaDePagamentos = new();
@@ -74,4 +74,9 @@ public class Status_Categorias
         _carregado = true;
     }
 
+    public async Task RecarregarTudoAsync()
+    {
+        _carregado = false; // Reseta a trava
+        await CarregarAsync(); // Busca tudo de novo do banco
+    }
 }
