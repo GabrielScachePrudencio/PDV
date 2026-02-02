@@ -37,10 +37,11 @@ namespace PDV_LANCHES.Views
                 if (usuario == null)
                 {
                     MessageBox.Show("Sessão expirada. Faça login novamente.");
-                    Close();
+                    MainWindow main = new MainWindow();
+                    main.Show();
+                    this.Close();
                     return;
                 }
-
                 usuarioLogado = usuario;
                 usuarioLogadoHome.Text = usuario.Nome;
 

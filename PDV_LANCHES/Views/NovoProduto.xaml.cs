@@ -48,6 +48,8 @@ namespace PDV_LANCHES.Views.ViewsAdministrativo
 
             txtValor.Text = atualizar.Valor.ToString();
 
+            txtPrecoUnitario.Text = atualizar.PrecoUnitario.ToString("C"); 
+
             chkDisponivel.IsChecked = atualizar.Disponivel;
 
             caminhoImagemSelecionada = atualizar.pathImg;
@@ -104,6 +106,8 @@ namespace PDV_LANCHES.Views.ViewsAdministrativo
                 produtoAProcessar.IdCategoria = (int)comboCategoria.SelectedValue;
                 decimal.TryParse(txtValor.Text, out decimal valorConvertido);
                 produtoAProcessar.Valor = valorConvertido;
+                decimal.TryParse(txtPrecoUnitario.Text, out decimal precoUnitarioConvertido);
+                produtoAProcessar.PrecoUnitario = precoUnitarioConvertido;
                 produtoAProcessar.Disponivel = chkDisponivel.IsChecked ?? false;
                 produtoAProcessar.pathImg = caminhoImagemSelecionada;
                 int quantidadeInicial = 0;

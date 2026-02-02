@@ -32,8 +32,6 @@ namespace PDV_LANCHES
 
         private async void Entrar_Click(object sender, RoutedEventArgs e)
         {
-            // Sugestão: Mostrar um ProgressBar aqui se a conexão demorar
-           
             var resultado = await login.VerificarConexaoServidor();
 
             if (resultado.Sucesso)

@@ -42,6 +42,14 @@ namespace PDV_LANCHES.controller
 
             return response.IsSuccessStatusCode;
         }
+        public async Task<List<Estoque>> allEstoque()
+        {
+            var response = await ApiClient.Client
+                .GetAsync($"api/estoques/allestoques");
+
+            return await response.Content.ReadFromJsonAsync<List<Estoque>>();
+        }
+
 
 
     }

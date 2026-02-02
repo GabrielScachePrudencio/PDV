@@ -172,6 +172,7 @@ namespace PDV_LANCHES.Views
                 MessageBox.Show("Selecione uma forma de pagamento!");
                 return;
             }
+            string msg = "";
 
             try
             {
@@ -192,15 +193,16 @@ namespace PDV_LANCHES.Views
                     pedido.StatusPedido = "Finalizado";
                 }
 
-                var sucesso = await controller.criarPedido(pedido);
-                if (sucesso)
+                var sucesso = await controller.CriarPedido(pedido);
+                msg = sucesso;
+                if (sucesso == "Pedido criado com sucesso!" || sucesso == "ok")
                 {
-                    MessageBox.Show("Pedido realizado com sucesso!");
+                    MessageBox.Show(sucesso);
                     fecharAquiEAbrirHome();
                 }
-                else MessageBox.Show("Erro ao finalizar pedido!");
+                else MessageBox.Show(sucesso);
             }
-            catch (Exception ex) { MessageBox.Show($"Erro: {ex.Message}"); }
+            catch (Exception ex) { MessageBox.Show($"Erro: {ex.Message} " + msg); }
         }
 
         private void AdicionarItem_Click(object sender, RoutedEventArgs e)

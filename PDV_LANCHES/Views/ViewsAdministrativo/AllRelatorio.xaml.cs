@@ -1,6 +1,5 @@
 ﻿using PDV_LANCHES.controller;
 using PDV_LANCHES.model;
-using ServidorLanches.model;
 using ServidorLanches.model.dto;
 using System;
 using System.Collections.Generic;
@@ -15,12 +14,12 @@ namespace PDV_LANCHES.Views.ViewsAdministrativo
     public partial class AllRelatorio : UserControl
     {
         private HomeController homeController = new HomeController();
-        private List<PedidoDTO> todosPedidos = new List<PedidoDTO>();
+        private List<PedidoDTO> todosPedidos = new();
 
         public AllRelatorio()
         {
             InitializeComponent();
-            this.Loaded += AllRelatorio_Loaded;
+            Loaded += AllRelatorio_Loaded;
         }
 
         private async void AllRelatorio_Loaded(object sender, RoutedEventArgs e)
@@ -30,105 +29,133 @@ namespace PDV_LANCHES.Views.ViewsAdministrativo
 
         private async Task CarregarDados()
         {
-            try
-            {
-                await Status_Categorias.Instancia.CarregarAsync();
-                var lista = await homeController.PegarTodosPedidos();
-
-                if (lista != null)
-                {
-                    todosPedidos = lista.ToList();
-                    dgRelatorios.ItemsSource = todosPedidos;
-                    ConfigurarFiltros();
-                    AtualizarCards(todosPedidos);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao carregar dados: {ex.Message}");
-            }
+            var lista = await homeController.PegarTodosPedidos();
+            todosPedidos = lista.ToList();
+            dgRelatorios.ItemsSource = todosPedidos;
+            ConfigurarFiltros();
+            AtualizarCards(todosPedidos);
         }
 
         private void ConfigurarFiltros()
         {
-            // Status do Banco (1-6 Status Reais, 7-Todos, 8-N/A)
-            var listaStatus = Status_Categorias.Instancia.TipoStatusPedido.ToList();
-            comboStatus.ItemsSource = listaStatus;
-            // Seleciona o item "Todos" (ID 7) por padrão se ele existir na lista
+            comboStatus.ItemsSource = Status_Categorias.Instancia.TipoStatusPedido;
             comboStatus.SelectedValue = 7;
 
-            // Pagamento do Banco (1-5 Tipos Reais, 6-Todos)
-            var listaPagto = Status_Categorias.Instancia.FormaDePagamentos.ToList();
-            comboFormaDePagamento.ItemsSource = listaPagto;
-            // Seleciona o item "Todos" (ID 6) por padrão
+            comboFormaDePagamento.ItemsSource = Status_Categorias.Instancia.FormaDePagamentos;
             comboFormaDePagamento.SelectedValue = 6;
         }
 
         private void AtualizarCards(List<PedidoDTO> lista)
         {
-            if (lista == null) return;
+            if (lista == null || lista.Count == 0)
+            {
+                ZerarTudo();
+                return;
+            }
 
-            // 6 é o ID de Cancelado no seu banco pelo que entendi da lista
-            decimal totalVendido = lista.Where(p => p.IdStatus != 6).Sum(p => p.ValorTotal);
-            decimal totalCancelado = lista.Where(p => p.IdStatus == 6).Sum(p => p.ValorTotal);
+            const int PRONTO = 1;
+            const int FINALIZADO = 2;
+            const int CANCELADO = 3;
+            const int ESTORNADO = 4;
 
-            lblTotalVendido.Text = totalVendido.ToString("C2");
+            // --- CÁLCULOS FINANCEIROS ---
+            var pedidosVendaSucesso = lista.Where(p => p.IdStatus == FINALIZADO).ToList();
+            decimal faturadoGeral = pedidosVendaSucesso.Sum(p => p.ValorTotal);
+
+            decimal custoTotal = pedidosVendaSucesso
+                .Where(p => p.Itens != null)
+                .Sum(p => p.Itens.Sum(i => i.CustoDeFabricacao * i.Quantidade));
+
+            // --- CÁLCULOS POR STATUS (VALOR E QUANTIDADE) ---
+            var listaProntos = lista.Where(p => p.IdStatus == PRONTO).ToList();
+            var listaFinalizados = lista.Where(p => p.IdStatus == FINALIZADO).ToList();
+            var listaCancelados = lista.Where(p => p.IdStatus == CANCELADO).ToList();
+            var listaEstornados = lista.Where(p => p.IdStatus == ESTORNADO).ToList();
+
+            // Dados de Hoje
+            var listaHoje = pedidosVendaSucesso.Where(p => p.DataCriacao.Date == DateTime.Today).ToList();
+
+            // --- ATUALIZAÇÃO DA INTERFACE (DESTAQUES) ---
+            lblFaturadoGeral.Text = faturadoGeral.ToString("C2");
+            lblLucroGeral.Text = (faturadoGeral - custoTotal).ToString("C2");
             lblTotalPedidos.Text = lista.Count.ToString();
-            lblTotalCancelado.Text = totalCancelado.ToString("C2");
+
+            // --- ATUALIZAÇÃO DOS STATUS (VALOR + QUANTIDADE) ---
+
+            // Cancelados
+            lblTotalCancelado.Text = listaCancelados.Sum(p => p.ValorTotal).ToString("C2");
+            lblQtdeCancelado.Text = $"({listaCancelados.Count})";
+
+            // Prontos
+            lblTotalProntos.Text = listaProntos.Sum(p => p.ValorTotal).ToString("C2");
+            lblQtdeProntos.Text = $"({listaProntos.Count})";
+
+            // Finalizados
+            lblTotalFinalizados.Text = listaFinalizados.Sum(p => p.ValorTotal).ToString("C2");
+            lblQtdeFinalizados.Text = $"({listaFinalizados.Count})";
+
+            // Estornados
+            lblTotalEstornados.Text = listaEstornados.Sum(p => p.ValorTotal).ToString("C2");
+            lblQtdeEstornados.Text = $"({listaEstornados.Count})";
+
+            // Hoje
+            lblTotalVendido.Text = listaHoje.Sum(p => p.ValorTotal).ToString("C2");
+            lblVendasHoje.Text = $"({listaHoje.Count})";
         }
+
+        private void ZerarTudo()
+        {
+            lblFaturadoGeral.Text = lblLucroGeral.Text = "R$ 0,00";
+            lblTotalPedidos.Text = "0";
+
+            lblTotalCancelado.Text = lblTotalProntos.Text = lblTotalFinalizados.Text = lblTotalEstornados.Text = lblTotalVendido.Text = "R$ 0,00";
+            lblQtdeCancelado.Text = lblQtdeProntos.Text = lblQtdeFinalizados.Text = lblQtdeEstornados.Text = lblVendasHoje.Text = "(0)";
+        }
+
+
 
         private void Pesquisar_Click(object sender, RoutedEventArgs e)
         {
-            IEnumerable<PedidoDTO> filtrados = todosPedidos;
+            if (todosPedidos == null) return;
 
-            // 1. Filtro Texto: Cliente ou CPF
+            var f = todosPedidos.AsEnumerable();
+
             if (!string.IsNullOrWhiteSpace(txtBuscaCliente.Text))
             {
                 string busca = txtBuscaCliente.Text.ToLower();
-                filtrados = filtrados.Where(p =>
-                    (p.NomeCliente != null && p.NomeCliente.ToLower().Contains(busca)) ||
-                    (p.CpfCliente != null && p.CpfCliente.Contains(busca)));
+                f = f.Where(p => (p.NomeCliente?.ToLower().Contains(busca) == true)
+                              || (p.CpfCliente?.Contains(busca) == true));
             }
 
-            // 2. Filtro Texto: Vendedor
             if (!string.IsNullOrWhiteSpace(txtBuscaVendedor.Text))
             {
-                string busca = txtBuscaVendedor.Text.ToLower();
-                filtrados = filtrados.Where(p => p.NomeUsuario != null && p.NomeUsuario.ToLower().Contains(busca));
+                string buscaVendedor = txtBuscaVendedor.Text.ToLower();
+                f = f.Where(p => p.NomeUsuario?.ToLower().Contains(buscaVendedor) == true);
             }
 
-            // 3. Filtro: Datas
             if (dtInicio.SelectedDate.HasValue)
-                filtrados = filtrados.Where(p => p.DataCriacao.Date >= dtInicio.SelectedDate.Value.Date);
+                f = f.Where(p => p.DataCriacao.Date >= dtInicio.SelectedDate.Value.Date);
 
             if (dtFim.SelectedDate.HasValue)
-                filtrados = filtrados.Where(p => p.DataCriacao.Date <= dtFim.SelectedDate.Value.Date);
+                f = f.Where(p => p.DataCriacao.Date <= dtFim.SelectedDate.Value.Date);
 
-            // 4. Filtro: Status (ID 7 é "Todos", ID 8 é "N/A")
             if (comboStatus.SelectedValue != null)
             {
-                int idStatus = Convert.ToInt32(comboStatus.SelectedValue);
-                // Se NÃO for "Todos" e NÃO for "Não se aplica", filtramos pelo ID
-                if (idStatus != 7 && idStatus != 8)
-                {
-                    filtrados = filtrados.Where(p => p.IdStatus == idStatus);
-                }
+                int statusSelecionado = (int)comboStatus.SelectedValue;
+                if (statusSelecionado != 7) 
+                    f = f.Where(p => p.IdStatus == statusSelecionado);
             }
 
-            // 5. Filtro: Pagamento (ID 6 é "Todos")
             if (comboFormaDePagamento.SelectedValue != null)
             {
-                int idPgto = Convert.ToInt32(comboFormaDePagamento.SelectedValue);
-                // Se NÃO for "Todos", filtramos pelo ID selecionado
-                if (idPgto != 6)
-                {
-                    filtrados = filtrados.Where(p => p.IdFormaPagamento == idPgto);
-                }
+                int pgtoSelecionado = (int)comboFormaDePagamento.SelectedValue;
+                if (pgtoSelecionado != 6) 
+                    f = f.Where(p => p.IdFormaPagamento == pgtoSelecionado);
             }
 
-            var listaFinal = filtrados.ToList();
-            dgRelatorios.ItemsSource = listaFinal;
-            AtualizarCards(listaFinal);
+            var listaFiltrada = f.ToList();
+            dgRelatorios.ItemsSource = listaFiltrada;
+            AtualizarCards(listaFiltrada);
         }
 
         private void LimparFiltros_Click(object sender, RoutedEventArgs e)
@@ -137,8 +164,8 @@ namespace PDV_LANCHES.Views.ViewsAdministrativo
             txtBuscaVendedor.Clear();
             dtInicio.SelectedDate = null;
             dtFim.SelectedDate = null;
-            comboStatus.SelectedValue = 7; // Volta para "Todos"
-            comboFormaDePagamento.SelectedValue = 6; // Volta para "Todos"
+            comboStatus.SelectedValue = 7;
+            comboFormaDePagamento.SelectedValue = 6;
 
             dgRelatorios.ItemsSource = todosPedidos;
             AtualizarCards(todosPedidos);
@@ -146,22 +173,21 @@ namespace PDV_LANCHES.Views.ViewsAdministrativo
 
         private void VerDetalhes_Click(object sender, MouseButtonEventArgs e)
         {
-            if (dgRelatorios.SelectedItem is PedidoDTO pedido)
-            {
-                PedidoInfo info = new PedidoInfo(pedido.Id, true);
-                info.ShowDialog();
-            }
+            if (dgRelatorios.SelectedItem is PedidoDTO p)
+                new PedidoInfo(p.Id, false, true).ShowDialog();
         }
 
         private void Imprimir_Click(object sender, RoutedEventArgs e)
         {
-            PrintDialog printDlg = new PrintDialog();
-            if (printDlg.ShowDialog() == true)
-            {
-                printDlg.PrintVisual(dgRelatorios, "Relatório de Vendas");
-            }
+            var dlg = new PrintDialog();
+            if (dlg.ShowDialog() == true)
+                dlg.PrintVisual(dgRelatorios, "Relatório de Vendas");
         }
 
-
+        private void UserControl_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) Pesquisar_Click(null, null);
+            if (e.Key == Key.Escape) LimparFiltros_Click(null, null);
+        }
     }
 }

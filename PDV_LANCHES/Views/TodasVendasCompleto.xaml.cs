@@ -32,10 +32,13 @@ namespace PDV_LANCHES.Views
         private async Task CarregarDadosUsuario()
         {
             var usuario = await homeController.pegarUsuarioLogado();
-            if (usuario == null)
-            {
+            if(usuario == null)
+     {
                 MessageBox.Show("Sessão expirada. Faça login novamente.");
+                MainWindow main = new MainWindow();
+                main.Show();
                 this.Close();
+                return;
             }
 
             usuarioLogado = usuario;

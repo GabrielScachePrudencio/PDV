@@ -30,6 +30,15 @@ namespace PDV_LANCHES.controller
                 return null;
             return await response.Content.ReadFromJsonAsync<List<PedidoDTO>>();
         }
+        public async Task<List<PedidoDTO>?> PegarTodosPedidosToday()
+        {
+            var response = await ApiClient.Client.GetAsync("api/pedidos/pedidosToday");
+            if (!response.IsSuccessStatusCode)
+                return null;
+            return await response.Content.ReadFromJsonAsync<List<PedidoDTO>>();
+        }
+
+
 
         public async Task<bool> ExcluirAlgumPedido(int idPedido)
         {

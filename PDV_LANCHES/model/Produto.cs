@@ -7,6 +7,7 @@
         public int IdCategoria { get; set; }
 
         public decimal Valor { get; set; }
+        public decimal PrecoUnitario { get; set; }
         public bool Disponivel { get; set; }
         public string pathImg { get; set; }
 

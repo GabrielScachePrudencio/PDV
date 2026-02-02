@@ -152,7 +152,9 @@ namespace PDV_LANCHES.Views
 
         private async Task CarregarDadosPedidos()
         {
-            var lista = await homeController.PegarTodosPedidos();
+            txtDataHoje.Text = DateTime.Today.ToString("dd 'de' MMMM, yyyy");
+
+            var lista = await homeController.PegarTodosPedidosToday();
             if (lista == null)
             {
                 MessageBox.Show("Não ha pedidos");
@@ -166,7 +168,46 @@ namespace PDV_LANCHES.Views
             }
 
             ListaPedidos.ItemsSource = pedidos;
+            AtualizarResumoDoDia();
+
+
         }
+        private void AtualizarResumoDoDia()
+        {
+            if (pedidos == null || pedidos.Count == 0)
+            {
+                txtTotalDinheiro.Text = "R$ 0,00";
+                txtTotalGeral.Text = "R$ 0,00";
+                txtTotalLucro.Text = "R$ 0,00";
+                txtQuantidadeVendas.Text = "0";
+                return;
+            }
+
+            const int ID_DINHEIRO = 2;
+
+            decimal totalDinheiro = pedidos
+                .Where(p => p.IdFormaPagamento == ID_DINHEIRO && p.IdStatus == 2)
+                .Sum(p => p.ValorTotal);
+
+
+            decimal totalGeral = pedidos
+                .Where(p => p.IdStatus == 2)
+                .Sum(p => p.ValorTotal);
+
+            decimal custoTotal = pedidos
+                .Where(p => p.IdStatus == 2)
+                .Sum(p =>
+                p.Itens.Sum(i => i.CustoDeFabricacao * i.Quantidade)
+            );
+
+            decimal lucroTotal = totalGeral - custoTotal;
+
+            txtTotalDinheiro.Text = $"R$ {totalDinheiro:F2}";
+            txtTotalGeral.Text = $"R$ {totalGeral:F2}";
+            txtTotalLucro.Text = $"R$ {lucroTotal:F2}";
+            txtQuantidadeVendas.Text = pedidos.Count.ToString();
+        }
+
 
         public void VerDetalhes_click(object sender, RoutedEventArgs e)
         {

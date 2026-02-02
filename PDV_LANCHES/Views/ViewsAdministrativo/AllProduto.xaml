@@ -110,6 +110,15 @@
                                     </Style>
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
+                            <DataGridTextColumn Header="Preço Unitario" Binding="{Binding PrecoUnitario, StringFormat=C}" Width="120">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="HorizontalAlignment" Value="Right"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                        <Setter Property="Margin" Value="0,0,15,0"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
 
                             <DataGridTemplateColumn Header="Status" Width="140">
                                 <DataGridTemplateColumn.CellTemplate>

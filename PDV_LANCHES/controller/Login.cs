@@ -49,6 +49,53 @@ namespace PDV_LANCHES.controller
             Timeout = TimeSpan.FromSeconds(15)
         };
 
+
+        public async Task<ResultadoApi> VerificarConexaoDiretaHostPorta(string host, int porta)
+        {
+            if (!host.StartsWith("http"))
+                host = "http://" + host;
+
+            string urlCompleta = $"{host}:{porta}/api/auth/teste-conexao";
+
+            try
+            {
+                using var client = new HttpClient
+                {
+                    Timeout = TimeSpan.FromSeconds(5)
+                };
+
+                var response = await client.GetAsync(urlCompleta);
+                var conteudo = await response.Content.ReadAsStringAsync();
+
+                return new ResultadoApi
+                {
+                    Sucesso = response.IsSuccessStatusCode,
+                    StatusCode = (int)response.StatusCode,
+                    Mensagem = conteudo
+                };
+            }
+            catch (TaskCanceledException)
+            {
+                return new ResultadoApi
+                {
+                    Sucesso = false,
+                    StatusCode = 408,
+                    Mensagem = "Tempo de conexão esgotado."
+                };
+            }
+            catch
+            {
+                return new ResultadoApi
+                {
+                    Sucesso = false,
+                    StatusCode = 404,
+                    Mensagem = "Servidor não encontrado ou offline."
+                };
+            }
+        }
+
+
+
         public async Task<ResultadoApi> VerificarConexaoDireta(ConfiguracoesBanco configuracao)
         {
             // 1. Normaliza o Host

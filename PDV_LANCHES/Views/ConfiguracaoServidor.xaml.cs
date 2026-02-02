@@ -1,5 +1,6 @@
 ﻿using PDV_LANCHES.controller;
 using PDV_LANCHES.model;
+using PDV_LANCHES.Views.ViewsAdministrativo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,8 +37,38 @@ namespace PDV_LANCHES.Views
                 txtPortaDoBanco.Text = config.PortaBanco.ToString();
                 txtNomeDatabase.Text = config.NomeBanco;
                 txtUsuarioDatabase.Text = config.UsuarioBanco;
-                txtSenhaDatabase.Text = config.senhaBanco;
+                txtSenhaDatabase.Password = config.senhaBanco;
                 
+            }
+        }
+        
+
+        private async void BtnTestarHostEaPorta_Click(object sender, RoutedEventArgs e)
+        {
+
+            ResultadoApi resultado = await login.VerificarConexaoDiretaHostPorta(txtIpServidor.Text, int.Parse(txtPortaServidor.Text));
+
+            if (resultado.Sucesso)
+            {
+                MessageBox.Show("Conectado com sucesso!");
+            }
+            else
+            {
+                switch (resultado.StatusCode)
+                {
+                    case 400:
+                        MessageBox.Show("Dados incompletos! Verifique se todos os campos (IP, Porta, Banco, Usuário) foram preenchidos.");
+                        break;
+                    case 404:
+                        MessageBox.Show("Não foi possível encontrar o Servidor. Verifique o IP e se o servidor está rodando.");
+                        break;
+                    case 503:
+                        MessageBox.Show("O Servidor está online, mas não conseguiu conectar ao MySQL com esses dados.");
+                        break;
+                    default:
+                        MessageBox.Show($"Erro inesperado: {resultado.StatusCode}");
+                        break;
+                }
             }
         }
 
@@ -50,7 +81,7 @@ namespace PDV_LANCHES.Views
                 PortaBanco = int.Parse(txtPortaDoBanco.Text),
                 NomeBanco = txtNomeDatabase.Text,
                 UsuarioBanco = txtUsuarioDatabase.Text,
-                senhaBanco = txtSenhaDatabase.Text,
+                senhaBanco = txtSenhaDatabase.Password,
                 TipoConexao = "MySQL"
             };
 
@@ -91,7 +122,7 @@ namespace PDV_LANCHES.Views
                 PortaBanco = int.Parse(txtPortaDoBanco.Text),
                 NomeBanco = txtNomeDatabase.Text,
                 UsuarioBanco = txtUsuarioDatabase.Text,
-                senhaBanco = txtSenhaDatabase.Text,
+                senhaBanco = txtSenhaDatabase.Password,
                 TipoConexao = "MySQL"
             };
 

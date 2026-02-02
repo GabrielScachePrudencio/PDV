@@ -15,12 +15,14 @@ namespace PDV_LANCHES.Views
         private int id;
         private PedidoInfoController pedidoInfoController = new PedidoInfoController();
         bool veioDeTodasVendas = false;
+        bool veioTodosRelatorios = false;
 
-        public PedidoInfo(int id, bool veioDeTodasVendas = false)
+        public PedidoInfo(int id, bool veioDeTodasVendas = false, bool veioTodosRelatorios = false)
         {
             InitializeComponent(); 
             this.id = id;
             this.veioDeTodasVendas = veioDeTodasVendas;
+            this.veioTodosRelatorios = veioTodosRelatorios;
             CarregarPedidoAssincrono();
         }
 
@@ -250,15 +252,21 @@ namespace PDV_LANCHES.Views
                 pedido.ValorTotal = pedido.Itens.Sum(i => i.Quantidade * i.ValorUnitario);
                 MontarPedidoTela();
 
-                bool sucesso = await pedidoInfoController.AtualizarPedido(pedido);
+                var sucesso = await pedidoInfoController.AtualizarPedido(pedido);
 
-                if (sucesso)
+                if (sucesso == "Pedido criado com sucesso!" || sucesso == "ok")
                 {
-                    MessageBox.Show("Pedido atualizado com sucesso!");
+                    MessageBox.Show(sucesso);
                     if (veioDeTodasVendas == false)
                     {
                         Home home = new Home();
                         home.Show();
+                        this.Close();
+                    }
+                    if(veioTodosRelatorios == true)
+                    {
+                        HomeAdministrativo homeAdministrativo = new HomeAdministrativo();
+                        homeAdministrativo.Show();
                         this.Close();
                     }
                     else
@@ -367,6 +375,12 @@ namespace PDV_LANCHES.Views
             {
                 Home home = new Home();
                 home.Show();
+                this.Close();
+            }
+            if (veioTodosRelatorios == true)
+            {
+                HomeAdministrativo homeAdministrativo = new HomeAdministrativo();
+                homeAdministrativo.Show();
                 this.Close();
             }
             else
