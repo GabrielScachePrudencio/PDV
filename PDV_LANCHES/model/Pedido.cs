@@ -17,6 +17,7 @@ namespace PDV_LANCHES.model
         public DateTime DataEntrega { get; set; }
         public string pahCardapioImg { get; set; }
 
+        public int IdCaixa { get; set; }
         public TipoMovimentacaoEstoque TipoMovimentacao { get; set; }
         public OrigemMovimentacaoEstoque OrigemMovimentacaoEstoque { get; set; }
 

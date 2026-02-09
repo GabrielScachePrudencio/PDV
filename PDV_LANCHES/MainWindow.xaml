@@ -9,7 +9,15 @@
         AllowsTransparency="True"
         Background="Transparent">
 
-    <Border Background="#020617" CornerRadius="20" BorderBrush="#1E293B" BorderThickness="1" MouseDown="Window_MouseDown">
+    <Window.Resources>
+        <SolidColorBrush x:Key="BgPrincipal" Color="#F8FAFC"/>
+        <SolidColorBrush x:Key="BgLateral" Color="#3B82F6"/>
+        <SolidColorBrush x:Key="TextoPrincipal" Color="#0F172A"/>
+        <SolidColorBrush x:Key="TextoSecundario" Color="#64748B"/>
+        <SolidColorBrush x:Key="BordaInput" Color="#E2E8F0"/>
+    </Window.Resources>
+
+    <Border Background="{StaticResource BgPrincipal}" CornerRadius="20" BorderBrush="{StaticResource BordaInput}" BorderThickness="1" MouseDown="Window_MouseDown">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.2*"/>
@@ -19,59 +27,69 @@
             <Button Content="✕" 
                     Grid.Column="1"
                     HorizontalAlignment="Right" VerticalAlignment="Top" 
-                    Margin="0,10,10,0" Width="66" Height="60"
-                    Background="Transparent" Foreground="#475569" 
-                    FontSize="40" BorderThickness="0" Cursor="Hand" 
+                    Margin="0,15,15,0" Width="40" Height="40"
+                    Background="Transparent" Foreground="{StaticResource TextoSecundario}" 
+                    FontSize="20" BorderThickness="0" Cursor="Hand" 
                     Click="Fechar_Click" Panel.ZIndex="100"/>
-            <Button Content="⚙"
-            Grid.Column="0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Margin="10,10,0,0"
-            Width="50"
-            Height="50"
-            Background="Transparent"
-            Foreground="#94A3B8"
-            FontSize="26"
-            BorderThickness="0"
-            Cursor="Hand"
-            Click="configurarPdvNoServidor_Click"
-            Panel.ZIndex="100"/>        
 
-            <Border Grid.Column="0" Background="#0F172A" CornerRadius="20,0,0,20">
-                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="InformacoesNaEsquerda" Visibility="Hidden">
-                    <Image x:Name="pdvLogo" Width="150" Height="150" Stretch="Uniform" Margin="0,0,0,20"/>
-                    <TextBlock x:Name="pdvNome" FontSize="28" FontWeight="ExtraBold" Foreground="White" HorizontalAlignment="Center"/>
-                    <TextBlock Text="SISTEMA PDV" FontSize="12" Foreground="#475569" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
-                </StackPanel>
+            <Button Content="⚙"
+                    Grid.Column="0"
+                    HorizontalAlignment="Left" VerticalAlignment="Top"
+                    Margin="20,20,0,0" Width="40" Height="40"
+                    Background="Transparent" Foreground="White" Opacity="0.8"
+                    FontSize="22" BorderThickness="0" Cursor="Hand"
+                    Click="configurarPdvNoServidor_Click"
+                    Panel.ZIndex="100"/>
+
+            <Border Grid.Column="0" Background="{StaticResource BgLateral}" CornerRadius="20,0,0,20">
+                <Grid>
+                    <Ellipse Width="300" Height="300" Fill="White" Opacity="0.05" Margin="-150,-150,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="InformacoesNaEsquerda" Visibility="Visible">
+                        <Border Background="White" Width="140" Height="140" CornerRadius="70" Margin="0,0,0,25">
+                            <Image x:Name="pdvLogo" Width="90" Height="90" Stretch="Uniform" />
+                        </Border>
+                        <TextBlock x:Name="pdvNome" Text="NOME DO PDV" FontSize="26" FontWeight="ExtraBold" Foreground="White" HorizontalAlignment="Center"/>
+                        <TextBlock Text="SISTEMA DE GESTÃO PDV" FontSize="11" Foreground="White" Opacity="0.8" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,8,0,0" />
+                    </StackPanel>
+                </Grid>
             </Border>
 
-            <Grid Grid.Column="1" Margin="30">
+            <Grid Grid.Column="1" Margin="40">
+
                 <StackPanel x:Name="PainelInicial" VerticalAlignment="Center">
-                    <Button x:Name="Entrar" Content="CONECTAR AO SISTEMA" Height="50" Background="#2563eb" Foreground="White" 
-                            FontWeight="Bold" FontSize="15" BorderThickness="0" Cursor="Hand" Click="Entrar_Click">
+                    <TextBlock Text="Pronto para começar?" Foreground="{StaticResource TextoSecundario}" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+                    <Button x:Name="Entrar" Content="CONECTAR AO SISTEMA" Height="55" Background="#2563eb" Foreground="White" 
+                            FontWeight="Bold" FontSize="14" BorderThickness="0" Cursor="Hand" Click="Entrar_Click">
                         <Button.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                <Setter Property="CornerRadius" Value="8"/>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="12"/>
                             </Style>
                         </Button.Resources>
+                        <Button.Effect>
+                            <DropShadowEffect BlurRadius="15" ShadowDepth="2" Opacity="0.1" Color="#2563eb"/>
+                        </Button.Effect>
                     </Button>
                 </StackPanel>
 
                 <StackPanel x:Name="informacoesNaDireita" VerticalAlignment="Center" Visibility="Collapsed">
-                    <TextBlock Text="Bem-vindo" FontSize="24" FontWeight="Bold" Foreground="White" Margin="0,0,0,20"/>
-                    <TextBlock Text="Usuário" Foreground="#94A3B8" Margin="0,0,0,5" FontSize="12"/>
-                    <Border Background="#0F172A" CornerRadius="8" BorderBrush="#1E293B" BorderThickness="1" Margin="0,0,0,15">
-                        <TextBox x:Name="inputLoginNome" Height="40" Background="Transparent" Foreground="White" BorderThickness="0" Padding="10,0" VerticalContentAlignment="Center"/>
+                    <TextBlock Text="Login" FontSize="28" FontWeight="Bold" Foreground="{StaticResource TextoPrincipal}" Margin="0,0,0,5"/>
+                    <TextBlock Text="Acesse sua conta para continuar" Foreground="{StaticResource TextoSecundario}" Margin="0,0,0,30" FontSize="13"/>
+
+                    <TextBlock Text="USUÁRIO" Foreground="{StaticResource TextoSecundario}" Margin="0,0,0,8" FontSize="10" FontWeight="Bold"/>
+                    <Border Background="#F1F5F9" CornerRadius="10" BorderBrush="{StaticResource BordaInput}" BorderThickness="1" Margin="0,0,0,20">
+                        <TextBox x:Name="inputLoginNome" Height="45" Background="Transparent" Foreground="{StaticResource TextoPrincipal}" BorderThickness="0" Padding="12,0" VerticalContentAlignment="Center" FontSize="14"/>
                     </Border>
-                    <TextBlock Text="Senha" Foreground="#94A3B8" Margin="0,0,0,5" FontSize="12"/>
-                    <Border Background="#0F172A" CornerRadius="8" BorderBrush="#1E293B" BorderThickness="1" Margin="0,0,0,20">
-                        <PasswordBox x:Name="inputLoginSenha" Height="40" Background="Transparent" Foreground="White" BorderThickness="0" Padding="10,0" VerticalContentAlignment="Center"/>
+
+                    <TextBlock Text="SENHA" Foreground="{StaticResource TextoSecundario}" Margin="0,0,0,8" FontSize="10" FontWeight="Bold"/>
+                    <Border Background="#F1F5F9" CornerRadius="10" BorderBrush="{StaticResource BordaInput}" BorderThickness="1" Margin="0,0,0,25">
+                        <PasswordBox x:Name="inputLoginSenha" Height="45" Background="Transparent" Foreground="{StaticResource TextoPrincipal}" BorderThickness="0" Padding="12,0" VerticalContentAlignment="Center" FontSize="14"/>
                     </Border>
-                    <Button Content="Acessar" Height="45" Background="#22c55e" Foreground="White" FontWeight="Bold" BorderThickness="0" Click="Button_Click">
+
+                    <Button Content="Acessar Sistema" Height="50" Background="#22c55e" Foreground="White" FontWeight="Bold" FontSize="14" BorderThickness="0" Cursor="Hand" Click="Button_Click">
                         <Button.Resources>
                             <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="8"/>
+                                <Setter Property="CornerRadius" Value="10"/>
                             </Style>
                         </Button.Resources>
                     </Button>

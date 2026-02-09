@@ -2,6 +2,7 @@
 using PDV_LANCHES.model;
 using PDV_LANCHES.Views;
 using ServidorLanches.model;
+using System.Security.RightsManagement;
 
 public class Status_Categorias
 {
@@ -10,10 +11,21 @@ public class Status_Categorias
 
     private readonly HomeAdministrativoController _homeAdministrativoController;
 
+    private readonly HomeController _homeController = new HomeController(); 
+
+
+
+
+    public List<TerminalCaixa> caixasTerminaisAbertos { get; private set; }
+    public TerminalCaixa caixaterminalSelecionado { get; set; }
+    public Caixa caixa { get; set; }
+
+
+
+
     public List<CategoriaProduto> CategoriaProdutos { get; private set; }
     public List<TipoStatusPedido> TipoStatusPedido { get; private set; }
     public List<FormaDePagamento> FormaDePagamentos { get; private set; }
-    public List<CupomDesconto> CuponsDesconto { get; private set; }
     public string teste { get; private set; }
 
     //GetAllCuponsDesconto
@@ -22,10 +34,16 @@ public class Status_Categorias
     private Status_Categorias()
     {
          _homeAdministrativoController = new HomeAdministrativoController();
+        _homeController = new HomeController();
         CategoriaProdutos = new();
         TipoStatusPedido = new();
         FormaDePagamentos = new();
-        CuponsDesconto = new();
+
+        //caixas 
+        caixasTerminaisAbertos = new();
+        caixaterminalSelecionado = null; 
+        caixa = null; 
+
     }
 
     public static Status_Categorias Instancia
@@ -65,18 +83,103 @@ public class Status_Categorias
         }
 
 
-        var cuponsDeconto = await _homeAdministrativoController.GetAllCuponsDesconto();
-        if (cuponsDeconto != null)
+       
+
+
+        var caixasTerminaisAbertosTodos = await _homeController.GetAllTerminaisCaixa(); 
+        if (caixasTerminaisAbertosTodos != null)
         {
-            CuponsDesconto = cuponsDeconto.Where(p => p.Ativo).ToList(); // Apenas as ativas
+            caixasTerminaisAbertos = caixasTerminaisAbertosTodos.Where(tc => tc.status == "ATIVO").ToList(); 
         }
 
         _carregado = true;
     }
 
+    public async Task<Caixa> iniciarCaixaNovo(TerminalCaixa terminalCaixa, Usuario usuarioLogado, Decimal valorInicial = 0)
+    {
+        caixa = new Caixa();
+        caixa.idTerminal = terminalCaixa.id;
+        caixa.idUsuario = usuarioLogado.Id;
+        caixa.dataAbertura = DateTime.Now;
+        caixa.valorInicial = valorInicial;
+        caixa.status = "ABERTO";
+
+        if (caixa == null) return null;
+
+        try
+        {
+            var caixaProcessado = await _homeController.AbrirCaixa(caixa);
+
+            if (caixaProcessado != null)
+            {
+                this.caixa = caixaProcessado;
+                return caixa;
+            }
+            return null;
+        }
+        catch (Exception)
+        {
+            return null;
+        }
+    }
+
+    public async Task<Caixa>    ObterDadosFechamento()
+    {
+        if (caixa == null) return null;
+
+        try
+        {
+            // Pede ao servidor para calcular os totais com base nos pedidos
+            var caixaProcessado = await _homeController.FecharCaixa(caixa);
+
+            if (caixaProcessado != null)
+            {
+                this.caixa = caixaProcessado;
+                return this.caixa;
+            }
+            return null;
+        }
+        catch (Exception)
+        {
+            return null;
+        }
+    }
+
+    public async Task<bool> salvarCaixa()
+    {
+        if (caixa == null) return false;
+
+        try
+        {
+            var caixaProcessado = await _homeController.SalvarCaixa(caixa);
+
+            if (caixaProcessado)
+            {
+                LimparCaixa();
+                return true;
+            }
+            return false;
+        }
+        catch (Exception)
+        {
+            return false;
+        }
+    }
+
+    public void LimparCaixa()
+    {
+        caixa = null;
+        caixaterminalSelecionado = null;
+    }
+
+
+
+
+
+
     public async Task RecarregarTudoAsync()
     {
-        _carregado = false; // Reseta a trava
-        await CarregarAsync(); // Busca tudo de novo do banco
+        _carregado = false; 
+        await CarregarAsync(); 
     }
 }

@@ -219,43 +219,5 @@ namespace PDV_LANCHES.controller
             return response.IsSuccessStatusCode;
         }
 
-        // ================= CUPONS =================
-
-        public async Task<List<CupomDesconto>?> GetAllCuponsDesconto()
-        {
-            try
-            {
-                var response = await ApiClient.Client.GetAsync("api/administrativo/cuponsDeDesconto");
-                return await response.Content.ReadFromJsonAsync<List<CupomDesconto>>();
-            }
-            catch
-            {
-                return null;
-            }
-        }
-
-        public async Task<bool> AddCupom(CupomDesconto cupom)
-        {
-            var response = await ApiClient.Client.PostAsJsonAsync(
-                "api/administrativo/cuponsDeDesconto", cupom);
-
-            return response.IsSuccessStatusCode;
-        }
-
-        public async Task<bool> UpdateCupom(int id, CupomDesconto cupom)
-        {
-            var response = await ApiClient.Client.PutAsJsonAsync(
-                $"api/administrativo/cuponsDeDesconto/{id}", cupom);
-
-            return response.IsSuccessStatusCode;
-        }
-
-        public async Task<bool> DeleteCupom(int id)
-        {
-            var response = await ApiClient.Client.DeleteAsync(
-                $"api/administrativo/cuponsDeDesconto/{id}");
-
-            return response.IsSuccessStatusCode;
-        }
     }
 }

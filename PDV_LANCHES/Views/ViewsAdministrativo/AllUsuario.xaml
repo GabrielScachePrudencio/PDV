@@ -9,32 +9,32 @@
 
     <UserControl.Resources>
         <Style TargetType="DataGridCell">
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Foreground" Value="#0F172A"/>
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Style.Triggers>
                 <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Background" Value="#F1F5F9"/>
                     <Setter Property="Foreground" Value="#3B82F6"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
 
         <Style TargetType="DataGridRow">
-            <Setter Property="Background" Value="#020617"/>
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#0F172A"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#0F172A"/>
+                    <Setter Property="Background" Value="#F8FAFC"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
 
     <Grid Margin="24">
-        <Border Background="#0F172A" CornerRadius="16" BorderBrush="#1E293B" BorderThickness="1" Padding="24">
+        <Border Background="#FFFFFF" CornerRadius="16" BorderBrush="#E2E8F0" BorderThickness="1" Padding="24">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -43,8 +43,8 @@
 
                 <Grid Grid.Row="0" Margin="0,0,0,25">
                     <StackPanel>
-                        <TextBlock Text="Equipe" FontSize="24" FontWeight="Bold" Foreground="White"/>
-                        <TextBlock Text="Gerencie os níveis de acesso dos funcionários." Foreground="#94A3B8" FontSize="13"/>
+                        <TextBlock Text="Gestão de Equipe" FontSize="24" FontWeight="Bold" Foreground="#0F172A"/>
+                        <TextBlock Text="Gerencie os níveis de acesso e usuários do sistema." Foreground="#64748B" FontSize="13"/>
                     </StackPanel>
 
                     <Button HorizontalAlignment="Right" Content="+ Novo Usuário" Width="180" Height="42" 
@@ -57,45 +57,58 @@
                     </Button>
                 </Grid>
 
-                <Border Grid.Row="1" CornerRadius="12" ClipToBounds="True" BorderBrush="#1E293B" BorderThickness="1">
-                    <DataGrid x:Name="dgUsuario" AutoGenerateColumns="False" CanUserAddRows="False" Background="#020617" 
+                <Border Grid.Row="1" CornerRadius="12" ClipToBounds="True" BorderBrush="#E2E8F0" BorderThickness="1">
+                    <DataGrid x:Name="dgUsuario" AutoGenerateColumns="False" CanUserAddRows="False" Background="#FFFFFF" 
                               BorderThickness="0" HeadersVisibility="Column" RowHeight="60" MouseDoubleClick="verDetalhes" 
                               GridLinesVisibility="None" SelectionUnit="FullRow">
 
                         <DataGrid.ColumnHeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
-                                <Setter Property="Background" Value="#1E293B"/>
-                                <Setter Property="Foreground" Value="#F8FAFC"/>
+                                <Setter Property="Background" Value="#F1F5F9"/>
+                                <Setter Property="Foreground" Value="#475569"/>
                                 <Setter Property="Padding" Value="15,0"/>
-                                <Setter Property="FontWeight" Value="SemiBold"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
                                 <Setter Property="Height" Value="45"/>
+                                <Setter Property="BorderBrush" Value="#E2E8F0"/>
+                                <Setter Property="BorderThickness" Value="0,0,0,1"/>
                             </Style>
                         </DataGrid.ColumnHeaderStyle>
 
                         <DataGrid.Columns>
-                            <DataGridTemplateColumn Header="" Width="60">
+                            <DataGridTemplateColumn Header="" Width="65">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Border Width="35" Height="35" Background="#1E293B" CornerRadius="17.5" HorizontalAlignment="Center">
+                                        <Border Width="38" Height="38" Background="#F1F5F9" CornerRadius="19" HorizontalAlignment="Center">
                                             <TextBlock Text="👤" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16"/>
                                         </Border>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
 
-                            <DataGridTextColumn Header="Nome" Binding="{Binding Nome}" Width="*"/>
+                            <DataGridTextColumn Header="NOME COMPLETO" Binding="{Binding Nome}" Width="*">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="FontWeight" Value="SemiBold"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                        <Setter Property="Margin" Value="10,0"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
 
-                            <DataGridTemplateColumn Header="Acesso" Width="150">
+                            <DataGridTemplateColumn Header="NÍVEL DE ACESSO" Width="180">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Border Background="#1E293B" CornerRadius="6" Padding="8,4" HorizontalAlignment="Left">
-                                            <TextBlock Text="{Binding TipoUsuario}" Foreground="#94A3B8" FontSize="11" FontWeight="Bold"/>
+                                        <Border Background="#EEF2FF" CornerRadius="8" Padding="10,5" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                            <StackPanel Orientation="Horizontal">
+                                                <Ellipse Width="6" Height="6" Fill="#6366F1" Margin="0,0,8,0"/>
+                                                <TextBlock Text="{Binding TipoUsuario}" Foreground="#4F46E5" FontSize="11" FontWeight="Bold" VerticalAlignment="Center"/>
+                                            </StackPanel>
                                         </Border>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
 
-                            <DataGridTemplateColumn Header="Ações" Width="100">
+                            <DataGridTemplateColumn Header="AÇÕES" Width="100">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <Button Click="Excluir_Click" Background="Transparent" BorderThickness="0" Cursor="Hand">
@@ -112,8 +125,8 @@
                                                     </Style.Triggers>
                                                 </Style>
                                             </Button.Style>
-                                            <Border Background="#450A0A" CornerRadius="8" Width="32" Height="32">
-                                                <TextBlock Text="🗑️" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14"/>
+                                            <Border Background="#FEF2F2" CornerRadius="8" Width="36" Height="36">
+                                                <TextBlock Text="🗑️" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" Foreground="#EF4444"/>
                                             </Border>
                                         </Button>
                                     </DataTemplate>

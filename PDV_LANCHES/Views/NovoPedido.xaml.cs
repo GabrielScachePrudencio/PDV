@@ -180,7 +180,23 @@ namespace PDV_LANCHES.Views
                 var forma = comboPagamento.SelectedItem as FormaDePagamento;
                 pedido.FormaPagamento = forma?.Descricao ?? "";
                 pedido.Itens = itensPedido.ToList();
-                pedido.ValorTotal = itensPedido.Sum(i => i.ValorUnitario * i.Quantidade);
+                pedido.ValorTotal = itensPedido.Sum(item =>
+                {
+                    decimal subtotal = item.ValorUnitario * item.Quantidade;
+                    decimal desconto = 0;
+
+                    if (item.Desconto > 0)
+                    {
+                        if (item.DecontoComPorcentagem == 1)
+                            desconto = subtotal * (item.Desconto / 100m);
+                        else
+                            desconto = item.Desconto;
+                    }
+
+                    return Math.Max(0, subtotal - desconto);
+                });
+
+                pedido.IdCaixa = Status_Categorias.Instancia.caixa.id;
 
                 if (darBaixaDepois)
                 {
@@ -238,10 +254,56 @@ namespace PDV_LANCHES.Views
             if (item != null) { itensPedido.Remove(item); AtualizarTotal(); }
         }
 
+        private void TipoDesconto_Changed(object sender, RoutedEventArgs e)
+        {
+            var rb = sender as RadioButton;
+            if (rb == null || rb.IsChecked != true) return;
+
+            var item = rb.DataContext as ItemPedidoCardapioDTO;
+            if (item == null) return;
+
+            if (rb.Tag.ToString() == "1")
+                item.DecontoComPorcentagem = 1;
+            else
+                item.DecontoComPorcentagem = 0;
+
+            AtualizarTotal();
+        }
+
+
+        private void Desconto_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            AtualizarTotal();
+        }
+
         private void AtualizarTotal()
         {
-            pedido.ValorTotal = itensPedido.Sum(i => i.ValorUnitario * i.Quantidade);
-            txtTotalDisplay.Text = $"R$ {pedido.ValorTotal:F2}";
+            decimal total = 0;
+
+            foreach(var item in itensPedido)
+            {
+                decimal subtotal = item.ValorUnitario * item.Quantidade;
+                decimal desconto = 0;
+
+                if(item.Desconto > 0)
+                {
+                    if (item.DecontoComPorcentagem == 1)
+                    {
+                        desconto = subtotal * (item.Desconto / 100m);
+                    }
+                    else
+                    {
+                        desconto = item.Desconto;
+                    }
+
+                }
+
+                total += Math.Max(0, subtotal - desconto);
+            }
+
+
+            pedido.ValorTotal = total;
+            txtTotalDisplay.Text = $"R$ {total:F2}";
         }
 
         private async void ButtonSairSemDarBaixa_Click(object sender, EventArgs e)
@@ -265,6 +327,9 @@ namespace PDV_LANCHES.Views
             }
             if (textBox.Text != fmt) { textBox.Text = fmt; textBox.CaretIndex = textBox.Text.Length; }
         }
+
+
+
 
         private void fecharAquiEAbrirHome()
         {

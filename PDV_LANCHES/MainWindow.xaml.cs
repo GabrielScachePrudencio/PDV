@@ -88,7 +88,7 @@ namespace PDV_LANCHES
                     }
                     else
                     {
-                        new Home().Show();
+                        new EscolhaQualHome().Show();
                         this.Close();
                     }
                 }

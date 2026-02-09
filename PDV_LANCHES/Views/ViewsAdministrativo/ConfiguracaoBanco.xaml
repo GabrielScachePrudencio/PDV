@@ -8,16 +8,16 @@
 
     <UserControl.Resources>
         <Style x:Key="StatusLabel" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="#94A3B8"/>
+            <Setter Property="Foreground" Value="#64748B"/>
             <Setter Property="FontSize" Value="11"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Margin" Value="0,0,0,6"/>
         </Style>
 
         <Style x:Key="InputBase" TargetType="TextBox">
-            <Setter Property="Background" Value="#020617"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderBrush" Value="#1E293B"/>
+            <Setter Property="Background" Value="#FFFFFF"/>
+            <Setter Property="Foreground" Value="#0F172A"/>
+            <Setter Property="BorderBrush" Value="#CBD5E1"/>
             <Setter Property="Padding" Value="10,8"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Style.Resources>
@@ -28,7 +28,7 @@
         </Style>
     </UserControl.Resources>
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto" Background="#020617">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Background="#F1F5F9">
         <Grid Margin="32">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -39,39 +39,39 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Row="0" Margin="0,0,0,30">
-                <TextBlock Text="Infraestrutura de Dados" FontSize="28" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="Infraestrutura de Dados" FontSize="28" FontWeight="Bold" Foreground="#0F172A"/>
                 <TextBlock Text="Configure a conexão com o servidor e gerencie rotinas de segurança." Foreground="#64748B" FontSize="14"/>
             </StackPanel>
 
             <UniformGrid Grid.Row="1" Columns="3" Margin="0,0,0,24">
-                <Border Background="#0F172A" CornerRadius="12" Padding="20" Margin="0,0,12,0" BorderBrush="#1E293B" BorderThickness="1">
+                <Border Background="#FFFFFF" CornerRadius="12" Padding="20" Margin="0,0,12,0" BorderBrush="#E2E8F0" BorderThickness="1">
                     <StackPanel>
                         <TextBlock Text="SERVIDOR ATUAL" Style="{StaticResource StatusLabel}"/>
-                        <TextBlock x:Name="lblHost" Text="127.0.0.1" Foreground="White" FontSize="18" FontWeight="Bold"/>
+                        <TextBlock x:Name="lblHost" Text="127.0.0.1" Foreground="#0F172A" FontSize="18" FontWeight="Bold"/>
                     </StackPanel>
                 </Border>
 
-                <Border Background="#0F172A" CornerRadius="12" Padding="20" Margin="0,0,12,0" BorderBrush="#10B981" BorderThickness="1">
+                <Border Background="#FFFFFF" CornerRadius="12" Padding="20" Margin="0,0,12,0" BorderBrush="#10B981" BorderThickness="1">
                     <StackPanel>
                         <TextBlock Text="STATUS DA CONEXÃO" Style="{StaticResource StatusLabel}"/>
                         <StackPanel Orientation="Horizontal">
                             <Ellipse Width="8" Height="8" Fill="#10B981" VerticalAlignment="Center" Margin="0,0,8,0"/>
-                            <TextBlock Text="Conectado" Foreground="#10B981" FontSize="18" FontWeight="Bold"/>
+                            <TextBlock Text="Conectado" Foreground="#059669" FontSize="18" FontWeight="Bold"/>
                         </StackPanel>
                     </StackPanel>
                 </Border>
 
-                <Border Background="#0F172A" CornerRadius="12" Padding="20" BorderBrush="#1E293B" BorderThickness="1">
+                <Border Background="#FFFFFF" CornerRadius="12" Padding="20" BorderBrush="#E2E8F0" BorderThickness="1">
                     <StackPanel>
                         <TextBlock Text="ÚLTIMO BACKUP" Style="{StaticResource StatusLabel}"/>
-                        <TextBlock x:Name="lblDataBackup" Text="--/--/--" Foreground="White" FontSize="18" FontWeight="Bold"/>
+                        <TextBlock x:Name="lblDataBackup" Text="--/--/--" Foreground="#0F172A" FontSize="18" FontWeight="Bold"/>
                     </StackPanel>
                 </Border>
             </UniformGrid>
 
-            <Border Grid.Row="2" Background="#0F172A" CornerRadius="12" Padding="24" BorderBrush="#1E293B" BorderThickness="1" Margin="0,0,0,24">
+            <Border Grid.Row="2" Background="#FFFFFF" CornerRadius="12" Padding="24" BorderBrush="#E2E8F0" BorderThickness="1" Margin="0,0,0,24">
                 <StackPanel>
-                    <TextBlock Text="Parâmetros de Conexão" Foreground="White" FontSize="16" FontWeight="Bold" Margin="0,0,20,15"/>
+                    <TextBlock Text="Parâmetros de Conexão" Foreground="#0F172A" FontSize="16" FontWeight="Bold" Margin="0,0,20,15"/>
                     <UniformGrid Columns="3">
                         <StackPanel Margin="0,0,15,0">
                             <TextBlock Text="HOST / IP" Style="{StaticResource StatusLabel}"/>
@@ -94,14 +94,20 @@
                         </StackPanel>
                         <StackPanel Margin="0,0,15,0">
                             <TextBlock Text="TIPO DE CONEXÃO" Style="{StaticResource StatusLabel}"/>
-                            <ComboBox x:Name="cbTipo" Height="38" Background="#020617" Foreground="White" BorderBrush="#1E293B"/>
+                            <ComboBox x:Name="cbTipo" Height="38" Background="White" Foreground="#0F172A" BorderBrush="#CBD5E1"/>
                         </StackPanel>
-                        <Button Content="Testar Conexão" Click="Testar_Click" VerticalAlignment="Bottom" Height="38" Background="#1E293B" Foreground="White" BorderThickness="1" BorderBrush="#3B82F6"/>
+                        <Button Content="Testar Conexão" Click="Testar_Click" VerticalAlignment="Bottom" Height="38" Background="#F1F5F9" Foreground="#475569" FontWeight="SemiBold" BorderThickness="1" BorderBrush="#CBD5E1">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="6"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
                     </UniformGrid>
                 </StackPanel>
             </Border>
 
-            <Border Grid.Row="3" Background="#0F172A" CornerRadius="12" Padding="20" BorderBrush="#1E293B" BorderThickness="1" Margin="0,0,0,24">
+            <Border Grid.Row="3" Background="#FFFFFF" CornerRadius="12" Padding="20" BorderBrush="#E2E8F0" BorderThickness="1" Margin="0,0,0,24">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -109,19 +115,41 @@
                     </Grid.ColumnDefinitions>
                     <StackPanel>
                         <TextBlock Text="Caminho para Backup Automático" Style="{StaticResource StatusLabel}"/>
-                        <TextBox x:Name="txtCaminhoBackup" IsReadOnly="True" Style="{StaticResource InputBase}" Background="#020617"/>
+                        <TextBox x:Name="txtCaminhoBackup" IsReadOnly="True" Style="{StaticResource InputBase}" Background="#F8FAFC" BorderBrush="#E2E8F0"/>
                     </StackPanel>
                     <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Bottom" Margin="15,0,0,0">
-                        <Button Content="Selecionar Pasta" Click="SelecionarPasta_Click" Padding="15,10" Background="#1E293B" Foreground="White" BorderThickness="0" Margin="0,0,10,0"/>
-                        <Button Content="🚀 Backup Agora" Click="Backup_Click" Padding="20,10" Background="#3B82F6" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
+                        <Button Content="Selecionar Pasta" Click="SelecionarPasta_Click" Padding="15,10" Background="#F1F5F9" Foreground="#475569" FontWeight="SemiBold" BorderThickness="0" Margin="0,0,10,0">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="6"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <Button Content="🚀 Backup Agora" Click="Backup_Click" Padding="20,10" Background="#3B82F6" Foreground="White" FontWeight="Bold" BorderThickness="0">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="6"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
                     </StackPanel>
                 </Grid>
             </Border>
 
             <StackPanel Grid.Row="4">
-                <TextBlock Text="Monitoramento de Tabelas" FontSize="16" FontWeight="Bold" Foreground="White" Margin="0,0,0,12"/>
-                <Border CornerRadius="8" ClipToBounds="True" BorderBrush="#1E293B" BorderThickness="1">
-                    <DataGrid x:Name="dgEstatisticas" Height="200" ItemsSource="{Binding SuasTabelas}">
+                <TextBlock Text="Monitoramento de Tabelas" FontSize="16" FontWeight="Bold" Foreground="#0F172A" Margin="0,0,0,12"/>
+                <Border CornerRadius="8" ClipToBounds="True" BorderBrush="#E2E8F0" BorderThickness="1" Background="White">
+                    <DataGrid x:Name="dgEstatisticas" Height="200" ItemsSource="{Binding SuasTabelas}" Background="White" RowHeight="40" BorderThickness="0" HeadersVisibility="Column">
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="Background" Value="#F8FAFC"/>
+                                <Setter Property="Foreground" Value="#64748B"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="Padding" Value="10,5"/>
+                                <Setter Property="BorderBrush" Value="#E2E8F0"/>
+                                <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
                     </DataGrid>
                 </Border>
             </StackPanel>

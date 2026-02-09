@@ -4,13 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="1100"
+             d:DesignHeight="600"
+             d:DesignWidth="1100"
              Background="Transparent">
+
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
+        <!-- Células -->
         <Style TargetType="DataGridCell">
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Foreground" Value="#0F172A"/>
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -22,20 +25,26 @@
             </Style.Triggers>
         </Style>
 
+        <!-- Linhas -->
         <Style TargetType="DataGridRow">
-            <Setter Property="Background" Value="#020617"/>
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#FFFFFF"/>
+            <Setter Property="Foreground" Value="#0F172A"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#0F172A"/>
+                    <Setter Property="Background" Value="#F1F5F9"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
 
     <Grid Margin="24">
-        <Border Background="#0F172A" CornerRadius="16" BorderBrush="#1E293B" BorderThickness="1" Padding="24">
+        <Border Background="#FFFFFF"
+                CornerRadius="16"
+                BorderBrush="#E2E8F0"
+                BorderThickness="1"
+                Padding="24">
+
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -43,14 +52,28 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
+                <!-- Cabeçalho -->
                 <Grid Grid.Row="0" Margin="0,0,0,20">
                     <StackPanel>
-                        <TextBlock Text="Produtos" FontSize="24" FontWeight="Bold" Foreground="White"/>
-                        <TextBlock Text="Controle preços e disponibilidade." Foreground="#94A3B8" FontSize="13"/>
+                        <TextBlock Text="Produtos"
+                                   FontSize="24"
+                                   FontWeight="Bold"
+                                   Foreground="#0F172A"/>
+                        <TextBlock Text="Controle preços e disponibilidade."
+                                   Foreground="#64748B"
+                                   FontSize="13"/>
                     </StackPanel>
-                    <Button HorizontalAlignment="Right" Content="+ Adicionar Item" Width="180" Height="40" 
-                            Background="#22C55E" Foreground="White" FontWeight="Bold" BorderThickness="0" 
-                            Cursor="Hand" Click="Adicionar_Click">
+
+                    <Button HorizontalAlignment="Right"
+                            Content="+ Adicionar Item"
+                            Width="180"
+                            Height="40"
+                            Background="#22C55E"
+                            Foreground="White"
+                            FontWeight="Bold"
+                            BorderThickness="0"
+                            Cursor="Hand"
+                            Click="Adicionar_Click">
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="8"/>
@@ -59,28 +82,61 @@
                     </Button>
                 </Grid>
 
-                <Border Grid.Row="1" Margin="0,0,0,15" Background="#020617" CornerRadius="8" Padding="10" BorderBrush="#1E293B" BorderThickness="1">
+                <!-- Busca -->
+                <Border Grid.Row="1"
+                        Margin="0,0,0,15"
+                        Background="#F8FAFC"
+                        CornerRadius="8"
+                        Padding="10"
+                        BorderBrush="#E2E8F0"
+                        BorderThickness="1">
+
                     <Grid>
-                        <TextBlock Text="Pesquisar produto..." Foreground="#64748B" VerticalAlignment="Center" Margin="10,0" IsHitTestVisible="False" 
+                        <TextBlock Text="Pesquisar produto..."
+                                   Foreground="#94A3B8"
+                                   VerticalAlignment="Center"
+                                   Margin="10,0"
+                                   IsHitTestVisible="False"
                                    Visibility="{Binding ElementName=txtBusca, Path=Text.IsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <TextBox x:Name="txtBusca" Background="Transparent" Foreground="White" BorderThickness="0" VerticalContentAlignment="Center" Padding="10,0" CaretBrush="White"/>
+
+                        <TextBox x:Name="txtBusca"
+                                 Background="Transparent"
+                                 Foreground="#0F172A"
+                                 BorderThickness="0"
+                                 VerticalContentAlignment="Center"
+                                 Padding="10,0"
+                                 CaretBrush="#0F172A"/>
                     </Grid>
                 </Border>
 
-                <Border Grid.Row="2" CornerRadius="12" ClipToBounds="True" BorderBrush="#1E293B" BorderThickness="1">
-                    <DataGrid x:Name="dgCardapio" AutoGenerateColumns="False" CanUserAddRows="False" Background="#020617" 
-                              BorderThickness="0" RowHeight="55" HeadersVisibility="Column" GridLinesVisibility="None" 
-                              HorizontalGridLinesBrush="#1E293B" SelectionMode="Single" SelectionUnit="FullRow">
+                <!-- Grid -->
+                <Border Grid.Row="2"
+                        CornerRadius="12"
+                        ClipToBounds="True"
+                        BorderBrush="#E2E8F0"
+                        BorderThickness="1">
+
+                    <DataGrid x:Name="dgCardapio"
+                              AutoGenerateColumns="False"
+                              CanUserAddRows="False"
+                              Background="#FFFFFF"
+                              BorderThickness="0"
+                              RowHeight="55"
+                              HeadersVisibility="Column"
+                              GridLinesVisibility="None"
+                              HorizontalGridLinesBrush="#E2E8F0"
+                              SelectionMode="Single"
+                              SelectionUnit="FullRow">
 
                         <DataGrid.ColumnHeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
-                                <Setter Property="Background" Value="#1E293B"/>
-                                <Setter Property="Foreground" Value="#F8FAFC"/>
+                                <Setter Property="Background" Value="#F1F5F9"/>
+                                <Setter Property="Foreground" Value="#0F172A"/>
                                 <Setter Property="Padding" Value="15,0"/>
                                 <Setter Property="FontWeight" Value="SemiBold"/>
                                 <Setter Property="Height" Value="45"/>
                                 <Setter Property="BorderThickness" Value="0,0,0,1"/>
-                                <Setter Property="BorderBrush" Value="#334155"/>
+                                <Setter Property="BorderBrush" Value="#E2E8F0"/>
                             </Style>
                         </DataGrid.ColumnHeaderStyle>
 
@@ -88,20 +144,32 @@
                             <DataGridTemplateColumn Header="Foto" Width="80">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Border Width="40" Height="40" CornerRadius="20" Margin="5" BorderBrush="#1E293B" BorderThickness="1">
+                                        <Border Width="40"
+                                                Height="40"
+                                                CornerRadius="20"
+                                                Margin="5"
+                                                BorderBrush="#CBD5E1"
+                                                BorderThickness="1">
                                             <Border.Background>
-                                                <ImageBrush ImageSource="{Binding pathImg}" Stretch="UniformToFill"/>
+                                                <ImageBrush ImageSource="{Binding pathImg}"
+                                                            Stretch="UniformToFill"/>
                                             </Border.Background>
                                         </Border>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
 
-                            <DataGridTextColumn Header="Produto" Binding="{Binding Nome}" Width="*"/>
+                            <DataGridTextColumn Header="Produto"
+                                                Binding="{Binding Nome}"
+                                                Width="*"/>
 
-                            <DataGridTextColumn Header="Categoria" Binding="{Binding NomeCategoria}" Width="150"/>
+                            <DataGridTextColumn Header="Categoria"
+                                                Binding="{Binding NomeCategoria}"
+                                                Width="150"/>
 
-                            <DataGridTextColumn Header="Preço" Binding="{Binding Valor, StringFormat=C}" Width="120">
+                            <DataGridTextColumn Header="Preço"
+                                                Binding="{Binding Valor, StringFormat=C}"
+                                                Width="120">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="HorizontalAlignment" Value="Right"/>
@@ -110,7 +178,10 @@
                                     </Style>
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Preço Unitario" Binding="{Binding PrecoUnitario, StringFormat=C}" Width="120">
+
+                            <DataGridTextColumn Header="Preço Unitario"
+                                                Binding="{Binding PrecoUnitario, StringFormat=C}"
+                                                Width="120">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="HorizontalAlignment" Value="Right"/>
@@ -120,33 +191,49 @@
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
 
+                            <!-- Status -->
                             <DataGridTemplateColumn Header="Status" Width="140">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Border x:Name="StatusBadge" Padding="10,4" CornerRadius="12" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                            <TextBlock x:Name="StatusText" FontSize="10" FontWeight="Bold" Foreground="White"/>
+                                        <Border x:Name="StatusBadge"
+                                                Padding="10,4"
+                                                CornerRadius="12"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center">
+                                            <TextBlock x:Name="StatusText"
+                                                       FontSize="10"
+                                                       FontWeight="Bold"
+                                                       Foreground="White"/>
                                         </Border>
                                         <DataTemplate.Triggers>
                                             <DataTrigger Binding="{Binding Disponivel}" Value="True">
-                                                <Setter TargetName="StatusBadge" Property="Background" Value="#065F46"/>
+                                                <Setter TargetName="StatusBadge" Property="Background" Value="#22C55E"/>
                                                 <Setter TargetName="StatusText" Property="Text" Value="• DISPONÍVEL"/>
                                             </DataTrigger>
                                             <DataTrigger Binding="{Binding Disponivel}" Value="False">
-                                                <Setter TargetName="StatusBadge" Property="Background" Value="#7F1D1D"/>
+                                                <Setter TargetName="StatusBadge" Property="Background" Value="#EF4444"/>
                                                 <Setter TargetName="StatusText" Property="Text" Value="• INDISPONÍVEL"/>
                                             </DataTrigger>
                                         </DataTemplate.Triggers>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
+
+                            <!-- Ações -->
                             <DataGridTemplateColumn Header="Ações" Width="100">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <Button Click="Editar_Click" Background="Transparent" BorderThickness="0" Cursor="Hand" Margin="0,0,8,0">
+                                        <StackPanel Orientation="Horizontal"
+                                                    HorizontalAlignment="Center">
+
+                                            <Button Click="Editar_Click"
+                                                    Background="Transparent"
+                                                    BorderThickness="0"
+                                                    Cursor="Hand"
+                                                    Margin="0,0,8,0">
                                                 <Button.Style>
                                                     <Style TargetType="Button">
-                                                        <Setter Property="Foreground" Value="White"/>
+                                                        <Setter Property="Foreground" Value="#0F172A"/>
                                                         <Style.Triggers>
                                                             <Trigger Property="IsMouseOver" Value="True">
                                                                 <Setter Property="RenderTransform">
@@ -158,10 +245,15 @@
                                                         </Style.Triggers>
                                                     </Style>
                                                 </Button.Style>
-                                                <TextBlock Text="✏️" FontSize="16" VerticalAlignment="Center"/>
+                                                <TextBlock Text="✏️"
+                                                           FontSize="16"
+                                                           VerticalAlignment="Center"/>
                                             </Button>
 
-                                            <Button Click="Excluir_Click" Background="Transparent" BorderThickness="0" Cursor="Hand">
+                                            <Button Click="Excluir_Click"
+                                                    Background="Transparent"
+                                                    BorderThickness="0"
+                                                    Cursor="Hand">
                                                 <Button.Style>
                                                     <Style TargetType="Button">
                                                         <Setter Property="Foreground" Value="#EF4444"/>
@@ -176,8 +268,11 @@
                                                         </Style.Triggers>
                                                     </Style>
                                                 </Button.Style>
-                                                <TextBlock Text="🗑️" FontSize="16" VerticalAlignment="Center"/>
+                                                <TextBlock Text="🗑️"
+                                                           FontSize="16"
+                                                           VerticalAlignment="Center"/>
                                             </Button>
+
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>

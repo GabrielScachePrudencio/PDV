@@ -5,55 +5,75 @@
 
     <UserControl.Resources>
         <Style x:Key="FieldLabel" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="12"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Foreground" Value="#94A3B8"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#64748B"/>
             <Setter Property="Margin" Value="0,0,0,6"/>
+            <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
         </Style>
 
         <Style TargetType="TextBox">
-            <Setter Property="Height" Value="40"/>
+            <Setter Property="Height" Value="42"/>
             <Setter Property="Padding" Value="12,0"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="BorderBrush" Value="#1E293B"/>
-            <Setter Property="Background" Value="#0F172A"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Margin" Value="0,0,0,15"/>
+            <Setter Property="BorderBrush" Value="#CBD5E1"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#0F172A"/>
+            <Setter Property="Margin" Value="0,0,0,18"/>
             <Style.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="8"/>
                 </Style>
             </Style.Resources>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="#3B82F6"/>
+                    <Setter Property="BorderThickness" Value="1.5"/>
+                </Trigger>
+                <Trigger Property="IsReadOnly" Value="True">
+                    <Setter Property="Background" Value="#F8FAFC"/>
+                    <Setter Property="Foreground" Value="#64748B"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="ComboBox">
+            <Setter Property="Height" Value="42"/>
+            <Setter Property="Margin" Value="0,0,0,18"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#CBD5E1"/>
         </Style>
     </UserControl.Resources>
 
-    <Grid Margin="20">
-        <Border Background="#0F172A" CornerRadius="16" Padding="40" HorizontalAlignment="Stretch">
+    <Grid Margin="24">
+        <Border Background="#FFFFFF" CornerRadius="16" Padding="40" HorizontalAlignment="Stretch" BorderBrush="#E2E8F0" BorderThickness="1">
             <Border.Effect>
-                <DropShadowEffect BlurRadius="20" Opacity="0.2" ShadowDepth="4"/>
+                <DropShadowEffect BlurRadius="15" Opacity="0.05" ShadowDepth="2" Color="Black"/>
             </Border.Effect>
 
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel>
-                    <TextBlock Text="CONFIGURAÇÕES FISCAIS" FontSize="24" FontWeight="Bold" Foreground="White" Margin="0,0,0,5"/>
-                    <TextBlock Text="Gerenciamento de tributação e emissão de notas fiscais" Foreground="#64748B" Margin="0,0,0,30"/>
+                    <TextBlock Text="Configurações Fiscais" FontSize="26" FontWeight="Bold" Foreground="#0F172A" Margin="0,0,0,5"/>
+                    <TextBlock Text="Gerenciamento de tributação e emissão de notas fiscais eletrônicas." Foreground="#64748B" FontSize="14" Margin="0,0,0,35"/>
 
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="50"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
                         <StackPanel Grid.Column="0">
-                            <TextBlock Text="CNPJ" Style="{StaticResource FieldLabel}"/>
-                            <TextBox x:Name="txtCnpj" MaxLength="18" TextChanged="txtCnpj_TextChanged"/>
+                            <TextBlock Text="CNPJ DA EMPRESA" Style="{StaticResource FieldLabel}"/>
+                            <TextBox x:Name="txtCnpj" MaxLength="18" TextChanged="txtCnpj_TextChanged" Tag="00.000.000/0000-00"/>
 
-                            <TextBlock Text="Inscrição Estadual" Style="{StaticResource FieldLabel}"/>
+                            <TextBlock Text="INSCRIÇÃO ESTADUAL" Style="{StaticResource FieldLabel}"/>
                             <TextBox x:Name="txtInscricaoEstadual"/>
 
-                            <TextBlock Text="Regime Tributário" Style="{StaticResource FieldLabel}"/>
-                            <ComboBox x:Name="cbRegimeTributario" Height="40" Margin="0,0,0,15">
+                            <TextBlock Text="REGIME TRIBUTÁRIO" Style="{StaticResource FieldLabel}"/>
+                            <ComboBox x:Name="cbRegimeTributario">
                                 <ComboBoxItem Content="Simples Nacional" IsSelected="True"/>
                                 <ComboBoxItem Content="Lucro Presumido"/>
                                 <ComboBoxItem Content="Lucro Real"/>
@@ -62,13 +82,14 @@
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="15"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <StackPanel Grid.Column="0" Margin="0,0,5,0">
+                                <StackPanel Grid.Column="0">
                                     <TextBlock Text="CST PIS" Style="{StaticResource FieldLabel}"/>
                                     <TextBox x:Name="txtCstPis"/>
                                 </StackPanel>
-                                <StackPanel Grid.Column="1" Margin="5,0,0,0">
+                                <StackPanel Grid.Column="2">
                                     <TextBlock Text="CST COFINS" Style="{StaticResource FieldLabel}"/>
                                     <TextBox x:Name="txtCstCofins"/>
                                 </StackPanel>
@@ -76,22 +97,23 @@
                         </StackPanel>
 
                         <StackPanel Grid.Column="2">
-                            <TextBlock Text="Ambiente de Emissão" Style="{StaticResource FieldLabel}"/>
-                            <ComboBox x:Name="cbAmbiente" Height="40" Margin="0,0,0,15">
-                                <ComboBoxItem Content="Homologação" IsSelected="True"/>
-                                <ComboBoxItem Content="Produção"/>
+                            <TextBlock Text="AMBIENTE DE EMISSÃO" Style="{StaticResource FieldLabel}"/>
+                            <ComboBox x:Name="cbAmbiente">
+                                <ComboBoxItem Content="Homologação (Testes)" IsSelected="True"/>
+                                <ComboBoxItem Content="Produção (Real)"/>
                             </ComboBox>
 
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="15"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <StackPanel Grid.Column="0" Margin="0,0,5,0">
-                                    <TextBlock Text="Alíquota ICMS (%)" Style="{StaticResource FieldLabel}"/>
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="ALÍQUOTA ICMS (%)" Style="{StaticResource FieldLabel}"/>
                                     <TextBox x:Name="txtAliquotaIcms"/>
                                 </StackPanel>
-                                <StackPanel Grid.Column="1" Margin="5,0,0,0">
+                                <StackPanel Grid.Column="2">
                                     <TextBlock Text="CSOSN" Style="{StaticResource FieldLabel}"/>
                                     <TextBox x:Name="txtCsosn"/>
                                 </StackPanel>
@@ -100,27 +122,28 @@
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="15"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <StackPanel Grid.Column="0" Margin="0,0,5,0">
-                                    <TextBlock Text="Série NF" Style="{StaticResource FieldLabel}"/>
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="SÉRIE NF" Style="{StaticResource FieldLabel}"/>
                                     <TextBox x:Name="txtSerieNf"/>
                                 </StackPanel>
-                                <StackPanel Grid.Column="1" Margin="5,0,0,0">
-                                    <TextBlock Text="Último Nº NF" Style="{StaticResource FieldLabel}"/>
+                                <StackPanel Grid.Column="2">
+                                    <TextBlock Text="ÚLTIMO Nº NF" Style="{StaticResource FieldLabel}"/>
                                     <TextBox x:Name="txtUltimoNumeroNf"/>
                                 </StackPanel>
                             </Grid>
 
-                            <TextBlock Text="Caminho do Certificado (.pfx)" Style="{StaticResource FieldLabel}"/>
+                            <TextBlock Text="CERTIFICADO DIGITAL (.PFX)" Style="{StaticResource FieldLabel}"/>
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBox x:Name="txtCaminhoCertificado" IsReadOnly="True" Margin="0,0,5,15"/>
-                                <Button Grid.Column="1" Content="..." Width="40" Height="40" VerticalAlignment="Top" 
-                                        Background="#1E293B" Foreground="White" BorderThickness="0" Cursor="Hand" Click="btnSelecionarCertificado_Click">
+                                <TextBox x:Name="txtCaminhoCertificado" IsReadOnly="True" Margin="0,0,8,18"/>
+                                <Button Grid.Column="1" Content="📁" Width="45" Height="42" VerticalAlignment="Top" 
+                                        Background="#F1F5F9" Foreground="#475569" BorderBrush="#CBD5E1" BorderThickness="1" Cursor="Hand" Click="btnSelecionarCertificado_Click">
                                     <Button.Resources>
                                         <Style TargetType="Border">
                                             <Setter Property="CornerRadius" Value="8"/>
@@ -129,14 +152,14 @@
                                 </Button>
                             </Grid>
 
-                            <TextBlock Text="Validade Certificado" Style="{StaticResource FieldLabel}"/>
-                            <TextBox x:Name="txtValidadeCertificado" IsReadOnly="True"/>
+                            <TextBlock Text="VALIDADE DO CERTIFICADO" Style="{StaticResource FieldLabel}"/>
+                            <TextBox x:Name="txtValidadeCertificado" IsReadOnly="True" FontWeight="Bold"/>
                         </StackPanel>
                     </Grid>
 
-                    <Button x:Name="btnSalvar" Content="Salvar Configurações" Height="50" Width="280" 
+                    <Button x:Name="btnSalvar" Content="SALVAR CONFIGURAÇÕES" Height="50" Width="280" 
                             HorizontalAlignment="Right" Background="#3B82F6" Foreground="White" 
-                            FontWeight="Bold" BorderThickness="0" Margin="0,20,0,0" Click="btnSalvar_Click">
+                            FontWeight="Bold" BorderThickness="0" Margin="0,10,0,0" Click="btnSalvar_Click">
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="10"/>

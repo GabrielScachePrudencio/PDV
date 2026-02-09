@@ -13,5 +13,8 @@ namespace PDV_LANCHES.model
         public int IdCardapio { get; set; }
         public int Quantidade { get; set; }
         public decimal PrecoUnitario { get; set; }
+
+        public decimal desconto { get; set; }
+        public int decontoComPorcentagem { get; set; }
     }
 }

@@ -1,0 +1,82 @@
+﻿<Window x:Class="PDV_LANCHES.Views.RelatorioFechamentoCaixa"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Relatório de Fechamento de Caixa" Height="500" Width="600" 
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="#F5F5F5">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0,0,0,20">
+            <TextBlock Text="FECHAMENTO DE CAIXA" FontSize="24" FontWeight="Bold" Foreground="#2C3E50"/>
+            <Separator Background="#3498DB" Height="2"/>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <UniformGrid Columns="2" Margin="0,0,0,10">
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Operador (ID):" Foreground="Gray"/>
+                        <TextBox Text="{Binding idUsuario, Mode=OneWay}" IsReadOnly="True" Background="#E0E0E0"/>
+                    </StackPanel>
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Data Abertura:" Foreground="Gray"/>
+                        <TextBox Text="{Binding dataAbertura, StringFormat={}{0:dd/MM/yyyy HH:mm}}" IsReadOnly="True" Background="#E0E0E0"/>
+                    </StackPanel>
+                </UniformGrid>
+
+                <GroupBox Header="Valores de Conferência" Margin="0,10" Padding="10">
+                    <StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Grid.Row="0" Grid.Column="0" Margin="5">
+                                <TextBlock Text="Valor Inicial:"/>
+                                <TextBox Text="{Binding valorInicial, StringFormat=C2}" FontWeight="Bold"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="0" Grid.Column="1" Margin="5">
+                                <TextBlock Text="Valor Calculado (Sistema):"/>
+                                <TextBox Text="{Binding valor_calculado, StringFormat=C2}" IsReadOnly="True" Foreground="Blue"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1" Grid.Column="0" Margin="5">
+                                <TextBlock Text="Valor Final em Dinheiro (Gaveta):" FontWeight="Bold"/>
+                                <TextBox x:Name="txtValorFinal" />
+
+
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1" Grid.Column="1" Margin="5">
+                                <TextBlock Text="Diferença:"/>
+                                <TextBox Name="txtDiferenca" 
+                                 Text="{Binding diferença, Mode=OneWay, StringFormat=C2}" 
+                                 FontWeight="Bold" IsReadOnly="True"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button Content="Voltar" Width="130" Height="35" Margin="0,0,10,0" Background="#95a5a6" Foreground="White" Click="voltar_click"/>
+            <Button Content="Confirmar Fechamento" Width="150" Height="35" Background="#27ae60" Foreground="White" FontWeight="Bold" Click="FecharCaixa_Click" />
+        </StackPanel>
+    </Grid>
+</Window>

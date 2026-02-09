@@ -1,14 +1,69 @@
 ﻿<Window x:Class="PDV_LANCHES.Views.Home"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        WindowState="Maximized" WindowStyle="SingleBorderWindow"
+        WindowState="Maximized" WindowStyle="none"
         Title="PDV - Operacional" Height="800" Width="1200" 
-        WindowStartupLocation="CenterScreen" Background="#020617">
+        
+        WindowStartupLocation="CenterScreen" Background="{DynamicResource BackgroundPrincipal}">
     <Window.Resources>
+        <!-- ========================================= -->
+        <!-- PALETA DE CORES - MODO CLARO -->
+        <!-- Altere aqui para mudar o tema -->
+        <!-- ========================================= -->
+
+        <!-- CORES PRINCIPAIS -->
+        <SolidColorBrush x:Key="BackgroundPrincipal" Color="#F8FAFC"/>
+        <SolidColorBrush x:Key="BackgroundSecundario" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="BackgroundCard" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="BackgroundInput" Color="#F1F5F9"/>
+
+        <!-- CORES DE TEXTO -->
+        <SolidColorBrush x:Key="TextoPrincipal" Color="#0F172A"/>
+        <SolidColorBrush x:Key="TextoSecundario" Color="#475569"/>
+        <SolidColorBrush x:Key="TextoTerciario" Color="#94A3B8"/>
+
+        <!-- CORES DE DESTAQUE -->
+        <SolidColorBrush x:Key="CorPrimaria" Color="#22C55E"/>
+        <SolidColorBrush x:Key="CorSecundaria" Color="#3B82F6"/>
+        <SolidColorBrush x:Key="CorAlerta" Color="#EF4444"/>
+        <SolidColorBrush x:Key="CorInfo" Color="#38BDF8"/>
+
+        <!-- BORDAS E DIVISORES -->
+        <SolidColorBrush x:Key="Borda" Color="#E2E8F0"/>
+        <SolidColorBrush x:Key="BordaHover" Color="#22C55E"/>
+
+        <!-- MENU LATERAL -->
+        <SolidColorBrush x:Key="MenuBackground" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="MenuBotaoNormal" Color="#F1F5F9"/>
+        <SolidColorBrush x:Key="MenuBotaoHover" Color="#E0F2FE"/>
+        <SolidColorBrush x:Key="MenuTextoNormal" Color="#475569"/>
+        <SolidColorBrush x:Key="MenuTextoHover" Color="#22C55E"/>
+
+        <!-- CARDS E CONTAINERS -->
+        <SolidColorBrush x:Key="CardBackground" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="CardBorda" Color="#E2E8F0"/>
+
+        <!-- STATUS E BADGES -->
+        <SolidColorBrush x:Key="StatusAtivoFundo" Color="#DCFCE7"/>
+        <SolidColorBrush x:Key="StatusAtivoTexto" Color="#16A34A"/>
+
+        <!-- COMBOBOX E DROPDOWNS -->
+        <SolidColorBrush x:Key="ComboboxBackground" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="ComboboxTexto" Color="#0F172A"/>
+        <SolidColorBrush x:Key="ComboboxBorda" Color="#CBD5E1"/>
+        <SolidColorBrush x:Key="ComboboxDropdown" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="ComboboxDropdownBorda" Color="#E2E8F0"/>
+
+        <!-- ITENS DE PEDIDO -->
+        <SolidColorBrush x:Key="ItemPedidoFundo" Color="#F8FAFC"/>
+        <SolidColorBrush x:Key="ItemPedidoBorda" Color="#E2E8F0"/>
+
+        <!-- ========================================= -->
+
         <Style x:Key="DarkComboBox" TargetType="ComboBox">
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Background" Value="#1E293B"/>
-            <Setter Property="BorderBrush" Value="#334155"/>
+            <Setter Property="Foreground" Value="{StaticResource ComboboxTexto}"/>
+            <Setter Property="Background" Value="{StaticResource ComboboxBackground}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ComboboxBorda}"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Height" Value="40"/>
             <Setter Property="Padding" Value="12,0"/>
@@ -65,8 +120,8 @@
                            Focusable="False"
                            PopupAnimation="Slide">
                                 <Border x:Name="DropDownBorder"
-                                Background="#0F172A" 
-                                BorderBrush="#334155"
+                                Background="{StaticResource ComboboxDropdown}" 
+                                BorderBrush="{StaticResource ComboboxDropdownBorda}"
                                 BorderThickness="1"
                                 CornerRadius="8"
                                 MinWidth="{Binding ActualWidth, ElementName=MainGrid}"
@@ -82,7 +137,7 @@
                                 <Setter TargetName="DropDownBorder" Property="Height" Value="95"/>
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="BorderBrush" Value="#22C55E"/>
+                                <Setter Property="BorderBrush" Value="{StaticResource BordaHover}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -92,8 +147,8 @@
 
 
         <Style x:Key="MenuButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="#94A3B8"/>
+            <Setter Property="Background" Value="{StaticResource MenuBotaoNormal}"/>
+            <Setter Property="Foreground" Value="{StaticResource MenuTextoNormal}"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Height" Value="50"/>
             <Setter Property="Margin" Value="12,4"/>
@@ -112,8 +167,8 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#1E293B"/>
-                    <Setter Property="Foreground" Value="#22C55E"/>
+                    <Setter Property="Background" Value="{StaticResource MenuBotaoHover}"/>
+                    <Setter Property="Foreground" Value="{StaticResource MenuTextoHover}"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -125,7 +180,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Border Grid.Column="0" Background="#0F172A" BorderBrush="#1E293B" BorderThickness="0,0,1,0">
+        <Border Grid.Column="0" Background="{StaticResource MenuBackground}" BorderBrush="{StaticResource Borda}" BorderThickness="0,0,1,0">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -133,11 +188,10 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <StackPanel Margin="0,40,0,30">
-                    <Border Width="90" Height="90" CornerRadius="45" BorderBrush="#22C55E" BorderThickness="2" Padding="4" HorizontalAlignment="Center">
+                <StackPanel Grid.Row="0" Margin="0,30,0,20">
+                    <Border Width="85" Height="85" CornerRadius="45" BorderBrush="{StaticResource CorPrimaria}" BorderThickness="2" Padding="3" HorizontalAlignment="Center">
                         <Grid>
-                            <Ellipse x:Name="CircleMask" Fill="#020617"/>
-
+                            <Ellipse x:Name="CircleMask" Fill="#F1F5F9"/>
                             <Border CornerRadius="45" ClipToBounds="True">
                                 <Grid>
                                     <Image x:Name="imgLogoMenu" Stretch="UniformToFill">
@@ -145,70 +199,73 @@
                                             <VisualBrush Visual="{Binding ElementName=CircleMask}"/>
                                         </Image.OpacityMask>
                                     </Image>
-
-                                    <TextBlock x:Name="txtLogoPlaceholder" 
-                               Text="🍴" 
-                               FontSize="35" 
-                               Foreground="#334155" 
-                               HorizontalAlignment="Center" 
-                               VerticalAlignment="Center" 
-                               Visibility="Collapsed"/>
+                                    <TextBlock x:Name="txtLogoPlaceholder" Text="🍴" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Collapsed"/>
                                 </Grid>
                             </Border>
                         </Grid>
                     </Border>
 
-                    <TextBlock x:Name="txtNomeLoja" Text="CARREGANDO..." Foreground="White" FontSize="15" FontWeight="Black" Margin="15,15,15,0" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap"/>
+                    <TextBlock x:Name="txtNomeLoja" Text="CARREGANDO..." Foreground="{StaticResource TextoPrincipal}" FontSize="16" FontWeight="ExtraBold" Margin="20,15,20,5" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap"/>
 
-                    <Border Background="#064E3B" CornerRadius="4" Padding="8,2" HorizontalAlignment="Center" Margin="0,8,0,0">
-                        <TextBlock Text="OPERACIONAL" Foreground="#34D399" FontSize="9" FontWeight="Black" />
+                    <Border Background="{StaticResource StatusAtivoFundo}" CornerRadius="10" HorizontalAlignment="Center" Padding="8,2" Margin="0,0,0,20">
+                        <StackPanel Orientation="Horizontal">
+                            <Ellipse Width="6" Height="6" Fill="{StaticResource CorPrimaria}" Margin="0,0,5,0"/>
+                            <TextBlock Text="SISTEMA ATIVO" Foreground="{StaticResource StatusAtivoTexto}" FontSize="9" FontWeight="Bold" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Background="{StaticResource BackgroundInput}" Margin="15,0" CornerRadius="12" Padding="15">
+                        <StackPanel>
+                            <TextBlock Text="OPERADOR" Foreground="{StaticResource TextoTerciario}" FontSize="10" FontWeight="Bold" Margin="0,0,0,2"/>
+                            <TextBlock x:Name="usuarioLogadoHome" Text="CARREGANDO..." Foreground="{StaticResource TextoPrincipal}" FontSize="13" FontWeight="SemiBold" Margin="0,0,0,12"/>
+
+                            <TextBlock Text="CAIXA / TERMINAL" Foreground="{StaticResource TextoTerciario}" FontSize="10" FontWeight="Bold" Margin="0,0,0,2"/>
+                            <TextBlock x:Name="txtTerminalCaixaSelecionadoNome" Text="CARREGANDO..." Foreground="{StaticResource TextoPrincipal}" FontSize="13" FontWeight="SemiBold" Margin="0,0,0,12"/>
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="ID CAIXA:" Foreground="{StaticResource TextoTerciario}" FontSize="10" FontWeight="Bold" VerticalAlignment="Center"/>
+                                <TextBlock x:Name="txtIdDoCaixa" Text="---" Foreground="{StaticResource CorPrimaria}" FontSize="11" FontWeight="Bold" Margin="8,0,0,0" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
                     </Border>
                 </StackPanel>
 
-                <StackPanel Grid.Row="1">
-                    <Button Style="{StaticResource MenuButtonStyle}" 
-                        x:Name="novoPedido" 
-                        Click="novoPedido_Click" 
-                        Margin="12,4,12,10">
+                <StackPanel Grid.Row="1" Margin="0,10">
+                    <Button Style="{StaticResource MenuButtonStyle}" x:Name="novoPedido" Click="novoPedido_Click">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="➕" Margin="0,0,10,0" Foreground="#22C55E"/>
-                            <TextBlock Text="Novo Pedido" FontWeight="SemiBold" Foreground="White"/>
+                            <TextBlock Text="➕" Margin="0,0,12,0" Foreground="{StaticResource CorPrimaria}" FontSize="16"/>
+                            <TextBlock Text="Novo Pedido" FontWeight="SemiBold" Foreground="{StaticResource TextoPrincipal}"/>
                         </StackPanel>
                     </Button>
 
-                    <Button Style="{StaticResource MenuButtonStyle}" 
-                        x:Name="todasAsVendas" 
-                        Click="todasVendas_Click" 
-                        Margin="12,4">
+                    <Button Style="{StaticResource MenuButtonStyle}" x:Name="todasAsVendas" Click="todasVendas_Click">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="📊" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                            <TextBlock Text="Todas as Vendas" VerticalAlignment="Center"/>
+                            <TextBlock Text="📊" Margin="0,0,12,0" FontSize="16"/>
+                            <TextBlock Text="Todas as Vendas"/>
                         </StackPanel>
                     </Button>
-                    
-                    <Button Style="{StaticResource MenuButtonStyle}" 
-                        x:Name="estoque" 
-                        Click="Estoque_Click" 
-                        Margin="12,4">
+
+                    <Button Style="{StaticResource MenuButtonStyle}" x:Name="VendasPorCaixa" Click="vendasPorCaixa_Click">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="🗄" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                            <TextBlock Text="Estoque" VerticalAlignment="Center"/>
+                            <TextBlock Text="📟" Margin="0,0,12,0" FontSize="16"/>
+                            <TextBlock Text="Vendas por Caixa"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Style="{StaticResource MenuButtonStyle}" x:Name="estoque" Click="Estoque_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="🗄" Margin="0,0,12,0" FontSize="16"/>
+                            <TextBlock Text="Estoque"/>
                         </StackPanel>
                     </Button>
                 </StackPanel>
 
                 <StackPanel Grid.Row="2" Margin="15,20">
-                    <Button Name="voltarHome" Content="⚙ Painel Administrativo" Background="#1E293B" Foreground="White" Height="40" Margin="0,5" Click="VoltarParaEscolha_Click" Visibility="Collapsed">
+                    <Button Name="voltarHome" Content="⚙ Painel Administrativo" Style="{StaticResource MenuButtonStyle}" Height="40" Margin="0,5" Click="VoltarParaEscolha_Click" Visibility="Collapsed" Background="{StaticResource MenuBotaoNormal}"/>
+                    <Button Content="Sair do Sistema" Background="#FEE2E2" Foreground="#DC2626" FontWeight="Bold" Height="42" Click="Sair_Click">
                         <Button.Resources>
                             <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="10"/>
-                            </Style>
-                        </Button.Resources>
-                    </Button>
-                    <Button Content="Sair" Background="#450A0A" Foreground="#F87171" FontWeight="Bold" Height="40" Click="Sair_Click">
-                        <Button.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="10"/>
+                                <Setter Property="CornerRadius" Value="8"/>
                             </Style>
                         </Button.Resources>
                     </Button>
@@ -224,10 +281,10 @@
             </Grid.RowDefinitions>
 
             <Border Grid.Row="0"
-        Background="#0F172A"
+        Background="{StaticResource CardBackground}"
         CornerRadius="16"
         Padding="25,15"
-        BorderBrush="#1E293B"
+        BorderBrush="{StaticResource CardBorda}"
         BorderThickness="1"
         Margin="0,0,0,20">
 
@@ -241,33 +298,30 @@
                         <TextBlock Text="Painel de Atendimento"
                        FontSize="18"
                        FontWeight="SemiBold"
-                       Foreground="White"/>
+                       Foreground="{StaticResource TextoPrincipal}"/>
 
                         <TextBlock Text="•"
-                       Foreground="#334155"
+                       Foreground="{StaticResource TextoTerciario}"
                        Margin="12,0"
                        VerticalAlignment="Center"/>
 
-                        <TextBlock x:Name="usuarioLogadoHome"
-                       Text="Operador"
-                       Foreground="#94A3B8"
-                       VerticalAlignment="Center"/>
+
                     </StackPanel>
 
                     <TextBlock x:Name="txtDataHoje"
                    Grid.Column="1"
                    VerticalAlignment="Center"
-                   Foreground="#64748B"
+                   Foreground="{StaticResource TextoSecundario}"
                    FontSize="12"/>
                 </Grid>
             </Border>
 
 
             <Border Grid.Row="1"
-        Background="#0F172A"
+        Background="{StaticResource CardBackground}"
         CornerRadius="16"
         Padding="20"
-        BorderBrush="#1E293B"
+        BorderBrush="{StaticResource CardBorda}"
         BorderThickness="1">
 
                 <Grid VerticalAlignment="Center">
@@ -282,7 +336,7 @@
                         <TextBlock Text="FILTRAR STATUS"
                        FontSize="10"
                        FontWeight="Bold"
-                       Foreground="#64748B"
+                       Foreground="{StaticResource TextoTerciario}"
                        Margin="2,0,0,6"/>
 
                         <ComboBox x:Name="comboStatusFiltro"
@@ -297,15 +351,15 @@
                         <TextBlock Text="BUSCAR CLIENTE (CPF)"
                        FontSize="10"
                        FontWeight="Bold"
-                       Foreground="#64748B"
+                       Foreground="{StaticResource TextoTerciario}"
                        Margin="2,0,0,6"/>
 
-                        <Border Background="#1E293B" CornerRadius="8">
+                        <Border Background="{StaticResource BackgroundInput}" CornerRadius="8" BorderBrush="{StaticResource Borda}" BorderThickness="1">
                             <TextBox x:Name="txtBuscaCliente"
                          Width="180"
                          Height="40"
                          Background="Transparent"
-                         Foreground="White"
+                         Foreground="{StaticResource TextoPrincipal}"
                          BorderThickness="0"
                          Padding="14,0"
                          VerticalContentAlignment="Center"
@@ -323,14 +377,14 @@
                         <StackPanel Margin="20,0" VerticalAlignment="Center">
                             <TextBlock Text="LUCRO DO DIA"
                            FontSize="10"
-                           Foreground="#94A3B8"
+                           Foreground="{StaticResource TextoTerciario}"
                            HorizontalAlignment="Center"/>
 
                             <TextBlock x:Name="txtTotalLucro"
                            Text="R$ 0,00"
                            FontSize="22"
                            FontWeight="Bold"
-                           Foreground="#22C55E"
+                           Foreground="{StaticResource CorPrimaria}"
                            HorizontalAlignment="Center"/>
                         </StackPanel>
 
@@ -338,14 +392,14 @@
                         <StackPanel Margin="20,0" VerticalAlignment="Center">
                             <TextBlock Text="FATURAMENTO DO DIA"
                            FontSize="10"
-                           Foreground="#94A3B8"
+                           Foreground="{StaticResource TextoTerciario}"
                            HorizontalAlignment="Center"/>
 
                             <TextBlock x:Name="txtTotalGeral"
                            Text="R$ 0,00"
                            FontSize="22"
                            FontWeight="Bold"
-                           Foreground="White"
+                           Foreground="{StaticResource TextoPrincipal}"
                            HorizontalAlignment="Center"/>
                         </StackPanel>
 
@@ -353,14 +407,14 @@
                         <StackPanel Margin="20,0" VerticalAlignment="Center">
                             <TextBlock Text="QTD DE VENDAS"
                            FontSize="10"
-                           Foreground="#94A3B8"
+                           Foreground="{StaticResource TextoTerciario}"
                            HorizontalAlignment="Center"/>
 
                             <TextBlock x:Name="txtQuantidadeVendas"
                            Text="0"
                            FontSize="22"
                            FontWeight="Bold"
-                           Foreground="#38BDF8"
+                           Foreground="{StaticResource CorInfo}"
                            HorizontalAlignment="Center"/>
                         </StackPanel>
 
@@ -368,14 +422,14 @@
                         <StackPanel Margin="20,0" VerticalAlignment="Center">
                             <TextBlock Text="CAIXA (DINHEIRO)"
                            FontSize="10"
-                           Foreground="#94A3B8"
+                           Foreground="{StaticResource TextoTerciario}"
                            HorizontalAlignment="Center"/>
 
                             <TextBlock x:Name="txtTotalDinheiro"
                            Text="R$ 0,00"
                            FontSize="22"
                            FontWeight="Bold"
-                           Foreground="#22C55E"
+                           Foreground="{StaticResource CorPrimaria}"
                            HorizontalAlignment="Center"/>
                         </StackPanel>
 
@@ -389,7 +443,7 @@
                 <ItemsControl x:Name="ListaPedidos">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border Margin="0,0,0,8" Background="#0F172A" CornerRadius="12" Padding="15,8" BorderBrush="#1E293B" BorderThickness="1">
+                            <Border Margin="0,0,0,8" Background="{StaticResource CardBackground}" CornerRadius="12" Padding="15,8" BorderBrush="{StaticResource CardBorda}" BorderThickness="1">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="40"/>
@@ -404,13 +458,13 @@
                                     </Grid.ColumnDefinitions>
 
                                     <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                                        <TextBlock Text="{Binding Id, StringFormat='#{0}'}" FontSize="16" FontWeight="Bold" Foreground="White"/>
+                                        <TextBlock Text="{Binding Id, StringFormat='#{0}'}" FontSize="16" FontWeight="Bold" Foreground="{StaticResource TextoPrincipal}"/>
                                     </StackPanel>
-                                    
+
                                     <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                         <TextBlock Text="{Binding DataCriacao, StringFormat='{}{0:dd/MM/yyyy HH:mm}'}"
                                            FontSize="13"
-                                           Foreground="White"/>
+                                           Foreground="{StaticResource TextoPrincipal}"/>
                                     </StackPanel>
 
                                     <ComboBox Grid.Column="2" x:Name="comboStatusPedido" IsEnabled="False"
@@ -428,14 +482,14 @@
                                       Loaded="comboFormaPagamento_Loaded"
                                       SelectionChanged="ComboBoxPedidoFormaDePagamento_SelectionChanged"
                                       VerticalAlignment="Center"/>
-                                    
-                                    
+
+
 
                                     <StackPanel Grid.Column="4" VerticalAlignment="Center" Margin="10,0">
-                                        <TextBlock Text="{Binding NomeCliente}" FontSize="13" Foreground="White" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
+                                        <TextBlock Text="{Binding NomeCliente}" FontSize="13" Foreground="{StaticResource TextoPrincipal}" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
                                     </StackPanel>
                                     <StackPanel Grid.Column="5" VerticalAlignment="Center" Margin="10,0">
-                                        <TextBlock Text="{Binding CpfCliente}" FontSize="12" Foreground="#94A3B8" TextTrimming="CharacterEllipsis"/>
+                                        <TextBlock Text="{Binding CpfCliente}" FontSize="12" Foreground="{StaticResource TextoSecundario}" TextTrimming="CharacterEllipsis"/>
                                     </StackPanel>
 
                                     <ItemsControl Grid.Column="6" ItemsSource="{Binding Itens}" VerticalAlignment="Center">
@@ -446,9 +500,9 @@
                                         </ItemsControl.ItemsPanel>
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
-                                                <Border Background="#1E293B" CornerRadius="6" Padding="6,2" Margin="0,0,5,5" BorderBrush="#334155" BorderThickness="1">
-                                                    <TextBlock Foreground="White" FontSize="11">
-                                                    <Run Text="{Binding Quantidade}" FontWeight="Bold" Foreground="#22C55E"/>
+                                                <Border Background="{StaticResource ItemPedidoFundo}" CornerRadius="6" Padding="6,2" Margin="0,0,5,5" BorderBrush="{StaticResource ItemPedidoBorda}" BorderThickness="1">
+                                                    <TextBlock Foreground="{StaticResource TextoPrincipal}" FontSize="11">
+                                                    <Run Text="{Binding Quantidade}" FontWeight="Bold" Foreground="{StaticResource CorPrimaria}"/>
                                                     <Run Text="x" FontSize="9"/>
                                                     <Run Text="{Binding NomeProduto}"/>
                                                     </TextBlock>
@@ -460,11 +514,11 @@
 
 
                                     <TextBlock Grid.Column="7" Text="{Binding ValorTotal, StringFormat='R$ {0:F2}'}" 
-                           FontSize="18" FontWeight="Bold" Foreground="White" 
+                           FontSize="18" FontWeight="Bold" Foreground="{StaticResource TextoPrincipal}" 
                            VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,20,0"/>
 
                                     <StackPanel Grid.Column="8" Orientation="Horizontal" VerticalAlignment="Center">
-                                        <Button Click="VerDetalhes_click" Width="32" Height="32" ToolTip="Detalhes" Background="#3B82F6" Margin="0,0,5,0">
+                                        <Button Click="VerDetalhes_click" Width="32" Height="32" ToolTip="Detalhes" Background="{StaticResource CorSecundaria}" Margin="0,0,5,0">
                                             <Button.Resources>
                                                 <Style TargetType="Border">
                                                     <Setter Property="CornerRadius" Value="6"/>
@@ -472,7 +526,7 @@
                                             </Button.Resources>
                                             <TextBlock Text="👁" Foreground="White" FontWeight="Bold"/>
                                         </Button>
-                                        
+
                                     </StackPanel>
                                 </Grid>
                             </Border>

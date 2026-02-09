@@ -11,6 +11,7 @@ namespace ServidorLanches.model.dto
         public string CpfCliente { get; set; }
         public string NomeCliente { get; set; }
         public int IdStatus { get; set; }
+        public int IdCaixa { get; set; }
         public string StatusPedido { get; set; }
         public int IdFormaPagamento { get; set; }
         public string FormaPagamento { get; set; }

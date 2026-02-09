@@ -5,33 +5,39 @@
 
     <UserControl.Resources>
         <Style x:Key="FieldLabel" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="12"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Foreground" Value="#475569"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#64748B"/>
             <Setter Property="Margin" Value="0,0,0,6"/>
+            <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
         </Style>
 
         <Style TargetType="TextBox">
-            <Setter Property="Height" Value="40"/>
+            <Setter Property="Height" Value="42"/>
             <Setter Property="Padding" Value="12,0"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="BorderBrush" Value="#E2E8F0"/>
-            <Setter Property="Background" Value="#F8FAF8"/>
+            <Setter Property="BorderBrush" Value="#CBD5E1"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#0F172A"/>
             <Setter Property="Margin" Value="0,0,0,20"/>
             <Style.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="8"/>
                 </Style>
             </Style.Resources>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="#3B82F6"/>
+                    <Setter Property="BorderThickness" Value="1.5"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
     </UserControl.Resources>
 
     <Grid Margin="40">
-        <Border Background="#FF0F172A" CornerRadius="16" Padding="40">
+        <Border Background="#FFFFFF" CornerRadius="16" Padding="40" BorderBrush="#E2E8F0" BorderThickness="1">
             <Border.Effect>
-                <DropShadowEffect BlurRadius="20"
-                                  Opacity="0.05"
-                                  ShadowDepth="4"/>
+                <DropShadowEffect BlurRadius="30" Opacity="0.06" ShadowDepth="4" Color="#000000"/>
             </Border.Effect>
 
             <Grid>
@@ -40,37 +46,34 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <!-- LOGO -->
                 <StackPanel Grid.Column="0">
+                    <TextBlock Text="LOGOTIPO" Style="{StaticResource FieldLabel}" HorizontalAlignment="Center" Margin="0,0,0,10"/>
 
-
-                    <Border Width="180"
-        Height="180"
-        Background="#F1F5F9"
-        CornerRadius="12"
-        BorderBrush="#E2E8F0"
-        BorderThickness="1"
-        Cursor="Hand"
-        MouseLeftButtonUp="pdvLogo_Click">
+                    <Border Width="180" Height="180"
+                            Background="#F8FAFC"
+                            CornerRadius="12"
+                            BorderBrush="#E2E8F0"
+                            BorderThickness="1"
+                            Cursor="Hand"
+                            MouseLeftButtonUp="pdvLogo_Click">
 
                         <Grid>
                             <Image x:Name="pdvLogo"
-               Stretch="Uniform"
-               Margin="10"
-               IsHitTestVisible="False"/>
+                                   Stretch="Uniform"
+                                   Margin="15"
+                                   IsHitTestVisible="False"/>
 
                             <TextBlock Text="📷"
-                   FontSize="30"
-                   Foreground="#94A3B8"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   IsHitTestVisible="False">
+                                       FontSize="32"
+                                       Foreground="#CBD5E1"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       IsHitTestVisible="False">
                                 <TextBlock.Style>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="Visibility" Value="Collapsed"/>
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Source={x:Reference pdvLogo}, Path=Source}"
-                                     Value="{x:Null}">
+                                            <DataTrigger Binding="{Binding Source={x:Reference pdvLogo}, Path=Source}" Value="{x:Null}">
                                                 <Setter Property="Visibility" Value="Visible"/>
                                             </DataTrigger>
                                         </Style.Triggers>
@@ -80,50 +83,51 @@
                         </Grid>
                     </Border>
 
-
                     <TextBlock Text="Clique para alterar"
-                        FontSize="11"
-                        Foreground="white"
-                        HorizontalAlignment="Center"
-                        Margin="0,10,0,0"/>
+                               FontSize="11"
+                               FontWeight="Medium"
+                               Foreground="#94A3B8"
+                               HorizontalAlignment="Center"
+                               Margin="0,12,0,0"/>
                 </StackPanel>
 
-                <!-- FORMULÁRIO -->
-                <StackPanel Grid.Column="1" Margin="40,0,0,0">
+                <StackPanel Grid.Column="1" Margin="50,0,0,0">
 
-                    <TextBlock Text="CONFIGURAÇÕES DA EMPRESA"
-                               FontSize="20"
+                    <TextBlock Text="Dados da Empresa"
+                               FontSize="22"
                                FontWeight="Bold"
-                               Foreground="white"
-                               Margin="0,0,0,30"/>
+                               Foreground="#0F172A"
+                               Margin="0,0,0,5"/>
 
-                    <TextBlock Text="Nome / Nome Fantasia" Foreground="white"
-                               Style="{StaticResource FieldLabel}"/>
+                    <TextBlock Text="Estas informações aparecerão nos comprovantes e notas." 
+                               Foreground="#64748B" FontSize="13" Margin="0,0,0,30"/>
+
+                    <TextBlock Text="NOME / NOME FANTASIA" Style="{StaticResource FieldLabel}"/>
                     <TextBox x:Name="pdvNome"/>
 
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="20"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <StackPanel Grid.Column="0" Margin="0,0,10,0">
-                            <TextBlock Text="Telefone"  Foreground="white" Style="{StaticResource FieldLabel}"/>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="TELEFONE DE CONTATO" Style="{StaticResource FieldLabel}"/>
                             <TextBox x:Name="pdvTelefone"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Column="1" Margin="10,0,0,0">
-                            <TextBlock Text="E-mail de Contato" Foreground="white" Style="{StaticResource FieldLabel}"/>
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Text="E-MAIL CORPORATIVO" Style="{StaticResource FieldLabel}"/>
                             <TextBox x:Name="pdvEmail"/>
                         </StackPanel>
                     </Grid>
 
-                    <TextBlock Text="Endereço Completo" Foreground="white"
-                               Style="{StaticResource FieldLabel}"/>
+                    <TextBlock Text="ENDEREÇO COMPLETO" Style="{StaticResource FieldLabel}"/>
                     <TextBox x:Name="pdvEndereco"/>
 
-                    <Button Content="Salvar alterações"
-                            Height="48"
+                    <Button Content="Salvar Alterações"
+                            Height="50"
                             Width="240"
                             Margin="0,10,0,0"
                             HorizontalAlignment="Left"
@@ -133,7 +137,6 @@
                             BorderThickness="0"
                             Cursor="Hand"
                             Click="salvarConfiguracoes_click">
-
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="10"/>

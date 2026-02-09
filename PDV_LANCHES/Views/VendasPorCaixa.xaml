@@ -1,0 +1,125 @@
+﻿<Window x:Class="PDV_LANCHES.Views.VendasPorCaixa"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Histórico de Caixas" Height="500" Width="750"
+        WindowStartupLocation="CenterScreen" WindowStyle="None" 
+        AllowsTransparency="True" Background="Transparent">
+
+    <Window.Resources>
+        <!-- ========================================= -->
+        <!-- PALETA DE CORES - MODO CLARO -->
+        <!-- ========================================= -->
+
+        <SolidColorBrush x:Key="BackgroundPrincipal" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="BackgroundSecundario" Color="#F8FAFC"/>
+        <SolidColorBrush x:Key="BordaPrincipal" Color="#E2E8F0"/>
+        <SolidColorBrush x:Key="BordaSecundaria" Color="#CBD5E1"/>
+
+        <SolidColorBrush x:Key="TextoPrincipal" Color="#0F172A"/>
+        <SolidColorBrush x:Key="TextoSecundario" Color="#475569"/>
+        <SolidColorBrush x:Key="TextoTerciario" Color="#64748B"/>
+
+        <SolidColorBrush x:Key="CorPrimaria" Color="#3B82F6"/>
+        <SolidColorBrush x:Key="CorSucesso" Color="#10B981"/>
+
+        <SolidColorBrush x:Key="HoverBackground" Color="#F1F5F9"/>
+        <SolidColorBrush x:Key="SelectedBackground" Color="#DBEAFE"/>
+
+    </Window.Resources>
+
+    <Border Background="{StaticResource BackgroundPrincipal}" CornerRadius="20" BorderBrush="{StaticResource BordaPrincipal}" BorderThickness="1">
+        <Grid Margin="25">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Button Content="Voltar" HorizontalAlignment="Right" VerticalAlignment="Top" 
+                    Margin="0,7,10,0" Width="64" Height="30"
+                    Background="Transparent" Foreground="{StaticResource TextoPrincipal}" 
+                    FontSize="16" BorderThickness="0" Cursor="Hand" 
+                    Click="Voltar_Click"/>
+
+            <StackPanel Grid.Row="0" Margin="0,0,0,20">
+                <TextBlock Text="VENDAS POR CAIXA" FontSize="20" FontWeight="Bold" Foreground="{StaticResource TextoPrincipal}" />
+                <Border Height="2" Background="{StaticResource CorPrimaria}" HorizontalAlignment="Left" Width="30" Margin="0,8,0,0"/>
+            </StackPanel>
+
+            <DataGrid Grid.Row="1" x:Name="dgHistoricoCaixas" 
+                      Background="Transparent" AutoGenerateColumns="False" 
+                      CanUserAddRows="False" RowHeight="45" BorderThickness="0" 
+                      HeadersVisibility="Column" GridLinesVisibility="None"
+                      Foreground="{StaticResource TextoSecundario}" SelectionMode="Single"
+                      SelectionChanged="dgHistoricoCaixas_SelectionChanged">
+
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Foreground" Value="{StaticResource TextoTerciario}"/>
+                        <Setter Property="Padding" Value="0,0,0,10"/>
+                        <Setter Property="FontSize" Value="11"/>
+                        <Setter Property="FontWeight" Value="SemiBold"/>
+                        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                        <Setter Property="BorderBrush" Value="{StaticResource BordaPrincipal}"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                        <Setter Property="BorderBrush" Value="{StaticResource BordaSecundaria}"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource HoverBackground}"/>
+                                <Setter Property="Foreground" Value="{StaticResource TextoPrincipal}"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="{StaticResource SelectedBackground}"/>
+                                <Setter Property="Foreground" Value="{StaticResource CorPrimaria}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding id}" Width="50"/>
+                    <DataGridTextColumn Header="ABERTURA" Binding="{Binding dataAbertura, StringFormat={}{0:dd/MM/yy HH:mm}}" Width="140"/>
+                    <DataGridTextColumn Header="FECHAMENTO" Binding="{Binding dataFechamento, StringFormat={}{0:dd/MM/yy HH:mm}}" Width="140"/>
+                    <DataGridTextColumn Header="STATUS" Binding="{Binding status}" Width="*"/>
+
+                    <DataGridTemplateColumn Width="100">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="detalhes" 
+                                        Background="Transparent" 
+                                        Foreground="{StaticResource CorPrimaria}" 
+                                        FontSize="12" 
+                                        Margin="20,0"
+                                        FontWeight="SemiBold"
+                                        BorderThickness="0" 
+                                        Cursor="Hand"
+                                        HorizontalAlignment="Right"
+                                        Click="VerVendas_Click">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <TextBlock Text="{TemplateBinding Content}" Background="Transparent"/>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Border Grid.Row="2" BorderBrush="{StaticResource BordaPrincipal}" BorderThickness="0,1,0,0" Margin="0,15,0,0" Padding="10,10,0,0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock Text="TOTAL NO PERÍODO:" Foreground="{StaticResource TextoTerciario}" FontSize="11" VerticalAlignment="Center" FontWeight="Bold"/>
+                    <TextBlock x:Name="lblTotalCalculado" Text="R$ 0,00" Foreground="{StaticResource CorSucesso}" FontSize="16" FontWeight="Bold" Margin="10,0,0,0"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Border>
+</Window>

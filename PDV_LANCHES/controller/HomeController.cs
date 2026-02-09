@@ -30,9 +30,18 @@ namespace PDV_LANCHES.controller
                 return null;
             return await response.Content.ReadFromJsonAsync<List<PedidoDTO>>();
         }
+
         public async Task<List<PedidoDTO>?> PegarTodosPedidosToday()
         {
             var response = await ApiClient.Client.GetAsync("api/pedidos/pedidosToday");
+            if (!response.IsSuccessStatusCode)
+                return null;
+            return await response.Content.ReadFromJsonAsync<List<PedidoDTO>>();
+        }
+
+        public async Task<List<PedidoDTO>?> PegarPedidosPorCaixa(int idCaixa)
+        {
+            var response = await ApiClient.Client.GetAsync($"api/pedidos/pedidosPorCaixa/{idCaixa}");
             if (!response.IsSuccessStatusCode)
                 return null;
             return await response.Content.ReadFromJsonAsync<List<PedidoDTO>>();
@@ -68,7 +77,7 @@ namespace PDV_LANCHES.controller
 
                 if (response.IsSuccessStatusCode)
                 {
-                    return true; 
+                    return true;
                 }
                 else
                 {
@@ -89,7 +98,7 @@ namespace PDV_LANCHES.controller
 
                 if (response.IsSuccessStatusCode)
                 {
-                    return conteudoResposta; 
+                    return conteudoResposta;
                 }
                 else
                 {
@@ -104,6 +113,48 @@ namespace PDV_LANCHES.controller
 
 
 
-    }
+        //caixas
+
+        public async Task<List<TerminalCaixa>?> GetAllTerminaisCaixa()
+        {
+            var response = await ApiClient.Client.GetAsync("api/caixas/todosCaixasTerminal");
+            if (!response.IsSuccessStatusCode)
+                return null;
+            return await response.Content.ReadFromJsonAsync<List<TerminalCaixa>>();
+
+        }
+        
+        public async Task<Caixa?> AbrirCaixa(Caixa caixa)
+        {
+            var response = await ApiClient.Client.PostAsJsonAsync($"api/caixas/abrircaixa", caixa);
+            if (!response.IsSuccessStatusCode)
+                return null;
+            return await response.Content.ReadFromJsonAsync<Caixa>();
+        }
+        public async Task<Caixa?> FecharCaixa(Caixa caixa)
+        {
+            var response = await ApiClient.Client.PostAsJsonAsync($"api/caixas/fecharcaixa", caixa);
+            if (!response.IsSuccessStatusCode)
+                return null;
+            return await response.Content.ReadFromJsonAsync<Caixa>();
+        }
+        public async Task<bool> SalvarCaixa(Caixa caixa)
+        {
+            var response = await ApiClient.Client.PostAsJsonAsync($"api/caixas/salvarfecharcaixa", caixa);
+            if (!response.IsSuccessStatusCode)
+                return false;
+            return true;
+        }
+        public async Task<List<Caixa>?> ObterTodosCaixas()
+        {
+            var response = await ApiClient.Client.GetAsync("api/caixas/todosCaixas");
+            if (!response.IsSuccessStatusCode)
+                return null;
+            return await response.Content.ReadFromJsonAsync<List<Caixa>>();
+
+        }
+
+        
 
     }
+}

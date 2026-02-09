@@ -5,6 +5,7 @@ using ServidorLanches.model;
 using ServidorLanches.model.dto;
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
@@ -19,7 +20,8 @@ namespace PDV_LANCHES.Views
         private HomeController homeController = new HomeController();
         private Usuario usuarioLogado;
         private ObservableCollection<PedidoDTO> pedidos = new ObservableCollection<PedidoDTO>();
-
+        private Caixa caixaAtual;
+        private TerminalCaixa terminal;
         public Home()
         {
             InitializeComponent();
@@ -29,9 +31,36 @@ namespace PDV_LANCHES.Views
         private async void Home_Loaded(object sender, RoutedEventArgs e)
         {
             PopularFiltroStatus();
-            await Task.WhenAll(CarregarDadosUsuario(), CarregarDadosPedidos(), CarregarDadosEmpresa());
+
+            await CarregarDadosUsuario();
+
+            await CarregarCaixa();          // 🔑 primeiro
+            await AtualizarDadosCaixa();    // 🔑 depois
+            await CarregarDadosEmpresa();   // 🔑 agora o ID existe
+            await CarregarDadosPedidos();   // 🔑 usa caixaAtual.id
         }
 
+        private async Task AtualizarDadosCaixa()
+        {
+            var instancia = Status_Categorias.Instancia;
+            terminal = instancia.caixaterminalSelecionado;
+            caixaAtual = instancia.caixa;
+
+            txtTerminalCaixaSelecionadoNome.Text = terminal?.nome ?? "NENHUM CAIXA";
+
+            if (caixaAtual == null) return;
+            txtTotalDinheiro.Text = caixaAtual.valor_calculado.ToString("C2");
+
+            txtTotalGeral.Text = (caixaAtual.valor_calculado + caixaAtual.valorInicial).ToString("C2");
+        }
+
+        private async Task CarregarCaixa()
+        {
+            var instancia = Status_Categorias.Instancia;
+            terminal = instancia.caixaterminalSelecionado;
+            caixaAtual = instancia.caixa;
+
+        }  
 
         private async Task PopularFiltroStatus()
         {
@@ -116,6 +145,7 @@ namespace PDV_LANCHES.Views
                 Login login = new Login();
                 ConfiguracoesGerais config = await login.ConfiguracoesGerais();
 
+
                 if (config != null)
                 {
                     // Define o nome da loja
@@ -132,6 +162,21 @@ namespace PDV_LANCHES.Views
                         txtLogoPlaceholder.Visibility = Visibility.Visible;
                     }
                 }
+
+                Status_Categorias.Instancia.CarregarAsync();
+
+                txtTerminalCaixaSelecionadoNome.Text = Status_Categorias.Instancia.caixaterminalSelecionado != null
+                    ? Status_Categorias.Instancia.caixaterminalSelecionado.nome
+                    : "Nenhum Caixa Selecionado";
+
+                var caixa = Status_Categorias.Instancia.caixa;
+
+                txtIdDoCaixa.Text = caixa != null
+                    ? caixa.id.ToString()
+                    : "—";
+
+
+
             }
             catch
             {
@@ -154,10 +199,9 @@ namespace PDV_LANCHES.Views
         {
             txtDataHoje.Text = DateTime.Today.ToString("dd 'de' MMMM, yyyy");
 
-            var lista = await homeController.PegarTodosPedidosToday();
+            var lista = await homeController.PegarPedidosPorCaixa(caixaAtual.id);
             if (lista == null)
             {
-                MessageBox.Show("Não ha pedidos");
                 return;
             }
 
@@ -340,7 +384,12 @@ namespace PDV_LANCHES.Views
             }
         }
 
-        
+        private void vendasPorCaixa_Click(object sender, RoutedEventArgs e)
+        {
+            VendasPorCaixa vendasPorCaixa = new VendasPorCaixa();
+            vendasPorCaixa.Show();
+            this.Close();
+        }
 
 
         private void VoltarParaEscolha_Click(object sender, RoutedEventArgs e)
@@ -351,13 +400,27 @@ namespace PDV_LANCHES.Views
         }
         private async void Sair_Click(object sender, RoutedEventArgs e)
         {
-            await homeController.Logout();
-            MainWindow loginWindow = new MainWindow();
-            loginWindow.Show();
-            this.Close();
+            Caixa caixaselecionado = Status_Categorias.Instancia.caixa;
+
+            if(caixaselecionado != null)
+            {
+                RelatorioFechamentoCaixa relatorioFechamentoCaixa = new RelatorioFechamentoCaixa(true, true, false);
+                relatorioFechamentoCaixa.Show();
+                this.Close();
+            } else
+            {
+                await homeController.Logout();
+                MainWindow loginWindow = new MainWindow();
+                loginWindow.Show();
+            }
+
+
         }
 
 
+
+
         
+
     }
 }

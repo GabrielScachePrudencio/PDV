@@ -3,15 +3,24 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Cadastrar Novo Usuário" 
         WindowState="Maximized" 
-        WindowStyle="SingleBorderWindow"
+        WindowStyle="None"
         WindowStartupLocation="CenterScreen" 
-        Background="#020617">
+        Background="{DynamicResource BackgroundPrincipal}">
 
     <Window.Resources>
-        <Style x:Key="DarkComboBox" TargetType="ComboBox">
-            <Setter Property="Background" Value="#1E293B"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderBrush" Value="#334155"/>
+        <SolidColorBrush x:Key="BackgroundPrincipal" Color="#F8FAFC"/>
+        <SolidColorBrush x:Key="BackgroundSecundario" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="BackgroundTerciario" Color="#F1F5F9"/>
+        <SolidColorBrush x:Key="BordaPrincipal" Color="#E2E8F0"/>
+        <SolidColorBrush x:Key="TextoPrincipal" Color="#0F172A"/>
+        <SolidColorBrush x:Key="TextoSecundario" Color="#475569"/>
+        <SolidColorBrush x:Key="TextoTerciario" Color="#64748B"/>
+        <SolidColorBrush x:Key="CorPrimaria" Color="#3B82F6"/>
+
+        <Style x:Key="ModernComboBox" TargetType="ComboBox">
+            <Setter Property="Background" Value="{StaticResource BackgroundSecundario}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextoPrincipal}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BordaPrincipal}"/>
             <Setter Property="Height" Value="45"/>
             <Setter Property="Padding" Value="12,0"/>
             <Setter Property="Template">
@@ -27,7 +36,7 @@
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="30"/>
                                                 </Grid.ColumnDefinitions>
-                                                <Path Grid.Column="1" Data="M 0 0 L 4 4 L 8 0 Z" Fill="#94A3B8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                <Path Grid.Column="1" Data="M 0 0 L 4 4 L 8 0 Z" Fill="{StaticResource TextoTerciario}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                             </Grid>
                                         </Border>
                                     </ControlTemplate>
@@ -35,7 +44,7 @@
                             </ToggleButton>
                             <ContentPresenter Content="{TemplateBinding SelectionBoxItem}" Margin="{TemplateBinding Padding}" VerticalAlignment="Center" IsHitTestVisible="False"/>
                             <Popup IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True" Placement="Bottom">
-                                <Border Background="#0F172A" BorderBrush="#334155" BorderThickness="1" CornerRadius="8" MinWidth="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}">
+                                <Border Background="White" BorderBrush="{StaticResource BordaPrincipal}" BorderThickness="1" CornerRadius="8" MinWidth="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}">
                                     <ItemsPresenter />
                                 </Border>
                             </Popup>
@@ -45,12 +54,12 @@
             </Setter>
         </Style>
 
-        <Style x:Key="DarkTextBox" TargetType="TextBox">
+        <Style x:Key="ModernTextBox" TargetType="TextBox">
             <Setter Property="Height" Value="45"/>
             <Setter Property="Padding" Value="12"/>
-            <Setter Property="Background" Value="#0F172A"/>
-            <Setter Property="BorderBrush" Value="#1E293B"/>
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="{StaticResource BackgroundSecundario}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BordaPrincipal}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextoPrincipal}"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -66,21 +75,28 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="280"/>
+            <ColumnDefinition Width="320"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Border Grid.Column="0" Background="#0F172A" BorderBrush="#1E293B" BorderThickness="0,0,1,0">
-            <StackPanel Margin="0,40,0,0">
-                <Border Width="60" Height="60" CornerRadius="30" Background="#3B82F6" HorizontalAlignment="Center">
-                    <TextBlock Text="➕" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
+        <Border Grid.Column="0" Background="{StaticResource BackgroundSecundario}" BorderBrush="{StaticResource BordaPrincipal}" BorderThickness="0,0,1,0">
+            <StackPanel Margin="0,60,0,0">
+                <Border Width="80" Height="80" CornerRadius="40" Background="{StaticResource CorPrimaria}" HorizontalAlignment="Center">
+                    <TextBlock Text="👤" FontSize="35" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
                 </Border>
-                <TextBlock Text="NOVO CADASTRO" Foreground="White" FontSize="14" FontWeight="Black" Margin="0,15,0,0" HorizontalAlignment="Center"/>
-                <TextBlock Text="Preencha os dados do funcionário" Foreground="#64748B" FontSize="11" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                <TextBlock Text="NOVO CADASTRO" Foreground="{StaticResource TextoPrincipal}" FontSize="16" FontWeight="Black" Margin="0,20,0,0" HorizontalAlignment="Center"/>
+                <TextBlock Text="Preencha os dados do funcionário" Foreground="{StaticResource TextoTerciario}" FontSize="12" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+
+                <Border Height="1" Background="{StaticResource BordaPrincipal}" Margin="40,30"/>
+
+                <StackPanel Margin="30,0">
+                    <TextBlock Text="Dica:" FontWeight="Bold" Foreground="{StaticResource TextoSecundario}" Margin="0,0,0,5"/>
+                    <TextBlock Text="O e-mail será utilizado como login principal para acesso ao sistema." Foreground="{StaticResource TextoTerciario}" FontSize="11" TextWrapping="Wrap"/>
+                </StackPanel>
             </StackPanel>
         </Border>
 
-        <Grid Grid.Column="1" Margin="60,40">
+        <Grid Grid.Column="1" Margin="80,60">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
@@ -88,38 +104,39 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Row="0" Margin="0,0,0,40">
-                <TextBlock Text="CONTROLE DE EQUIPE" FontSize="11" FontWeight="Black" Foreground="#3B82F6"/>
-                <TextBlock Text="Criar Novo Usuário" FontSize="28" FontWeight="SemiBold" Foreground="White" Margin="0,5,0,0"/>
-                <Separator Margin="0,15,0,0" Background="#1E293B"/>
+                <TextBlock Text="GESTÃO DE EQUIPE" FontSize="12" FontWeight="Black" Foreground="{StaticResource CorPrimaria}" />
+                <TextBlock Text="Criar Novo Usuário" FontSize="32" FontWeight="SemiBold" Foreground="{StaticResource TextoPrincipal}" Margin="0,8,0,0"/>
+                <Border Height="2" Width="60" Background="{StaticResource CorPrimaria}" HorizontalAlignment="Left" Margin="0,15,0,0"/>
             </StackPanel>
 
-            <StackPanel Grid.Row="1" MaxWidth="800" HorizontalAlignment="Left">
+            <StackPanel Grid.Row="1" MaxWidth="900" HorizontalAlignment="Left">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="40"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="380"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="380"/>
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Grid.Column="0">
-                        <TextBlock Text="NOME COMPLETO" Foreground="#64748B" FontSize="10" FontWeight="Bold" Margin="0,0,0,8"/>
-                        <TextBox x:Name="txtNome" Style="{StaticResource DarkTextBox}" Margin="0,0,0,20"/>
+                        <TextBlock Text="NOME COMPLETO" Foreground="{StaticResource TextoTerciario}" FontSize="11" FontWeight="Bold" Margin="0,0,0,10"/>
+                        <TextBox x:Name="txtNome" Style="{StaticResource ModernTextBox}" Margin="0,0,0,25"/>
 
-                        <TextBlock Text="E-MAIL" Foreground="#64748B" FontSize="10" FontWeight="Bold" Margin="0,0,0,8"/>
-                        <TextBox x:Name="txtEmail" Style="{StaticResource DarkTextBox}" Margin="0,0,0,20"/>
+                        <TextBlock Text="E-MAIL (LOGIN)" Foreground="{StaticResource TextoTerciario}" FontSize="11" FontWeight="Bold" Margin="0,0,0,10"/>
+                        <TextBox x:Name="txtEmail" Style="{StaticResource ModernTextBox}" Margin="0,0,0,25"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="2">
-                        <TextBlock Text="TIPO DE ACESSO" Foreground="#64748B" FontSize="10" FontWeight="Bold" Margin="0,0,0,8"/>
-                        <ComboBox x:Name="cbTipo" Style="{StaticResource DarkComboBox}" Margin="0,0,0,20"/>
+                        <TextBlock Text="NÍVEL DE ACESSO" Foreground="{StaticResource TextoTerciario}" FontSize="11" FontWeight="Bold" Margin="0,0,0,10"/>
+                        <ComboBox x:Name="cbTipo" Style="{StaticResource ModernComboBox}" Margin="0,0,0,25"/>
 
-                        <TextBlock Text="DEFINIR SENHA" Foreground="#64748B" FontSize="10" FontWeight="Bold" Margin="0,0,0,8"/>
-                        <PasswordBox x:Name="txtSenha" Height="45">
+                        <TextBlock Text="DEFINIR SENHA" Foreground="{StaticResource TextoTerciario}" FontSize="11" FontWeight="Bold" Margin="0,0,0,10"/>
+                        <PasswordBox x:Name="txtSenha" Height="45" VerticalContentAlignment="Center">
                             <PasswordBox.Resources>
                                 <Style TargetType="Border">
                                     <Setter Property="CornerRadius" Value="8"/>
-                                    <Setter Property="Background" Value="#0F172A"/>
-                                    <Setter Property="BorderBrush" Value="#1E293B"/>
+                                    <Setter Property="Background" Value="{StaticResource BackgroundSecundario}"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BordaPrincipal}"/>
+                                    <Setter Property="BorderThickness" Value="1"/>
                                 </Style>
                             </PasswordBox.Resources>
                         </PasswordBox>
@@ -127,20 +144,24 @@
                 </Grid>
             </StackPanel>
 
-            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Content="CANCELAR" Width="150" Height="50" Background="Transparent" Foreground="#64748B" FontWeight="Bold" BorderBrush="#1E293B" BorderThickness="1" Margin="0,0,15,0" Click="Cancelar_Click">
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,40,0,0">
+                <Button Content="CANCELAR" Width="160" Height="52" Background="Transparent" Foreground="{StaticResource TextoTerciario}" FontWeight="Bold" BorderBrush="{StaticResource BordaPrincipal}" BorderThickness="1" Margin="0,0,20,0" Click="Cancelar_Click" Cursor="Hand">
                     <Button.Resources>
                         <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="10"/>
+                            <Setter Property="CornerRadius" Value="12"/>
                         </Style>
                     </Button.Resources>
                 </Button>
-                <Button Content="CADASTRAR USUÁRIO" Width="220" Height="50" Background="#3B82F6" Foreground="White" FontWeight="Black" Click="Cadastrar_Click">
+
+                <Button Content="FINALIZAR CADASTRO" Width="240" Height="52" Background="{StaticResource CorPrimaria}" Foreground="White" FontWeight="Black" Click="Cadastrar_Click" Cursor="Hand">
                     <Button.Resources>
                         <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="10"/>
+                            <Setter Property="CornerRadius" Value="12"/>
                         </Style>
                     </Button.Resources>
+                    <Button.Effect>
+                        <DropShadowEffect BlurRadius="15" ShadowDepth="2" Opacity="0.1" Color="#3B82F6"/>
+                    </Button.Effect>
                 </Button>
             </StackPanel>
         </Grid>

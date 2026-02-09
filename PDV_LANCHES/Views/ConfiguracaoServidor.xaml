@@ -9,159 +9,149 @@
         Background="Transparent">
 
     <Window.Resources>
-        <!-- Estilo padrão para TextBox -->
-        <Style x:Key="InputBox" TargetType="TextBox">
-            <Setter Property="Height" Value="40"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Padding" Value="10,0"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-        </Style>
+        <SolidColorBrush x:Key="BgPrincipal" Color="#F8FAFC"/>
+        <SolidColorBrush x:Key="BgCard" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="TextoPrincipal" Color="#0F172A"/>
+        <SolidColorBrush x:Key="TextoSecundario" Color="#64748B"/>
+        <SolidColorBrush x:Key="CorPrimaria" Color="#3B82F6"/>
+        <SolidColorBrush x:Key="BordaPrincipal" Color="#E2E8F0"/>
 
-        <!-- Estilo do container -->
-        <Style x:Key="InputBorder" TargetType="Border">
-            <Setter Property="Background" Value="#0F172A"/>
-            <Setter Property="CornerRadius" Value="8"/>
-            <Setter Property="BorderBrush" Value="#1E293B"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Margin" Value="0,0,0,12"/>
-        </Style>
-
-        <!-- Botões -->
-        <Style x:Key="BtnPadrao" TargetType="Button">
+        <Style x:Key="ModernInput" TargetType="TextBox">
             <Setter Property="Height" Value="42"/>
-            <Setter Property="Background" Value="#334155"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Margin" Value="0,0,0,10"/>
+            <Setter Property="Background" Value="#F1F5F9"/>
+            <Setter Property="Foreground" Value="{StaticResource TextoPrincipal}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="12,0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="8" BorderBrush="{StaticResource BordaPrincipal}" BorderThickness="1">
+                            <ScrollViewer x:Name="PART_ContentHost" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="BtnAcao" TargetType="Button">
+            <Setter Property="Height" Value="42"/>
+            <Setter Property="Background" Value="#E2E8F0"/>
+            <Setter Property="Foreground" Value="{StaticResource TextoPrincipal}"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
     </Window.Resources>
 
-    <Border Background="#020617"
-            CornerRadius="15"
-            BorderBrush="#1E293B"
-            BorderThickness="2"
+    <Border Background="{StaticResource BgPrincipal}"
+            CornerRadius="20"
+            BorderBrush="{StaticResource BordaPrincipal}"
+            BorderThickness="1"
             MouseDown="Window_MouseDown">
 
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <Grid Margin="30">
+            <Grid Margin="35">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-                <!-- ================= SENHA ================= -->
-                <StackPanel Name="ParteDaSenhaBasica">
-                    <TextBlock Text="Digite a senha para configurar"
-                               Foreground="#94A3B8"
-                               FontSize="12"
-                               Margin="0,0,0,6"/>
-
-                    <Border Style="{StaticResource InputBorder}">
-                        <PasswordBox x:Name="senhabasica"
-                                     Height="40"
-                                     Background="Transparent"
-                                     Foreground="White"
-                                     BorderThickness="0"
-                                     Padding="10,0"/>
+                <StackPanel Grid.Row="0" Margin="0,0,0,30">
+                    <Border Width="50" Height="50" Background="#DBEAFE" CornerRadius="25" HorizontalAlignment="Center" Margin="0,0,0,15">
+                        <TextBlock Text="⚙" FontSize="24" Foreground="{StaticResource CorPrimaria}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </Border>
-
-                    <Button Content="Continuar"
-                            Style="{StaticResource BtnPadrao}"
-                            Click="validaSenhaBasica_Click"/>
+                    <TextBlock Text="CONFIGURAÇÕES" HorizontalAlignment="Center" FontSize="11" FontWeight="Black" Foreground="{StaticResource CorPrimaria}" />
                 </StackPanel>
 
-                <!-- ================= CONFIGURAÇÃO ================= -->
-                <StackPanel Name="ConfiguracaoPara"
-                            Visibility="Hidden"
-                            Margin="0,0,0,10">
+                <Grid Grid.Row="1">
 
-                    <TextBlock Text="CONFIGURAÇÃO DO SERVIDOR"
-                               Foreground="White"
-                               FontSize="18"
-                               FontWeight="Bold"
-                               Margin="0,10,0,20"
-                               HorizontalAlignment="Center"/>
+                    <StackPanel x:Name="ParteDaSenhaBasica" Visibility="Visible">
+                        <TextBlock Text="Acesso Restrito" FontSize="20" FontWeight="Bold" Foreground="{StaticResource TextoPrincipal}" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                        <TextBlock Text="Digite a senha mestre para configurar as conexões do servidor." TextWrapping="Wrap" TextAlignment="Center" Foreground="{StaticResource TextoSecundario}" Margin="0,0,0,25"/>
 
-                    <!-- HOST -->
-                    <TextBlock Text="Endereço do Servidor" Foreground="#94A3B8" FontSize="12"/>
-                    <Border Style="{StaticResource InputBorder}">
-                        <TextBox x:Name="txtIpServidor"
-                                 Style="{StaticResource InputBox}"
-                                 Text="localhost"/>
-                    </Border>
+                        <TextBlock Text="SENHA DE ACESSO" Foreground="{StaticResource TextoSecundario}" FontSize="10" FontWeight="Bold" Margin="0,0,0,8"/>
+                        <Border Background="#F1F5F9" CornerRadius="8" BorderBrush="{StaticResource BordaPrincipal}" BorderThickness="1" Margin="0,0,0,20">
+                            <PasswordBox x:Name="senhabasica" Height="42" Background="Transparent" BorderThickness="0" Padding="12,0" VerticalContentAlignment="Center"/>
+                        </Border>
 
-                    <!-- PORTA -->
-                    <TextBlock Text="Porta" Foreground="#94A3B8" FontSize="12"/>
-                    <Border Style="{StaticResource InputBorder}">
-                        <TextBox x:Name="txtPortaServidor"
-                                 Style="{StaticResource InputBox}"
-                                 Text="5000"/>
-                    </Border>
+                        <Button Content="Continuar" Background="{StaticResource CorPrimaria}" Foreground="White" Style="{StaticResource BtnAcao}" Click="validaSenhaBasica_Click"/>
+                    </StackPanel>
 
-                    <Button Content="Testar servidor"
-                            Style="{StaticResource BtnPadrao}"
-                            Click="BtnTestarHostEaPorta_Click"/>
+                    <StackPanel x:Name="ConfiguracaoPara" Visibility="Hidden">
 
-                    <!-- BANCO -->
-                    <TextBlock Text="Nome do Database" Foreground="#94A3B8" FontSize="12"/>
-                    <Border Style="{StaticResource InputBorder}">
-                        <TextBox x:Name="txtNomeDatabase"
-                                 Style="{StaticResource InputBox}"/>
-                    </Border>
+                        <Border Background="#EFF6FF" Padding="15" CornerRadius="10" Margin="0,0,0,25">
+                            <TextBlock Text="Defina abaixo os endereços de API e Banco de Dados." Foreground="#1E40AF" FontSize="12" TextWrapping="Wrap" TextAlignment="Center" FontWeight="Medium"/>
+                        </Border>
 
-                    <TextBlock Text="Porta do Banco" Foreground="#94A3B8" FontSize="12"/>
-                    <Border Style="{StaticResource InputBorder}">
-                        <TextBox x:Name="txtPortaDoBanco"
-                                 Style="{StaticResource InputBox}"
-                                 Text="3306"/>
-                    </Border>
+                        <TextBlock Text="ENDEREÇO DO SERVIDOR (API)" Foreground="{StaticResource TextoSecundario}" FontSize="10" FontWeight="Bold" Margin="0,0,0,8"/>
+                        <TextBox x:Name="txtIpServidor" Style="{StaticResource ModernInput}" Text="localhost" Margin="0,0,0,15"/>
 
-                    <TextBlock Text="Usuário do Banco" Foreground="#94A3B8" FontSize="12"/>
-                    <Border Style="{StaticResource InputBorder}">
-                        <TextBox x:Name="txtUsuarioDatabase"
-                                 Style="{StaticResource InputBox}"/>
-                    </Border>
+                        <TextBlock Text="PORTA DA API" Foreground="{StaticResource TextoSecundario}" FontSize="10" FontWeight="Bold" Margin="0,0,0,8"/>
+                        <TextBox x:Name="txtPortaServidor" Style="{StaticResource ModernInput}" Text="5000" Margin="0,0,0,10"/>
 
-                    <TextBlock Text="Senha do Banco" Foreground="#94A3B8" FontSize="12"/>
-                    <Border Style="{StaticResource InputBorder}">
-                        <PasswordBox x:Name="txtSenhaDatabase"
-                                     Height="40"
-                                     Background="Transparent"
-                                     Foreground="White"
-                                     BorderThickness="0"
-                                     Padding="10,0"/>
-                    </Border>
+                        <Button Content="Testar Conexão API" Style="{StaticResource BtnAcao}" Margin="0,0,0,25" Click="BtnTestarHostEaPorta_Click"/>
 
-                    <Button Content="Testar Banco"
-                            Style="{StaticResource BtnPadrao}"
-                            Click="BtnTestar_Click"/>
+                        <Separator Background="{StaticResource BordaPrincipal}" Margin="0,0,0,25"/>
 
-                    <!-- AÇÕES -->
-                    <Grid Margin="0,10,0,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="NOME DO BANCO DE DADOS" Foreground="{StaticResource TextoSecundario}" FontSize="10" FontWeight="Bold" Margin="0,0,0,8"/>
+                        <TextBox x:Name="txtNomeDatabase" Style="{StaticResource ModernInput}" Margin="0,0,0,15"/>
 
-                        <Button Grid.Column="0"
-                                Content="Salvar"
-                                Height="45"
-                                Background="#2563eb"
-                                Foreground="White"
-                                FontWeight="Bold"
-                                Margin="0,0,5,0"
-                                Click="BtnSalvar_Click"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="100"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Text="USUÁRIO DB" Foreground="{StaticResource TextoSecundario}" FontSize="10" FontWeight="Bold" Margin="0,0,0,8"/>
+                                <TextBox x:Name="txtUsuarioDatabase" Style="{StaticResource ModernInput}"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2">
+                                <TextBlock Text="PORTA DB" Foreground="{StaticResource TextoSecundario}" FontSize="10" FontWeight="Bold" Margin="0,0,0,8"/>
+                                <TextBox x:Name="txtPortaDoBanco" Style="{StaticResource ModernInput}" Text="3306"/>
+                            </StackPanel>
+                        </Grid>
 
-                        <Button Grid.Column="1"
-                                Content="Cancelar"
-                                Height="45"
-                                Background="Transparent"
-                                BorderBrush="#1E293B"
-                                BorderThickness="1"
-                                Foreground="#94A3B8"
-                                Margin="5,0,0,0"
-                                Click="BtnCancelar_Click"/>
-                    </Grid>
+                        <TextBlock Text="SENHA DO BANCO" Foreground="{StaticResource TextoSecundario}" FontSize="10" FontWeight="Bold" Margin="15,15,0,8"/>
+                        <Border Background="#F1F5F9" CornerRadius="8" BorderBrush="{StaticResource BordaPrincipal}" BorderThickness="1" Margin="0,0,0,15">
+                            <PasswordBox x:Name="txtSenhaDatabase" Height="42" Background="Transparent" BorderThickness="0" Padding="12,0" VerticalContentAlignment="Center"/>
+                        </Border>
 
-                </StackPanel>
+                        <Button Content="Testar Banco de Dados" Style="{StaticResource BtnAcao}" Margin="0,0,0,30" Click="BtnTestar_Click"/>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button Grid.Column="0" Content="SALVAR" Height="50" Background="{StaticResource CorPrimaria}" Foreground="White" FontWeight="Bold" Margin="0,0,5,0" Click="BtnSalvar_Click">
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="10"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+
+                            <Button Grid.Column="1" Content="CANCELAR" Height="50" Background="Transparent" BorderBrush="{StaticResource BordaPrincipal}" BorderThickness="1" Foreground="{StaticResource TextoSecundario}" FontWeight="Bold" Margin="5,0,0,0" Click="BtnCancelar_Click">
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="10"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
             </Grid>
         </ScrollViewer>
     </Border>

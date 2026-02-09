@@ -16,13 +16,17 @@ namespace PDV_LANCHES.Views
         private PedidoInfoController pedidoInfoController = new PedidoInfoController();
         bool veioDeTodasVendas = false;
         bool veioTodosRelatorios = false;
+        bool veioTodosPedidosPorCaixa = false;
+        int idCaixa = 0;
 
-        public PedidoInfo(int id, bool veioDeTodasVendas = false, bool veioTodosRelatorios = false)
+        public PedidoInfo(int id, bool veioDeTodasVendas = false, bool veioTodosRelatorios = false, bool veioTodosPedidosPorCaixa = false, int idCaixa = 0)
         {
             InitializeComponent(); 
             this.id = id;
             this.veioDeTodasVendas = veioDeTodasVendas;
             this.veioTodosRelatorios = veioTodosRelatorios;
+            this.veioTodosPedidosPorCaixa = veioTodosPedidosPorCaixa;
+            this.idCaixa = idCaixa;
             CarregarPedidoAssincrono();
         }
 
@@ -371,26 +375,31 @@ namespace PDV_LANCHES.Views
 
 
         private void Fechar_Click(object sender, RoutedEventArgs e) {
-            if(veioDeTodasVendas == false)
-            {
-                Home home = new Home();
-                home.Show();
-                this.Close();
-            }
-            if (veioTodosRelatorios == true)
-            {
-                HomeAdministrativo homeAdministrativo = new HomeAdministrativo();
-                homeAdministrativo.Show();
-                this.Close();
-            }
-            else
+            if(veioDeTodasVendas == true)
             {
                 TodasVendasCompleto todasVendasCompleto = new TodasVendasCompleto();
                 todasVendasCompleto.Show();
-                this.Close();
+                
+            } else if (veioTodosRelatorios == true)
+            {
+                HomeAdministrativo homeAdministrativo = new HomeAdministrativo();
+                homeAdministrativo.Show();
+            }
+            if (veioTodosPedidosPorCaixa == true)
+            {
+                TodosPedidosPorCaixa todosPedidosPorCaixa = new TodosPedidosPorCaixa(idCaixa);
+                todosPedidosPorCaixa.Show();
+            }
+            //vai para o home
+            else
+            {
+                Home home = new Home();
+                home.Show();
             }
 
+            this.Close();
         }
+
         private void CardapioCompleto_click(object sender, RoutedEventArgs e) {
             CardapioCompleto cardapiocompleto = new CardapioCompleto(pedido);
             cardapiocompleto.Show();

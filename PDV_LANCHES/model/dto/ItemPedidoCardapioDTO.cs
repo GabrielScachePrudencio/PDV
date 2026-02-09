@@ -12,5 +12,9 @@
         //preco de custo de fabrica
         public decimal CustoDeFabricacao { get; set; }
 
+
+        public decimal Desconto { get; set; }
+        public int DecontoComPorcentagem { get; set; }
+
     }
 }

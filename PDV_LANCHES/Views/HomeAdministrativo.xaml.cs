@@ -14,6 +14,7 @@ namespace PDV_LANCHES.Views
     {
         private HomeController homeController = new HomeController();
         private Usuario usuarioLogado;
+        private Caixa caixa = new Caixa();
 
         public HomeAdministrativo()
         {
@@ -80,6 +81,8 @@ namespace PDV_LANCHES.Views
                     {
                         txtLogoPlaceholder.Visibility = Visibility.Visible;
                     }
+
+                    caixa = Status_Categorias.Instancia.caixa;
                 }
             }
             catch
@@ -134,9 +137,19 @@ namespace PDV_LANCHES.Views
 
         private async void Sair_Click(object sender, RoutedEventArgs e)
         {
-            await homeController.Logout();
-            MainWindow loginWindow = new MainWindow();
-            loginWindow.Show();
+            if (caixa != null)
+            {
+                RelatorioFechamentoCaixa relatorioFechamentoCaixa = new RelatorioFechamentoCaixa(false, true, false);
+                relatorioFechamentoCaixa.Show();
+                this.Close();
+            }
+
+            else
+            {
+                await homeController.Logout();
+                MainWindow loginWindow = new MainWindow();
+                loginWindow.Show();
+            }
             this.Close();
         }
 
@@ -173,10 +186,6 @@ namespace PDV_LANCHES.Views
             ConteudoConfiguracoes.Content = new AllCategorias();
         }
 
-        private void Cupons_Click(object sender, RoutedEventArgs e)
-        {
-            ConteudoConfiguracoes.Content = new AlllCuponsDeDesconto();
-        }
 
         private void StatusPedidos_Click(object sender, RoutedEventArgs e)
         {
