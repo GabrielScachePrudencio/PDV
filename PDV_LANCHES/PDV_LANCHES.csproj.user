@@ -7,10 +7,16 @@
     <Compile Update="Views\ConfiguracaoServidor.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\ConsignacaoDarBaixa.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\EscolhaDeCaixas.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Estoque.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\NovaConsignacao.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\NovoProduto.xaml.cs">
@@ -38,6 +44,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\RelatorioFechamentoCaixa.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\TodasConsignacoes.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\TodosPedidosPorCaixa.xaml.cs">

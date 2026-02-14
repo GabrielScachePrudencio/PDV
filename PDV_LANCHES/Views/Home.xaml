@@ -133,13 +133,22 @@
                             </Popup>
                         </Grid>
                         <ControlTemplate.Triggers>
+
                             <Trigger Property="HasItems" Value="false">
-                                <Setter TargetName="DropDownBorder" Property="Height" Value="95"/>
+                                <Setter TargetName="DropDownBorder"
+                Property="Height"
+                Value="95"/>
                             </Trigger>
+
                             <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="BorderBrush" Value="{StaticResource BordaHover}"/>
+                                <Setter 
+                Property="BorderBrush"
+                Value="{StaticResource BordaHover}"/>
                             </Trigger>
+
                         </ControlTemplate.Triggers>
+
+
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -256,6 +265,13 @@
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="🗄" Margin="0,0,12,0" FontSize="16"/>
                             <TextBlock Text="Estoque"/>
+                        </StackPanel>
+                    </Button>
+                    
+                    <Button Style="{StaticResource MenuButtonStyle}" x:Name="consignacao" Click="consignacao_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="🎒" Margin="0,0,12,0" FontSize="16"/>
+                            <TextBlock Text="Consignações"/>
                         </StackPanel>
                     </Button>
                 </StackPanel>

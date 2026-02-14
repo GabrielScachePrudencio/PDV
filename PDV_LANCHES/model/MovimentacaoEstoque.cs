@@ -19,6 +19,7 @@ namespace PDV_LANCHES.model
         public OrigemMovimentacaoEstoque Origem { get; set; }
 
         public int? IdPedido { get; set; }
+        public int idConsignacao { get; set; }
 
         public int? IdUsuario { get; set; }
 

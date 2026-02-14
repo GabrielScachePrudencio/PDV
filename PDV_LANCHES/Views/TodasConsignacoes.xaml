@@ -1,0 +1,287 @@
+﻿<Window x:Class="PDV_LANCHES.Views.TodasConsignacoes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        WindowStyle="None" WindowState="Maximized"
+        Background="{DynamicResource BackgroundPrincipal}" 
+        Title="Histórico de Consignações" Height="800" Width="1400"
+        mc:Ignorable="d">
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="BackgroundPrincipal" Color="#F8FAFC"/>
+        <SolidColorBrush x:Key="BackgroundSecundario" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="BackgroundTerciario" Color="#F1F5F9"/>
+        <SolidColorBrush x:Key="TextoPrincipal" Color="#0F172A"/>
+        <SolidColorBrush x:Key="TextoSecundario" Color="#475569"/>
+        <SolidColorBrush x:Key="TextoTerciario" Color="#64748B"/>
+        <SolidColorBrush x:Key="CorPrimaria" Color="#6366F1"/>
+        <SolidColorBrush x:Key="CorSucesso" Color="#10B981"/>
+        <!-- RECURSOS QUE ESTAVAM FALTANDO -->
+        <SolidColorBrush x:Key="BackgroundInput" Color="#F1F5F9"/>
+        <SolidColorBrush x:Key="BordaSecundaria" Color="#CBD5E1"/>
+        <SolidColorBrush x:Key="CorSucessoHover" Color="#059669"/>
+        <SolidColorBrush x:Key="BordaPrincipal" Color="#E2E8F0"/>
+        <SolidColorBrush x:Key="BadgeBackground" Color="#EEF2FF"/>
+        <SolidColorBrush x:Key="ItemBackground" Color="#F8FAFC"/>
+        <Style x:Key="DarkComboBox" TargetType="ComboBox">
+            <Setter Property="Foreground" Value="{StaticResource TextoPrincipal}"/>
+            <Setter Property="Background" Value="{StaticResource BackgroundInput}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BordaSecundaria}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Padding" Value="12,0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid x:Name="MainGrid" SnapsToDevicePixels="True">
+                            <ToggleButton x:Name="ToggleButton" Grid.ColumnSpan="2"
+                                  Background="{TemplateBinding Background}"
+                                  BorderBrush="{TemplateBinding BorderBrush}"
+                                  BorderThickness="{TemplateBinding BorderThickness}"
+                                  IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                  Focusable="False" ClickMode="Press">
+                                <ToggleButton.Template>
+                                    <ControlTemplate TargetType="ToggleButton">
+                                        <Border x:Name="templateRoot" Background="{TemplateBinding Background}" 
+                                        BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="8">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="30"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Path x:Name="Arrow" Grid.Column="1" Data="M 0 0 L 4 4 L 8 0 Z" Fill="#94A3B8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Grid>
+                                        </Border>
+                                    </ControlTemplate>
+                                </ToggleButton.Template>
+                            </ToggleButton>
+                            <ContentPresenter x:Name="ContentSite" IsHitTestVisible="False" Content="{TemplateBinding SelectionBoxItem}"
+                                      Margin="{TemplateBinding Padding}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            <Popup x:Name="PART_Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True" PopupAnimation="Slide">
+                                <Border x:Name="DropDownBorder" Background="{StaticResource BackgroundSecundario}" BorderBrush="{StaticResource BordaSecundaria}" BorderThickness="1" CornerRadius="8"
+                                MinWidth="{Binding ActualWidth, ElementName=MainGrid}" Margin="0,4,0,0">
+                                    <ScrollViewer MaxHeight="300">
+                                        <ItemsPresenter />
+                                    </ScrollViewer>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ModernPrimaryButton" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource CorSucesso}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Padding" Value="25,0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource CorSucessoHover}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ModernTextBox" TargetType="TextBox">
+            <Setter Property="Background" Value="{StaticResource BackgroundInput}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextoPrincipal}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BordaSecundaria}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="10,0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="8">
+                            <ScrollViewer x:Name="PART_ContentHost"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ModernDatePicker" TargetType="{x:Type DatePicker}">
+            <Setter Property="Background" Value="{StaticResource BackgroundInput}" />
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DatePicker}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{StaticResource BordaSecundaria}" BorderThickness="1" CornerRadius="8">
+                            <Grid x:Name="PART_Root">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="40" />
+                                </Grid.ColumnDefinitions>
+                                <DatePickerTextBox x:Name="PART_TextBox" Grid.Column="0" Foreground="{StaticResource TextoPrincipal}" Background="Transparent" BorderThickness="0" VerticalContentAlignment="Center" Padding="10,0"/>
+                                <Button x:Name="PART_Button" Grid.Column="1" Content="📅" Foreground="{StaticResource CorPrimaria}" Background="Transparent" BorderThickness="0" Cursor="Hand"/>
+                                <Popup x:Name="PART_Popup" AllowsTransparency="True" Placement="Bottom" StaysOpen="False" PopupAnimation="Fade"/>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="0,0,0,25">
+            <Button Click="Voltar_Click" HorizontalAlignment="Left" Background="Transparent" BorderThickness="0" Cursor="Hand">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="←" Foreground="{StaticResource CorPrimaria}" FontSize="24" FontWeight="Bold"/>
+                    <TextBlock Text="VOLTAR PARA HOME" Foreground="{StaticResource TextoTerciario}" FontSize="12" FontWeight="Bold" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                </StackPanel>
+            </Button>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="CONSIGNAÇÕES EM ABERTO" Foreground="{StaticResource TextoPrincipal}" FontSize="22" FontWeight="ExtraBold"/>
+                <Border Height="3" Width="50" Background="{StaticResource CorPrimaria}" HorizontalAlignment="Left" Margin="2,4,0,0" CornerRadius="2"/>
+            </StackPanel>
+        </Grid>
+
+        <Border Grid.Row="1" Background="{StaticResource BackgroundSecundario}" CornerRadius="16" Padding="20" Margin="0,0,0,20" BorderBrush="{StaticResource BordaPrincipal}" BorderThickness="1">
+            <Grid>
+                <WrapPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                    <StackPanel Margin="0,0,15,0">
+                        <TextBlock Text="PESQUISAR CLIENTE" FontSize="10" FontWeight="Bold" Foreground="{StaticResource TextoSecundario}" Margin="0,0,0,8"/>
+                        <TextBox x:Name="txtBuscaCliente" Width="250" Height="40" Style="{StaticResource ModernTextBox}"/>
+                    </StackPanel>
+                    <Button Click="Pesquisar_Click" Width="120" Height="40" Margin="5,20,0,0" Style="{StaticResource ModernPrimaryButton}" Background="{StaticResource CorPrimaria}">
+                        <TextBlock Text="🔍 FILTRAR"/>
+                    </Button>
+                </WrapPanel>
+
+                <Button x:Name="novaConsignacao" Width="220" Style="{StaticResource ModernPrimaryButton}" Click="NovaConsignacao_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="📦" FontSize="16" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="NOVA CONSIGNAÇÃO" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="2" Padding="20,10" Margin="0,0,0,5">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="ID" Foreground="{StaticResource TextoSecundario}" FontWeight="Bold" Grid.Column="0"/>
+                <TextBlock Text="CLIENTE" Foreground="{StaticResource TextoSecundario}" FontWeight="Bold" Grid.Column="1"/>
+                <TextBlock Text="DATA SAÍDA" Foreground="{StaticResource TextoSecundario}" FontWeight="Bold" Grid.Column="2"/>
+                <TextBlock Text="PREVISÃO ACERTO" Foreground="{StaticResource TextoSecundario}" FontWeight="Bold" Grid.Column="3"/>
+                <TextBlock Text="VENDEDOR" Foreground="{StaticResource TextoSecundario}" FontWeight="Bold" Grid.Column="4"/>
+                <TextBlock Text="ITENS CONSIGNADOS" Foreground="{StaticResource TextoSecundario}" FontWeight="Bold" Grid.Column="5"/>
+                <TextBlock Text="STATUS" Foreground="{StaticResource TextoSecundario}" FontWeight="Bold" Grid.Column="6" HorizontalAlignment="Right"/>
+                <TextBlock Text="TOTAL ESTIMADO" Foreground="{StaticResource TextoSecundario}" FontWeight="Bold" Grid.Column="7" HorizontalAlignment="Right"/>
+                <TextBlock Text="AÇÕES" Foreground="{StaticResource TextoSecundario}" FontWeight="Bold" Grid.Column="8" HorizontalAlignment="Center"/>
+            </Grid>
+        </Border>
+
+        <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto">
+            <ItemsControl x:Name="ListaConsignacoes">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="0,0,0,8" Background="{StaticResource BackgroundSecundario}" CornerRadius="12" Padding="20" BorderBrush="{StaticResource BordaPrincipal}" BorderThickness="1">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="140"/>
+                                    <ColumnDefinition Width="140"/>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="50"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Column="0" Text="{Binding Id, StringFormat='#C{0}'}" Foreground="{StaticResource TextoPrincipal}" FontWeight="Bold" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="1" Text="{Binding NomeCliente}" Foreground="{StaticResource TextoPrincipal}" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="2" Text="{Binding DataSaida, StringFormat='dd/MM/yy HH:mm'}" Foreground="{StaticResource TextoTerciario}" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="3" Text="{Binding DataPrevisaoAcerto , StringFormat='dd/MM/yyyy'}" Foreground="#E11D48" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="4" Text="{Binding IdUsuario }" Foreground="{StaticResource TextoTerciario}" VerticalAlignment="Center"/>
+
+                                <ItemsControl Grid.Column="5" ItemsSource="{Binding Itens}" VerticalAlignment="Center">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Orientation="Horizontal"/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border Background="{StaticResource ItemBackground}" CornerRadius="6" Padding="6,2" Margin="0,0,5,5" BorderBrush="{StaticResource BordaPrincipal}" BorderThickness="1">
+                                                <TextBlock FontSize="10">
+                                                    <Run Text="{Binding QuantidadeEnviada}" FontWeight="Bold"/>
+                                                    <Run Text="x"/>
+                                                    <Run Text="{Binding NomeProduto}"/>
+                                                </TextBlock>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+
+                                <TextBlock Grid.Column="6"
+                                   Text="{Binding NomeStatus}"
+                                   Foreground="{StaticResource TextoPrincipal}"
+                                   FontSize="14"
+                                   FontWeight="Bold"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Right"
+                                   Margin="0,0,15,0"/>
+
+                                <TextBlock Grid.Column="7"
+               Text="{Binding ValorTotalEstimado, StringFormat='R$ {0:N2}'}"
+               Foreground="{StaticResource TextoPrincipal}"
+               FontSize="15"
+               FontWeight="Bold"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Right"
+               Margin="0,0,15,0"/>              
+
+                                <Button Grid.Column="8" Click="RealizarAcerto_Click" Width="35" Height="35" Background="{StaticResource CorSucesso}" ToolTip="Realizar Acerto de Contas" Cursor="Hand">
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="6"/>
+                                        </Style>
+                                    </Button.Resources>
+                                    <TextBlock Text="👁" Foreground="White" FontWeight="Bold"/>
+                                </Button>
+                                
+
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</Window>

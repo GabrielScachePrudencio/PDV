@@ -1,0 +1,231 @@
+﻿<Window x:Class="PDV_LANCHES.Views.ConsignacaoDarBaixa"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Editar Consignação" 
+        WindowState="Maximized" 
+        WindowStyle="SingleBorderWindow"
+        WindowStartupLocation="CenterScreen" 
+        Background="{DynamicResource BackgroundPrincipal}">
+
+    <Window.Resources>
+        <!-- ========================================= -->
+        <!-- PALETA DE CORES - MODO CLARO -->
+        <!-- ========================================= -->
+
+        <SolidColorBrush x:Key="BackgroundPrincipal" Color="#F8FAFC"/>
+        <SolidColorBrush x:Key="BackgroundSecundario" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="BackgroundTerciario" Color="#F1F5F9"/>
+        <SolidColorBrush x:Key="BackgroundInput" Color="#FFFFFF"/>
+
+        <SolidColorBrush x:Key="BordaPrincipal" Color="#E2E8F0"/>
+        <SolidColorBrush x:Key="BordaSecundaria" Color="#CBD5E1"/>
+
+        <SolidColorBrush x:Key="TextoPrincipal" Color="#0F172A"/>
+        <SolidColorBrush x:Key="TextoSecundario" Color="#475569"/>
+        <SolidColorBrush x:Key="TextoTerciario" Color="#64748B"/>
+
+        <SolidColorBrush x:Key="CorPrimaria" Color="#3B82F6"/>
+        <SolidColorBrush x:Key="CorPrimariaTexto" Color="#1E3A8A"/>
+
+        <SolidColorBrush x:Key="CorSucesso" Color="#22C55E"/>
+        <SolidColorBrush x:Key="CorSucessoTexto" Color="#166534"/>
+
+        <SolidColorBrush x:Key="CorEstorno" Color="#EF4444"/>
+        <SolidColorBrush x:Key="CorEstornoTexto" Color="#7F1D1D"/>
+
+        <SolidColorBrush x:Key="ComboboxBackground" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="ComboboxBorda" Color="#CBD5E1"/>
+        <SolidColorBrush x:Key="ComboboxDropdown" Color="#FFFFFF"/>
+
+        <!-- ========================================= -->
+
+        <Style x:Key="DarkComboBox" TargetType="ComboBox">
+            <Setter Property="Background" Value="{StaticResource ComboboxBackground}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextoPrincipal}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ComboboxBorda}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Padding" Value="12,0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid x:Name="MainGrid">
+                            <ToggleButton x:Name="ToggleButton"
+                                          Background="{TemplateBinding Background}"
+                                          BorderBrush="{TemplateBinding BorderBrush}"
+                                          BorderThickness="{TemplateBinding BorderThickness}"
+                                          IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                          ClickMode="Press">
+                                <ToggleButton.Template>
+                                    <ControlTemplate TargetType="ToggleButton">
+                                        <Border x:Name="templateRoot" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="8">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="30"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Path x:Name="Arrow" Grid.Column="1" Data="M 0 0 L 4 4 L 8 0 Z" Fill="#94A3B8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Grid>
+                                        </Border>
+                                    </ControlTemplate>
+                                </ToggleButton.Template>
+                            </ToggleButton>
+                            <ContentPresenter x:Name="ContentSite" 
+                          IsHitTestVisible="False" 
+                          Content="{TemplateBinding SelectionBoxItem}" 
+                          ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" 
+                          ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
+                          Margin="{TemplateBinding Padding}" 
+                          VerticalAlignment="Center" 
+                          HorizontalAlignment="Left"/>
+                            <Popup x:Name="PART_Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True" PopupAnimation="Slide">
+                                <Border x:Name="DropDownBorder" Background="{StaticResource ComboboxDropdown}" BorderBrush="{StaticResource BordaSecundaria}" BorderThickness="1" CornerRadius="8" Margin="0,4,0,0" MinWidth="{Binding ActualWidth, ElementName=MainGrid}">
+                                    <ScrollViewer MaxHeight="300">
+                                        <ItemsPresenter />
+                                    </ScrollViewer>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="280"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- SIDEBAR -->
+        <Border Grid.Column="0" Background="{StaticResource BackgroundSecundario}" BorderBrush="{StaticResource BordaPrincipal}" BorderThickness="0,0,1,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Margin="0,40,0,30">
+                    <Border Width="60" Height="60" CornerRadius="30" BorderBrush="{StaticResource CorPrimaria}" BorderThickness="2" HorizontalAlignment="Center">
+                        <TextBlock Text="📦" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                    <TextBlock Text="CONSIGNAÇÃO" Foreground="{StaticResource TextoPrincipal}" FontSize="14" FontWeight="Black" Margin="0,15,0,0" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="txtStatusConsignacao" Text="EM ABERTO" Foreground="{StaticResource TextoTerciario}" FontSize="11" FontWeight="SemiBold" Margin="0,5,0,0" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <Grid Grid.Column="1" Margin="40">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- CABEÇALHO -->
+            <StackPanel Grid.Row="0" Margin="0,0,0,25">
+                <TextBlock Text="DETALHES DA CONSIGNAÇÃO" FontSize="11" FontWeight="Black" Foreground="{StaticResource CorPrimaria}"/>
+                <TextBlock Text="Edição de Produtos Consignados" FontSize="28" FontWeight="SemiBold" Foreground="{StaticResource TextoPrincipal}" Margin="0,5,0,0"/>
+                <Separator Margin="0,15,0,0" Background="{StaticResource BordaPrincipal}"/>
+            </StackPanel>
+
+            <!-- INFORMAÇÕES E AÇÕES -->
+            <Grid Grid.Row="1" Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Margin="0,0,15,0">
+                    <TextBlock Text="CLIENTE" Foreground="{StaticResource TextoTerciario}" FontSize="10" FontWeight="Bold" Margin="0,0,0,8"/>
+                    <TextBox x:Name="txtFornecedor" Height="45" Padding="12" Background="{StaticResource BackgroundInput}" BorderBrush="{StaticResource BordaPrincipal}" Foreground="{StaticResource TextoPrincipal}" VerticalContentAlignment="Center" IsReadOnly="True">
+                        <TextBox.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="8"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Margin="0,0,15,0">
+                    <TextBlock Text="DATA DA CONSIGNAÇÃO" Foreground="{StaticResource TextoTerciario}" FontSize="10" FontWeight="Bold" Margin="0,0,0,8"/>
+                    <TextBox x:Name="txtDataConsignacao" Height="45" Padding="12" Background="{StaticResource BackgroundInput}" BorderBrush="{StaticResource BordaPrincipal}" Foreground="{StaticResource TextoPrincipal}" VerticalContentAlignment="Center" IsReadOnly="True">
+                        <TextBox.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="8"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" VerticalAlignment="Bottom">
+                    <Button x:Name="btnAdicionarProdutos" Content="+ Adicionar Produtos" Width="200" Height="45" Background="{StaticResource CorPrimaria}" Foreground="{StaticResource CorPrimariaTexto}" FontWeight="Bold" Click="AdicionarProdutos_Click" Cursor="Hand">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="8"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <!-- LISTA DE PRODUTOS -->
+            <Border Grid.Row="2" Background="{StaticResource BackgroundSecundario}" CornerRadius="16" Padding="15" BorderBrush="{StaticResource BordaPrincipal}" BorderThickness="1">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel x:Name="produtosConsignacaoStackPanel"/>
+                </ScrollViewer>
+            </Border>
+
+            <!-- TOTAL -->
+            <Border Grid.Row="3" Margin="0,20,0,20" Padding="30,20" Background="{StaticResource BackgroundTerciario}" CornerRadius="16">
+                <DockPanel>
+                    <StackPanel>
+                        <TextBlock Text="VALOR TOTAL DA CONSIGNAÇÃO" Foreground="{StaticResource TextoSecundario}" FontWeight="Bold" FontSize="14"/>
+                        <TextBlock x:Name="txtObservacao" Text="" Foreground="{StaticResource TextoTerciario}" FontSize="11" Margin="0,5,0,0"/>
+                    </StackPanel>
+                    <TextBlock x:Name="consignacaoTotalInfo" Text="R$ 0,00" HorizontalAlignment="Right" Foreground="{StaticResource CorPrimaria}" FontSize="32" FontWeight="Black"/>
+                </DockPanel>
+            </Border>
+
+            <!-- BOTÕES DE AÇÃO -->
+            <Grid Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="1" Content="CANCELAR" Width="200" Height="60" Margin="0,0,15,0" Background="Transparent" Foreground="{StaticResource TextoTerciario}" FontWeight="Bold" BorderBrush="{StaticResource BordaPrincipal}" BorderThickness="1" Click="Cancelar_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="12"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+                <Button Grid.Column="2" x:Name="btnEstornar" Content="ESTORNAR CONSIGNAÇÃO" Width="250" Height="60" Margin="0,0,15,0" Background="{StaticResource CorEstorno}" Foreground="White" FontWeight="Black" FontSize="14" Click="Estornar_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="12"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+                <Button Grid.Column="3" x:Name="btnFinalizar" Content="FINALIZAR CONSIGNAÇÃO" Width="280" Height="60" Background="{StaticResource CorSucesso}" Foreground="{StaticResource CorSucessoTexto}" FontWeight="Black" FontSize="16" Click="Finalizar_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="12"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

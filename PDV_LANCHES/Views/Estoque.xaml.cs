@@ -4,6 +4,7 @@ using PDV_LANCHES.model.dto;
 using System;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Input;
 
 namespace PDV_LANCHES.Views
 {
@@ -19,37 +20,45 @@ namespace PDV_LANCHES.Views
             estoque = new List<PDV_LANCHES.model.Estoque>();
             novoPedidoController = new NovoPedidoController();
             CarregarDados();
-        } 
+        }
 
         private async void CarregarDados()
         {
             try
             {
-    
-                // Busca os dados da API através do Controller
-                List<MovimentacaoEstoqueDTO> dados = await _controller.PegarTodoEstoqueMovimentacoes();
-                List<PDV_LANCHES.model.Estoque> estoques = await _controller.allEstoque();
+                List<MovimentacaoEstoqueDTO> dados =
+                    await _controller.PegarTodoEstoqueMovimentacoes();
 
-                if (dados != null)
+                List<PDV_LANCHES.model.Estoque> estoques =
+                    await _controller.allEstoque();
+
+                if (dados == null || estoques == null)
                 {
-                    dgMovimentacoes.ItemsSource = dados;
+                    MessageBox.Show(
+                        "Não foi possível carregar os dados do estoque.",
+                        "Erro de Conexão",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Warning);
 
-
-                    dgEstoque.ItemsSource = estoques;
-
-                    AtualizarResumoEstoque(estoques, dados);
+                    return;
                 }
-                else
-                {
-                    MessageBox.Show("Não foi possível carregar os dados do estoque.", "Erro de Conexão", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
+
+                // Aqui já vai usar a propriedade Identificador automaticamente no Binding
+                dgMovimentacoes.ItemsSource = dados;
+                dgEstoque.ItemsSource = estoques;
+
+                AtualizarResumoEstoque(estoques, dados);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro técnico: {ex.Message}", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(
+                    $"Erro técnico: {ex.Message}",
+                    "Erro",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
-
         }
+
 
         private void AtualizarResumoEstoque(
                 List<PDV_LANCHES.model.Estoque> estoques,
@@ -139,6 +148,10 @@ namespace PDV_LANCHES.Views
             }
         }
 
+        private void TopBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
 
         private void Cancelar_Click(object sender, RoutedEventArgs e)
         {

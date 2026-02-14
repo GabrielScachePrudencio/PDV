@@ -10,6 +10,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\ConsignacaoInfo.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="Views\ConsignacaoInfo.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="src\img\logo\icone.ico" />
   </ItemGroup>
 

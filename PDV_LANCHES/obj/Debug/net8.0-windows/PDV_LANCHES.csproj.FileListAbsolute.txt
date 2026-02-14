@@ -85,3 +85,9 @@ C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\ne
 C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\VendasPorCaixa.baml
 C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\TodosPedidosPorCaixa.g.cs
 C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\VendasPorCaixa.g.cs
+C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\NovaConsignacao.baml
+C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\TodasConsignacoes.baml
+C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\NovaConsignacao.g.cs
+C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\TodasConsignacoes.g.cs
+C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\ConsignacaoDarBaixa.g.cs
+C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\ConsignacaoDarBaixa.baml

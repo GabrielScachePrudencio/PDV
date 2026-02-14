@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         WindowState="Maximized"
         WindowStyle="None"
-
+ResizeMode="NoResize"
         Background="{DynamicResource BackgroundPrincipal}"
         Title="Gerenciamento de Estoque"
         Height="800"
@@ -74,7 +74,7 @@
             <!-- CONTEÚDO -->
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Margin="0,0,0,30">
+        <Grid Grid.Row="0" Margin="0,0,0,30" MouseLeftButtonDown="TopBar_MouseLeftButtonDown" >
             <StackPanel>
                 <TextBlock Text="MOVIMENTAÇÃO E SALDO"
                            Foreground="{StaticResource TextoPrincipal}"
@@ -266,40 +266,57 @@
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="100"/>
                                                 <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
 
                                             <Border x:Name="TypeBadge" Grid.Column="0" CornerRadius="6" Padding="5" VerticalAlignment="Center">
-                                                <TextBlock Text="{Binding Tipo}" HorizontalAlignment="Center" FontSize="11" FontWeight="Black"/>
+                                                <TextBlock x:Name="txtTipo" 
+                                                       Text="{Binding Tipo}" 
+                                                       HorizontalAlignment="Center" 
+                                                       FontSize="11" 
+                                                       FontWeight="Black"/> 
+                                                
+                                            </Border>
+                                            <Border x:Name="TypeBadge2" Grid.Column="1" CornerRadius="6" Padding="5" VerticalAlignment="Center">
+                                                <TextBlock x:Name="txtValorOrigem" 
+                                                   Text="{Binding valorOrigem}" 
+                                                   HorizontalAlignment="Center" 
+                                                   FontSize="11" 
+                                                   FontWeight="Black"/>
+
                                             </Border>
 
-                                            <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="20,0">
+                                            
+
+
+                                                <StackPanel Grid.Column="2" VerticalAlignment="Center" Margin="20,0">
                                                 <TextBlock Foreground="{StaticResource TextoPrincipal}">
-                                             <Run Text="{Binding QuantidadeMovimentada}" />
-                                             <Run Text="x" />
-                                             <Run Text="{Binding Produto}" />
+                                                    <Run Text="{Binding QuantidadeMovimentada}" />
+                                                    <Run Text="x" />
+                                                    <Run Text="{Binding Produto}" />
                                                 </TextBlock>
                                                 <TextBlock Foreground="{StaticResource TextoTerciario}" FontSize="11">
-                                                <Run Text="#ID_PEDIDO:"/>
-                                                <Run Text="{Binding PedidoId}"/>
-                                               
-                                                <Run Text=" - "/>
-                                                <Run Text="{Binding DataMovimentacao, StringFormat='dd/MM/yyyy HH:mm'}"/>
-                                                <Run Text=" Usuario: "/>
-                                                <Run Text="{Binding Usuario}" FontWeight="Bold"/>
+                        
+                                                 <Run Text="{Binding TipoIdentificadorLabel, Mode=OneWay}" />
+                                                    <Run Text=" " />
+                                                    <Run Text="{Binding TipoIdentificadorValor, Mode=OneWay}" FontWeight="Bold"/>
+
+                                                 
 
 
-
+                        <Run Text=" - "/>
+                        <Run Text="{Binding DataMovimentacao, StringFormat='dd/MM/yyyy HH:mm'}"/>
+                        <Run Text=" Usuario: "/>
+                        <Run Text="{Binding Usuario}" FontWeight="Bold"/>
                                                 </TextBlock>
                                             </StackPanel>
 
-                                            <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                                            <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center">
                                                 <Border Background="{StaticResource BackgroundTerciario}" CornerRadius="6" Padding="10,5">
                                                     <TextBlock Text="{Binding QuantidadeAntes}" Foreground="{StaticResource TextoTerciario}" FontSize="14" FontWeight="Bold"/>
                                                 </Border>
-
                                                 <TextBlock Text="→" Foreground="{StaticResource CorPrimaria}" FontSize="20" FontWeight="Bold" Margin="12,0" VerticalAlignment="Center"/>
-
                                                 <Border Background="{StaticResource CorPrimaria}" CornerRadius="6" Padding="10,5">
                                                     <TextBlock Text="{Binding QuantidadeDepois}" Foreground="White" FontSize="14" FontWeight="Bold"/>
                                                 </Border>
@@ -310,27 +327,15 @@
                                     <DataTemplate.Triggers>
                                         <DataTrigger Binding="{Binding Tipo}" Value="VENDA">
                                             <Setter TargetName="TypeBadge" Property="Background" Value="{StaticResource BadgeVenda}"/>
-                                            <Setter TargetName="TypeBadge" >
-                                                <Setter.Value>
-                                                    <TextBlock Text="{Binding Tipo}" HorizontalAlignment="Center" FontSize="11" FontWeight="Black" Foreground="{StaticResource BadgeVendaTexto}"/>
-                                                </Setter.Value>
-                                            </Setter>
+                                            <Setter TargetName="txtTipo" Property="Foreground" Value="{StaticResource BadgeVendaTexto}"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding Tipo}" Value="COMPRA">
                                             <Setter TargetName="TypeBadge" Property="Background" Value="{StaticResource BadgeCompra}"/>
-                                            <Setter TargetName="TypeBadge">
-                                                <Setter.Value>
-                                                    <TextBlock Text="{Binding Tipo}" HorizontalAlignment="Center" FontSize="11" FontWeight="Black" Foreground="{StaticResource BadgeCompraTexto}"/>
-                                                </Setter.Value>
-                                            </Setter>
+                                            <Setter TargetName="txtTipo" Property="Foreground" Value="{StaticResource BadgeCompraTexto}"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding Tipo}" Value="AJUSTE">
                                             <Setter TargetName="TypeBadge" Property="Background" Value="{StaticResource BadgeAjuste}"/>
-                                            <Setter TargetName="TypeBadge" >
-                                                <Setter.Value>
-                                                    <TextBlock Text="{Binding Tipo}" HorizontalAlignment="Center" FontSize="11" FontWeight="Black" Foreground="{StaticResource BadgeAjusteTexto}"/>
-                                                </Setter.Value>
-                                            </Setter>
+                                            <Setter TargetName="txtTipo" Property="Foreground" Value="{StaticResource BadgeAjusteTexto}"/>
                                         </DataTrigger>
                                     </DataTemplate.Triggers>
                                 </DataTemplate>

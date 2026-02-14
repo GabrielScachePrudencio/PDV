@@ -66,7 +66,9 @@ namespace PDV_LANCHES.model
         AJUSTE = 3,       // Adicionado para bater com o banco
         CANCELAMENTO = 4, // Adicionado para bater com o banco
         ESTORNADO = 5,
-        PRONTO = 6
+        PRONTO = 6,
+        CONSIGNACAO_ABERTA = 7,
+        CONSIGNACAO_CANCELADA = 8
     }
 
 

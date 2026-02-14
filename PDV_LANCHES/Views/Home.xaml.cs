@@ -271,8 +271,14 @@ namespace PDV_LANCHES.Views
             this.Close();
         }
 
+        public void consignacao_Click(object sender, RoutedEventArgs e)
+        {
+            TodasConsignacoes TodasConsignacoes = new TodasConsignacoes();
+            TodasConsignacoes.Show();
+            this.Close();
+        }
 
-        
+
 
         private void novoPedido_Click(object sender, RoutedEventArgs e)
         {
