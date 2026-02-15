@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\App.xaml
-29-1845152663
+31-705015675
 1266223392
-65-1733349754
+67410874733
 206707136612
-MainWindow.xaml;Views\ConfiguracaoServidor.xaml;Views\ConsignacaoDarBaixa.xaml;Views\EscolhaDeCaixas.xaml;Views\EscolhaQualHome.xaml;Views\Estoque.xaml;Views\Home.xaml;Views\HomeAdministrativo.xaml;Views\NovaConsignacao.xaml;Views\NovoPedido.xaml;Views\NovoProduto.xaml;Views\NovoUsuario.xaml;Views\PedidoInfo.xaml;Views\ProdutoCompleto.xaml;Views\RelatorioFechamentoCaixa.xaml;Views\TodasConsignacoes.xaml;Views\TodasVendasCompleto.xaml;Views\TodosPedidosPorCaixa.xaml;Views\UsuarioInfo.xaml;Views\VendasPorCaixa.xaml;Views\ViewsAdministrativo\AllCategorias.xaml;Views\ViewsAdministrativo\AllFormasDePagamentos.xaml;Views\ViewsAdministrativo\AllProduto.xaml;Views\ViewsAdministrativo\AllRelatorio.xaml;Views\ViewsAdministrativo\AllStatusPedidos.xaml;Views\ViewsAdministrativo\AllUsuario.xaml;Views\ViewsAdministrativo\ConfiguracaoBanco.xaml;Views\ViewsAdministrativo\ConfiguracaoFiscal.xaml;Views\ViewsAdministrativo\ConfiguracoesGeraisVA2.xaml;
+MainWindow.xaml;Views\ClienteView.xaml;Views\ConfiguracaoServidor.xaml;Views\ConsignacaoDarBaixa.xaml;Views\EscolhaDeCaixas.xaml;Views\EscolhaQualHome.xaml;Views\Estoque.xaml;Views\Home.xaml;Views\HomeAdministrativo.xaml;Views\NovaConsignacao.xaml;Views\NovoPedido.xaml;Views\NovoProduto.xaml;Views\NovoUsuario.xaml;Views\PedidoInfo.xaml;Views\ProdutoCompleto.xaml;Views\RelatorioFechamentoCaixa.xaml;Views\TodasConsignacoes.xaml;Views\TodasVendasCompleto.xaml;Views\TodosOsClientes.xaml;Views\TodosPedidosPorCaixa.xaml;Views\UsuarioInfo.xaml;Views\VendasPorCaixa.xaml;Views\ViewsAdministrativo\AllCategorias.xaml;Views\ViewsAdministrativo\AllFormasDePagamentos.xaml;Views\ViewsAdministrativo\AllProduto.xaml;Views\ViewsAdministrativo\AllRelatorio.xaml;Views\ViewsAdministrativo\AllStatusPedidos.xaml;Views\ViewsAdministrativo\AllUsuario.xaml;Views\ViewsAdministrativo\ConfiguracaoBanco.xaml;Views\ViewsAdministrativo\ConfiguracaoFiscal.xaml;Views\ViewsAdministrativo\ConfiguracoesGeraisVA2.xaml;
 
 False
 

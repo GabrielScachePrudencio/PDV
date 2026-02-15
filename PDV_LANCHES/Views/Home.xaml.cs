@@ -423,10 +423,16 @@ namespace PDV_LANCHES.Views
 
         }
 
+        private void todosOsClientes_Click(object sender, RoutedEventArgs e)
+        {
+            new TodosOsClientes().Show();
+            this.Close();
+        }
 
 
 
-        
+
+
 
     }
 }

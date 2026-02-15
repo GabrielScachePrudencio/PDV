@@ -261,23 +261,26 @@ namespace PDV_LANCHES.Views
                 if (sucesso == "Pedido criado com sucesso!" || sucesso == "ok")
                 {
                     MessageBox.Show(sucesso);
-                    if (veioDeTodasVendas == false)
-                    {
-                        Home home = new Home();
-                        home.Show();
-                        this.Close();
-                    }
-                    if(veioTodosRelatorios == true)
-                    {
-                        HomeAdministrativo homeAdministrativo = new HomeAdministrativo();
-                        homeAdministrativo.Show();
-                        this.Close();
-                    }
-                    else
+                    if(veioDeTodasVendas == true)
                     {
                         TodasVendasCompleto todasVendasCompleto = new TodasVendasCompleto();
                         todasVendasCompleto.Show();
-                        this.Close();
+
+                    } else if (veioTodosRelatorios == true)
+                    {
+                        HomeAdministrativo homeAdministrativo = new HomeAdministrativo();
+                        homeAdministrativo.Show();
+                    }
+                    if (veioTodosPedidosPorCaixa == true)
+                    {
+                        TodosPedidosPorCaixa todosPedidosPorCaixa = new TodosPedidosPorCaixa(idCaixa);
+                        todosPedidosPorCaixa.Show();
+                    }
+                    //vai para o home
+                    else
+                    {
+                        Home home = new Home();
+                        home.Show();
                     }
                 }
             }

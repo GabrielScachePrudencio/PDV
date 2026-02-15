@@ -162,17 +162,26 @@
                             </Style>
                         </TextBox.Resources>
                     </TextBox>
+                    
                 </StackPanel>
 
-                <StackPanel Grid.Column="2" VerticalAlignment="Bottom">
-                    <Button x:Name="btnAdicionarProdutos" Content="+ Adicionar Produtos" Width="200" Height="45" Background="{StaticResource CorPrimaria}" Foreground="{StaticResource CorPrimariaTexto}" FontWeight="Bold" Click="AdicionarProdutos_Click" Cursor="Hand">
-                        <Button.Resources>
+                <StackPanel Grid.Column="2" Margin="0,0,15,0">
+
+                    <TextBlock Text="DATA PREVISTA DE ACERTO" Foreground="{StaticResource TextoTerciario}" FontSize="10" FontWeight="Bold" Margin="0,0,0,8"/>
+                    <DatePicker x:Name="dpDataPrevisaoAcerto"
+                Height="45"
+                Background="{StaticResource BackgroundInput}"
+                BorderBrush="{StaticResource BordaPrincipal}"
+                Foreground="{StaticResource TextoPrincipal}">
+                        <DatePicker.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="8"/>
                             </Style>
-                        </Button.Resources>
-                    </Button>
+                        </DatePicker.Resources>
+                    </DatePicker>
                 </StackPanel>
+
+               
             </Grid>
 
             <!-- LISTA DE PRODUTOS -->

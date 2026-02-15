@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace PDV_LANCHES.Views
 {
@@ -20,6 +21,7 @@ namespace PDV_LANCHES.Views
         private ObservableCollection<Produto> produtos = new ObservableCollection<Produto>();
         private ObservableCollection<ConsignacaoItemDisplay> itensConsignacao = new ObservableCollection<ConsignacaoItemDisplay>();
         private bool cpfValidado = false;
+        private Cliente clienteAtual;
 
         public NovaConsignacao()
         {
@@ -80,20 +82,27 @@ namespace PDV_LANCHES.Views
             {
                 cpfValidado = false;
                 LabelStatusCliente.Text = "";
+                btnCriarCliente.Visibility = Visibility.Hidden;
+
             }
         }
-
         private async Task ValidarCliente()
         {
-            if (string.IsNullOrWhiteSpace(inputCpfCliente.Text) || inputCpfCliente.Text.Length < 14)
+            string cpfFormatado = inputCpfCliente.Text;
+            string cpfNumerico = new string(cpfFormatado.Where(char.IsDigit).ToArray());
+
+            if (cpfNumerico.Length != 11)
             {
                 cpfValidado = false;
+                StatusClienteBox.Visibility = Visibility.Collapsed;
+                clienteAtual = null;
                 LabelStatusCliente.Text = "";
+                btnCriarCliente.Visibility = Visibility.Hidden;
+                inputNomeCliente.Text = "";
                 return;
             }
 
-            // Aqui você pode fazer uma busca no banco para verificar se o cliente existe
-            // Por enquanto, vamos apenas validar o formato
+            var cliente = await ConsignacaoController.verificaCPFEXIste(cpfFormatado);
 
             var usuario = await controller.pegarUsuarioLogado();
             if (usuario == null)
@@ -104,20 +113,39 @@ namespace PDV_LANCHES.Views
 
             consignacao.IdUsuario = usuario.Id;
             consignacao.DataSaida = DateTime.Now;
-            consignacao.IdStatus = 1; // 1 = Aberto
+            consignacao.IdStatus = 1;
             consignacao.NomeStatus = "Aberto";
 
-            cpfValidado = true;
-
-            if (string.IsNullOrWhiteSpace(inputNomeCliente.Text))
+            if (cliente != null)
             {
-                LabelStatusCliente.Text = "✅ CPF VÁLIDO";
+                clienteAtual = cliente; // 🔥 GUARDA O CLIENTE
+                StatusClienteBox.Visibility = Visibility.Visible;
+                StatusClienteBox.Background = new SolidColorBrush(Color.FromRgb(240, 253, 244)); // verde claro
+                StatusClienteBox.BorderBrush = (Brush)FindResource("CorSucesso");
+                inputNomeCliente.Text = cliente.Nome;
+                LabelStatusCliente.Text = "Cliente encontrado com sucesso.";
+                LabelStatusCliente.Foreground = (Brush)FindResource("CorSucesso");
+                cpfValidado = true;
+                btnCriarCliente.Visibility = Visibility.Collapsed;
+
             }
             else
             {
-                LabelStatusCliente.Text = $"✅ {inputNomeCliente.Text.ToUpper()}";
+                clienteAtual = null;
+                cpfValidado = false;
+                StatusClienteBox.Visibility = Visibility.Visible;
+                StatusClienteBox.Background = new SolidColorBrush(Color.FromRgb(254, 242, 242)); // vermelho claro
+                StatusClienteBox.BorderBrush = (Brush)FindResource("CorErro");
+
+                LabelStatusCliente.Text = "Cliente não encontrado.";
+                LabelStatusCliente.Foreground = (Brush)FindResource("CorErro");
+
+                btnCriarCliente.Visibility = Visibility.Visible;
+
             }
         }
+
+
 
         private void AdicionarItem_Click(object sender, RoutedEventArgs e)
         {
@@ -174,6 +202,20 @@ namespace PDV_LANCHES.Views
             AtualizarTotal();
         }
 
+        private async void btnCriarCliente_Click(object sender, RoutedEventArgs e)
+        {
+            string cpf = inputCpfCliente.Text;
+
+            var telaCliente = new ClienteView(cpf); // passando CPF pelo construtor
+            telaCliente.ShowDialog();
+
+            // Depois que fechar, revalida o CPF
+            await ValidarCliente();
+
+        }
+
+
+
         private void RemoverItem_Click(object sender, RoutedEventArgs e)
         {
             var btn = sender as Button;
@@ -215,10 +257,24 @@ namespace PDV_LANCHES.Views
 
             try
             {
-                // Preenche os dados da consignação
-                consignacao.NomeCliente = inputNomeCliente.Text;
+                if (clienteAtual == null)
+                {
+                    MessageBox.Show("Cliente não encontrado.");
+                    return;
+                }
+
+                if (datePickerDataAcerto.SelectedDate.HasValue)
+                {
+                    consignacao.DataPrevisaoAcerto = datePickerDataAcerto.SelectedDate.Value;
+                }
+                else
+                {
+                    consignacao.DataPrevisaoAcerto = null; // ou DateTime.Now se quiser padrão
+                }
+                consignacao.IdCliente = clienteAtual.Id;
+                consignacao.NomeCliente = clienteAtual.Nome;
+
                 consignacao.Observacao = ".";
-                consignacao.IdCliente = 1;
                 consignacao.Itens = itensConsignacao.Select(i => new ConsignacaoItem
                 {
                     IdProduto = i.IdProduto,
@@ -233,8 +289,6 @@ namespace PDV_LANCHES.Views
                 
                 if (sucesso == "ok")
                 {
-                    //fazer com que no estoque apareça o id da consginacao e o stauts quando for uma 
-                    // Por enquanto, apenas simula o sucesso
                     var detalhesItens = string.Join("\n", itensConsignacao.Select(i =>
                         $"  • {i.QuantidadeEnviada}x {i.NomeProduto} - R$ {i.SubTotal:F2}"));
 
@@ -291,7 +345,7 @@ namespace PDV_LANCHES.Views
 
         private void fecharAquiEAbrirHome()
         {
-            new Home().Show();
+            new TodasConsignacoes().Show();
             this.Close();
         }
 

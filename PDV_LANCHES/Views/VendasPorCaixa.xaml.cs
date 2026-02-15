@@ -32,7 +32,7 @@ namespace PDV_LANCHES.Views
 
             if(listaDeCaixas == null || listaDeCaixas.Count == 0)
             {
-                MessageBox.Show("Nenhum caixa encontrado.");
+                MessageBox.Show("Nenhum caixa finalizado encontrado.");
                 return;
             }
 

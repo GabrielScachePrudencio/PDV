@@ -4,6 +4,9 @@
     <_LastSelectedProfileId>C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Update="Views\ClienteView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\ConfiguracaoServidor.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -47,6 +50,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\TodasConsignacoes.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\TodosOsClientes.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\TodosPedidosPorCaixa.xaml.cs">

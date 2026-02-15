@@ -86,5 +86,104 @@ namespace PDV_LANCHES.controller
 
 
 
+        //clientes
+        public async Task<Cliente> verificaCPFEXIste(string cpf)
+        {
+            try
+            {
+                var response = await ApiClient.Client
+                    .GetAsync($"api/consignacoes/clientes/verificaSeExiste/{cpf}");
+
+                if (!response.IsSuccessStatusCode)
+                    return null;
+
+                var existe = await response.Content.ReadFromJsonAsync<Cliente>();
+                return existe;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+
+        public async Task<bool> criarCliente(Cliente c)
+        {
+            try
+            {
+                var response = await ApiClient.Client.PostAsJsonAsync("api/consignacoes/clientes", c);
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public async Task<Cliente> buscarClientePorId(int id)
+        {
+            try
+            {
+                var response = await ApiClient.Client
+                    .GetAsync($"api/consignacoes/clientes/{id}");
+
+                if (!response.IsSuccessStatusCode)
+                    return null;
+
+                return await response.Content.ReadFromJsonAsync<Cliente>();
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        public async Task<List<Cliente>> listarClientes()
+        {
+            try
+            {
+                var response = await ApiClient.Client
+                    .GetAsync("api/consignacoes/clientes");
+
+                if (!response.IsSuccessStatusCode)
+                    return new List<Cliente>();
+
+                var lista = await response.Content.ReadFromJsonAsync<List<Cliente>>();
+                return lista ?? new List<Cliente>();
+            }
+            catch
+            {
+                return new List<Cliente>();
+            }
+        }
+        public async Task<bool> atualizarCliente(Cliente c)
+        {
+            try
+            {
+                var response = await ApiClient.Client
+                    .PutAsJsonAsync($"api/consignacoes/clientes/atualizar", c);
+
+                return response.IsSuccessStatusCode;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public async Task<bool> desativarCliente(int id)
+        {
+            try
+            {
+                var response = await ApiClient.Client
+                    .DeleteAsync($"api/consignacoes/clientes/{id}");
+
+                return response.IsSuccessStatusCode;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+
     }
 }

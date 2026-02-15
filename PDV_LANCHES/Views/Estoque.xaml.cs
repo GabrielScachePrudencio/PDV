@@ -32,16 +32,27 @@ namespace PDV_LANCHES.Views
                 List<PDV_LANCHES.model.Estoque> estoques =
                     await _controller.allEstoque();
 
-                if (dados == null || estoques == null)
+                if (dados == null)
                 {
+                    dados = new();
+                    MessageBox.Show(
+                        "Não ha movimentações de estoque.",
+                        "Possivel Erro",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Warning);
+                }
+                if (estoques == null)
+                {
+                    estoques = new();
                     MessageBox.Show(
                         "Não foi possível carregar os dados do estoque.",
                         "Erro de Conexão",
                         MessageBoxButton.OK,
                         MessageBoxImage.Warning);
 
-                    return;
                 }
+
+
 
                 // Aqui já vai usar a propriedade Identificador automaticamente no Binding
                 dgMovimentacoes.ItemsSource = dados;

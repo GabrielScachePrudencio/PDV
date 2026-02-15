@@ -46,9 +46,32 @@
                     <Ellipse Width="300" Height="300" Fill="White" Opacity="0.05" Margin="-150,-150,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
                     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="InformacoesNaEsquerda" Visibility="Visible">
-                        <Border Background="White" Width="140" Height="140" CornerRadius="70" Margin="0,0,0,25">
-                            <Image x:Name="pdvLogo" Width="90" Height="90" Stretch="Uniform" />
+                        <Border Width="140"
+                            Height="140"
+                            CornerRadius="70"
+                            Background="White"
+                            Margin="0,0,0,25"
+                            SnapsToDevicePixels="True">
+
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="15"
+                                  ShadowDepth="0"
+                                  Opacity="0.4"/>
+                            </Border.Effect>
+
+                            <Image x:Name="pdvLogo"
+                               Width="140"
+                               Height="140"
+                               Stretch="UniformToFill">
+                                <Image.Clip>
+                                    <EllipseGeometry Center="70,70"
+                             RadiusX="70"
+                             RadiusY="70"/>
+                                </Image.Clip>
+                            </Image>
+
                         </Border>
+
                         <TextBlock x:Name="pdvNome" Text="NOME DO PDV" FontSize="26" FontWeight="ExtraBold" Foreground="White" HorizontalAlignment="Center"/>
                         <TextBlock Text="SISTEMA DE GESTÃO PDV" FontSize="11" Foreground="White" Opacity="0.8" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,8,0,0" />
                     </StackPanel>

@@ -172,7 +172,7 @@
                                             </StackPanel>
 
                                         </StackPanel>
-                                        <Button Grid.Column="1" Margin="20,0,0,0" Content="" FontFamily="Segoe MDL2 Assets" Foreground="{StaticResource CorErro}" Background="Transparent" BorderThickness="0" FontSize="16" Click="RemoverItem_Click" Tag="{Binding}"/>
+                                        <Button Grid.Column="1" Margin="20,0,0,0" Content="X"  Foreground="{StaticResource CorErro}" Background="Transparent" BorderThickness="0" FontSize="16" Click="RemoverItem_Click" Tag="{Binding}"/>
                                     </Grid>
                                 </Border>
                             </DataTemplate>

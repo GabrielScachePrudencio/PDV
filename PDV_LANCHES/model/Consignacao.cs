@@ -17,7 +17,6 @@ namespace PDV_LANCHES.model
         public decimal ValorTotalEstimado { get; set; }
         public string Observacao { get; set; }
 
-        // Propriedades auxiliares para a UI (não estão na tabela principal, mas via JOIN)
         public string NomeCliente { get; set; }
         public List<ConsignacaoItem> Itens { get; set; } = new List<ConsignacaoItem>();
 

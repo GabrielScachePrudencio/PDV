@@ -51,7 +51,7 @@ namespace PDV_LANCHES.Views
 
             if (lista == null)
             {
-                MessageBox.Show("Erro ao carregar consignações.");
+                MessageBox.Show("Não há consignações.");
                 return;
             }
 

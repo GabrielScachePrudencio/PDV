@@ -61,6 +61,7 @@ namespace PDV_LANCHES.Views
             // Preencher informações básicas
             txtFornecedor.Text = consignacao.NomeCliente ?? "Cliente não informado";
             txtDataConsignacao.Text = consignacao.DataSaida.ToString("dd/MM/yyyy HH:mm");
+            dpDataPrevisaoAcerto.SelectedDate = consignacao.DataPrevisaoAcerto;
 
             // Mostrar data prevista de acerto se houver
             if (consignacao.DataPrevisaoAcerto.HasValue)
@@ -448,12 +449,10 @@ namespace PDV_LANCHES.Views
             }
 
             // Bloquear botões
-            btnAdicionarProdutos.IsEnabled = !bloqueado;
             btnFinalizar.IsEnabled = !bloqueado;
             btnEstornar.Visibility = Visibility.Visible;
             if (bloqueado)
             {
-                btnAdicionarProdutos.Visibility = Visibility.Collapsed;
 
                 if (consignacao.IdStatus == 2) // Finalizado
                 {
@@ -462,11 +461,15 @@ namespace PDV_LANCHES.Views
                     btnEstornar.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#F59E0B"));
                     btnEstornar.Visibility = Visibility.Visible;
                     btnEstornar.Visibility = Visibility.Visible;
+                    dpDataPrevisaoAcerto.IsEnabled = !bloqueado;
+
                 }
                 else if (consignacao.IdStatus == 3) // Cancelado
                 {
                     btnFinalizar.Visibility = Visibility.Collapsed;
                     btnEstornar.Visibility = Visibility.Collapsed;
+                    dpDataPrevisaoAcerto.IsEnabled = !bloqueado;
+
                 }
             }
         }
@@ -540,18 +543,6 @@ namespace PDV_LANCHES.Views
                     AtualizarTotal();
                 }
             }
-        }
-
-        private void AdicionarProdutos_Click(object sender, RoutedEventArgs e)
-        {
-            // Aqui você deve abrir uma tela de seleção de produtos
-            // Similar ao CardapioCompleto do PedidoInfo
-            MessageBox.Show("Funcionalidade de adicionar produtos - Implementar tela de seleção de produtos");
-
-            // Exemplo de como seria:
-            // CardapioConsignacao cardapio = new CardapioConsignacao(consignacao);
-            // cardapio.Show();
-            // this.Close();
         }
 
         private async void Finalizar_Click(object sender, RoutedEventArgs e)
@@ -638,6 +629,7 @@ namespace PDV_LANCHES.Views
 
                     // Atualizar status para Finalizado
                     consignacao.IdStatus = 2;
+                    consignacao.DataPrevisaoAcerto = dpDataPrevisaoAcerto.SelectedDate;
 
                     // Recalcular total
                     consignacao.ValorTotalEstimado = consignacao.Itens.Sum(i => i.QuantidadeVendida * i.PrecoUnitarioAcordado);

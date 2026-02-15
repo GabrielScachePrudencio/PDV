@@ -239,42 +239,51 @@
                     </Border>
                 </StackPanel>
 
-                <StackPanel Grid.Row="1" Margin="0,10">
-                    <Button Style="{StaticResource MenuButtonStyle}" x:Name="novoPedido" Click="novoPedido_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="➕" Margin="0,0,12,0" Foreground="{StaticResource CorPrimaria}" FontSize="16"/>
-                            <TextBlock Text="Novo Pedido" FontWeight="SemiBold" Foreground="{StaticResource TextoPrincipal}"/>
-                        </StackPanel>
-                    </Button>
-
-                    <Button Style="{StaticResource MenuButtonStyle}" x:Name="todasAsVendas" Click="todasVendas_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="📊" Margin="0,0,12,0" FontSize="16"/>
-                            <TextBlock Text="Todas as Vendas"/>
-                        </StackPanel>
-                    </Button>
-
-                    <Button Style="{StaticResource MenuButtonStyle}" x:Name="VendasPorCaixa" Click="vendasPorCaixa_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="📟" Margin="0,0,12,0" FontSize="16"/>
-                            <TextBlock Text="Vendas por Caixa"/>
-                        </StackPanel>
-                    </Button>
-
-                    <Button Style="{StaticResource MenuButtonStyle}" x:Name="estoque" Click="Estoque_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="🗄" Margin="0,0,12,0" FontSize="16"/>
-                            <TextBlock Text="Estoque"/>
-                        </StackPanel>
-                    </Button>
+                <ScrollViewer Grid.Row="1" Margin="0,10" VerticalScrollBarVisibility="Auto">
                     
-                    <Button Style="{StaticResource MenuButtonStyle}" x:Name="consignacao" Click="consignacao_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="🎒" Margin="0,0,12,0" FontSize="16"/>
-                            <TextBlock Text="Consignações"/>
-                        </StackPanel>
-                    </Button>
-                </StackPanel>
+                    <StackPanel>
+                        <Button Style="{StaticResource MenuButtonStyle}" x:Name="novoPedido" Click="novoPedido_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="➕" Margin="0,0,12,0" Foreground="{StaticResource CorPrimaria}" FontSize="16"/>
+                                <TextBlock Text="Novo Pedido" FontWeight="SemiBold" Foreground="{StaticResource TextoPrincipal}"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button Style="{StaticResource MenuButtonStyle}" x:Name="todasAsVendas" Click="todasVendas_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="📊" Margin="0,0,12,0" FontSize="16"/>
+                                <TextBlock Text="Todas as Vendas"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button Style="{StaticResource MenuButtonStyle}" x:Name="VendasPorCaixa" Click="vendasPorCaixa_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="📟" Margin="0,0,12,0" FontSize="16"/>
+                                <TextBlock Text="Vendas por Caixa"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button Style="{StaticResource MenuButtonStyle}" x:Name="estoque" Click="Estoque_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="🗄" Margin="0,0,12,0" FontSize="16"/>
+                                <TextBlock Text="Estoque"/>
+                            </StackPanel>
+                        </Button>
+                    
+                        <Button Style="{StaticResource MenuButtonStyle}" x:Name="consignacao" Click="consignacao_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="🎒" Margin="0,0,12,0" FontSize="16"/>
+                                <TextBlock Text="Consignações"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource MenuButtonStyle}" x:Name="todosClientes" Click="todosOsClientes_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="🙎‍" Margin="0,0,12,0" FontSize="16"/>
+                                <TextBlock Text="Todos os Clientes"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </ScrollViewer>
 
                 <StackPanel Grid.Row="2" Margin="15,20">
                     <Button Name="voltarHome" Content="⚙ Painel Administrativo" Style="{StaticResource MenuButtonStyle}" Height="40" Margin="0,5" Click="VoltarParaEscolha_Click" Visibility="Collapsed" Background="{StaticResource MenuBotaoNormal}"/>

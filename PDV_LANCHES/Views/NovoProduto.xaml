@@ -131,9 +131,17 @@
                     <TextBox x:Name="txtNome" Height="45" Margin="0,0,0,20" Style="{StaticResource ModernTextBox}"/>
 
                     <TextBlock Text="CATEGORIA" Foreground="{StaticResource TextoSecundario}" FontSize="11" FontWeight="Bold" Margin="0,0,0,8"/>
-                    <ComboBox x:Name="comboCategoria" Height="45" Margin="0,0,0,20" 
-                              DisplayMemberPath="nome" SelectedValuePath="id"
-                              Style="{StaticResource DarkComboBox}"/>
+                    <ComboBox x:Name="comboCategoria" Margin="0,0,0,20"
+          SelectedValuePath="id"
+          Style="{StaticResource DarkComboBox}">
+
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding nome}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+
+                    </ComboBox>
 
                     <Grid>
                         <Grid.ColumnDefinitions>

@@ -91,3 +91,7 @@ C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\ne
 C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\TodasConsignacoes.g.cs
 C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\ConsignacaoDarBaixa.g.cs
 C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\ConsignacaoDarBaixa.baml
+C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\ClienteView.baml
+C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\ClienteView.g.cs
+C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\TodosOsClientes.g.cs
+C:\Users\Flavio\Desktop\PDVSERVIDOR_LANCHES\PDV_LANCHES\PDV_LANCHES\obj\Debug\net8.0-windows\Views\TodosOsClientes.baml
